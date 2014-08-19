@@ -46,11 +46,12 @@
     <ImageView
         android:layout_width="275dp"
         android:layout_height="50dp"
-        android:id="@+id/ivmpostit3"
+        android:id="@+id/imvpostit3"
         android:layout_below="@+id/imvpostit2"
         android:layout_marginTop="15dp"
         android:background="@drawable/memocontainer"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,7 +83,7 @@
         android:text="07:57/1.02.2014"
         android:layout_margin="5dp"
         android:id="@+id/smtDateHeure3"
-        android:layout_alignTop="@+id/ivmpostit3"
+        android:layout_alignTop="@+id/imvpostit3"
         android:layout_alignParentStart="true"
         android:textSize="11dp" />
 
@@ -125,10 +126,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="See More"
+        android:text=" voir plus"
         android:id="@+id/lgtMoreMessage"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/ivmpostit3"
+        android:layout_below="@+id/imvpostit3"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffffff"
         android:typeface="normal"
@@ -149,7 +150,8 @@
         android:layout_toEndOf="@+id/imvpostit1"
         android:layout_alignTop="@+id/imvpostit1"
         android:layout_above="@+id/imvpostit2"
-        android:singleLine="false" />
+        android:singleLine="false"
+        android:enabled="false" />
 
     <Button
         android:layout_width="fill_parent"
@@ -197,7 +199,8 @@
         android:clickable="true"
         android:layout_toEndOf="@+id/imvpostit2"
         android:layout_alignTop="@+id/smtUser2"
-        android:layout_above="@+id/ivmpostit3" />
+        android:layout_above="@+id/imvpostit3"
+        android:enabled="false" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -212,7 +215,8 @@
         android:layout_toEndOf="@+id/imvpostit1"
         android:layout_alignTop="@+id/smtUser1"
         android:layout_alignEnd="@+id/bEtatPortePrinc"
-        android:layout_alignBottom="@+id/ivmpostit3" />
+        android:layout_alignBottom="@+id/imvpostit3"
+        android:enabled="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -246,6 +250,17 @@
         android:layout_below="@+id/smtDateHeure3"
         android:layout_alignStart="@+id/smtDateHeure3"
         android:maxLength="40" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="(5)"
+        android:id="@+id/lgtNum"
+        android:layout_alignTop="@+id/lgtMoreMessage"
+        android:layout_toStartOf="@+id/lgtMoreMessage"
+        android:maxLength="3"
+        android:textColor="#ffffffff" />
 
 
 </RelativeLayout>
