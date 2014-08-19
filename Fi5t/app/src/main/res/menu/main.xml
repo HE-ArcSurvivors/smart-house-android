@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ch.he.arc.p1.g5.fi5t.Main" >
     <item android:id="@+id/action_settings"
-        android:icon="@drawable/boutonvert"
         android:title="FI5T"
         android:orderInCategory="1"
         android:showAsAction="never"/>
