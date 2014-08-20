@@ -40,6 +40,10 @@
             android:name=".Materiel"
             android:label="@string/title_activity_materiel" >
         </activity>
+        <activity
+            android:name=".MonProfil"
+            android:label="@string/title_activity_mon_profil" >
+        </activity>
     </application>
 
 </manifest>

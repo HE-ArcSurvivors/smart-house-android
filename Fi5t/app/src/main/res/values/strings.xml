@@ -10,6 +10,7 @@
     <string name="title_activity_parametre">Paramètre</string>
     <string name="title_activity_info_fist">Information sur FI5T</string>
     <string name="title_activity_postit">Post-It</string>
-    <string name="title_activity_materiel">Matériel(s) Disponible</string>
+    <string name="title_activity_materiel">Matériel(s) Disponible(s)</string>
+    <string name="title_activity_mon_profil">Mon Profil</string>
 
 </resources>

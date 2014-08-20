@@ -2,12 +2,12 @@ package ch.he.arc.p1.g5.fi5t;
 
 //Import
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
+import android.view.View;
 
 
 // Classe Menu_Activity
@@ -16,14 +16,24 @@ public class Menu_Activity extends Activity{
 
     // Déclaration TAG
     private static final String TAG ="Menu" ;
-
-
+    String Role="Admin";
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        if(Role!="Admin")
+        {
+            MenuItem item3  = menu.findItem(R.id.Users);
+            item3.setVisible(false);}
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+
     }
 
     //@Override
@@ -49,7 +59,7 @@ public class Menu_Activity extends Activity{
                 return true;
 
             case R.id.action_settings:
-                intent = new Intent(getApplicationContext(),InfoFIST.class);
+                intent = new Intent(getApplicationContext(),Main.class);
                 startActivity(intent);
                 return true;
             case R.id.PostIt:
@@ -62,6 +72,10 @@ public class Menu_Activity extends Activity{
                 return true;
             case R.id.Parameter:
                 intent = new Intent(getApplicationContext(),Parametre.class);
+                startActivity(intent);
+                return true;
+            case R.id.MonProfil:
+                intent = new Intent(getApplicationContext(),MonProfil.class);
                 startActivity(intent);
                 return true;
 
