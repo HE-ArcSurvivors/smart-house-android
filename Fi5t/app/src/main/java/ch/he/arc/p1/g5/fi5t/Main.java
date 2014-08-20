@@ -1,7 +1,9 @@
 package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class Main extends Activity {
+public class Main extends Menu_Activity{
+    private static final String TAG ="Page Accueil" ;
 
 
     // Variable utiliser pour les POST-IT
@@ -48,6 +51,16 @@ public class Main extends Activity {
 
         setPostIts();
     }
+
+
+
+
+
+
+
+
+
+
     public void setPostIts() {
 
         bClosePostIt1 = (Button) findViewById(R.id.bDelPostIt1);
@@ -80,7 +93,7 @@ public class Main extends Activity {
         tPostItMessage2.setVisibility(View.INVISIBLE);
         tPostItMessage3.setVisibility(View.INVISIBLE);
 
-        tPostItFrom1 = (TextView) findViewById(R.id.smtUser1);
+        tPostItFrom1 = (TextView) findViewById(R.id.smtUser3);
         tPostItFrom2 = (TextView) findViewById(R.id.smtUser2);
         tPostItFrom3 = (TextView) findViewById(R.id.smtUser3);
         tPostItFrom1.setVisibility(View.INVISIBLE);
@@ -101,23 +114,20 @@ public class Main extends Activity {
     public void checkPostIts() {
 
 
-        final String postItMessage1 = "Message from Post It 1";
-        final String postItMessage2 = "Message from Post It 2";
-        final String postItMessage3 = "Message from Post It 3";
+        final String postItMessage1 = "Je suis de sortie ce soir !";
+        final String postItMessage2 = "Je rentre à la maison à 18h00";
+        final String postItMessage3 = "Je fini un peu plus tôt l'école que prévu";
 
-        final String postItDate1 = "Day 1";
-        final String postItDate2 = "Day 2";
-        final String postItDate3 = "Day 3";
+        final String postItDate1 = "13:00/25.08.2014";
+        final String postItDate2 = "11:21/25.08.2014";
+        final String postItDate3 = "10:58/25.08.2014";
 
-        final String postItTime1 = "01:00";
-        final String postItTime2 = "02:00";
-        final String postItTime3 = "03:00";
 
-        final String postItFrom1 = "User 1";
-        final String postItFrom2 = "User 2";
-        final String postItFrom3 = "User 3";
+        final String postItFrom1 = "Franck";
+        final String postItFrom2 = "Maman";
+        final String postItFrom3 = "Franck";
 
-        int numberMorePostIts = 3;
+        int numberMorePostIts = 1;
 
         bClosePostIt1 = (Button) findViewById(R.id.bDelPostIt1);
         tPostItDate1 = (TextView) findViewById(R.id.smtDateHeure1);
@@ -131,10 +141,14 @@ public class Main extends Activity {
                 tNumberMorePostIts.setText(" ");
                 break;
             case 1:
-                tStringMorePostIts.setText("Post-It is waiting");
+                tStringMorePostIts.setText("(1) POST-IT attend");
+                tNumberMorePostIts.setVisibility(View.VISIBLE);
+                tStringMorePostIts.setVisibility(View.VISIBLE);
                 break;
             default:
-                tStringMorePostIts.setText("Post-Its are waiting");
+                tStringMorePostIts.setText("Des POST-ITs attendent");
+                tNumberMorePostIts.setVisibility(View.VISIBLE);
+                tStringMorePostIts.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -296,22 +310,5 @@ public class Main extends Activity {
 
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

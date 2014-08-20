@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Fi5t</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">FI5T</string>
+    <string name="hello_world">La Page fonctionne</string>
+    <string name="action_settings">Paramètre</string>
     <string name="title_activity_main">FI5T</string>
     <string name="login_message">Connection</string>
+    <string name="title_activity_users">Utilisateurs</string>
+    <string name="title_activity_parametre">Paramètre</string>
+    <string name="title_activity_info_fist">Information sur FI5T</string>
+    <string name="title_activity_postit">Post-It</string>
+    <string name="title_activity_materiel">Matériel(s) Disponible(s)</string>
+    <string name="title_activity_mon_profil">Mon Profil</string>
 
 </resources>

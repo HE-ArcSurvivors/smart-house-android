@@ -6,10 +6,9 @@
         android:orderInCategory="1"
         android:showAsAction="never"/>
     <item android:id="@+id/Users"
-          android:title="Utilisateurs"
+        android:title="Utilisateurs"
         android:showAsAction="never"
-          android:orderInCategory="2"/>
-
+        android:orderInCategory="2"/>
     <item android:id="@+id/PostIt"
         android:title="Post-It"
         android:showAsAction="never"
@@ -26,4 +25,4 @@
         android:title="Paramètre(s)"
         android:showAsAction="never"
         android:orderInCategory="6"/>
-    </menu>
+</menu>

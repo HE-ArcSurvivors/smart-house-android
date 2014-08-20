@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".Connection"
             android:label="@string/app_name" >
@@ -19,6 +19,30 @@
         <activity
             android:name=".Main"
             android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".Users"
+            android:label="@string/title_activity_users" >
+        </activity>
+        <activity
+            android:name=".Parametre"
+            android:label="@string/title_activity_parametre" >
+        </activity>
+        <activity
+            android:name=".InfoFIST"
+            android:label="@string/title_activity_info_fist" >
+        </activity>
+        <activity
+            android:name=".POSTIT"
+            android:label="@string/title_activity_postit" >
+        </activity>
+        <activity
+            android:name=".Materiel"
+            android:label="@string/title_activity_materiel" >
+        </activity>
+        <activity
+            android:name=".MonProfil"
+            android:label="@string/title_activity_mon_profil" >
         </activity>
     </application>
 
