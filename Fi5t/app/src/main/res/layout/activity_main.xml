@@ -92,13 +92,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Jacqueline"
-        android:id="@+id/smtUser1"
+        android:id="@+id/smtUser3"
         android:layout_toEndOf="@+id/smtMessage3"
         android:maxLength="10"
         android:textIsSelectable="false"
         android:textSize="11dp"
         android:layout_alignTop="@+id/smtDateHeure3"
-        android:layout_alignStart="@+id/smtUser3" />
+        android:layout_alignStart="@+id/smtUser1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -116,10 +116,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Jacques"
-        android:id="@+id/smtUser3"
+        android:id="@+id/smtUser1"
         android:maxLength="10"
         android:textSize="11dp"
-        android:layout_toStartOf="@+id/smtUser3"
         android:layout_alignTop="@+id/smtDateHeure1"
         android:layout_alignEnd="@+id/smtUser2" />
     <TextView
@@ -131,9 +130,7 @@
         android:layout_marginTop="10dp"
         android:layout_below="@+id/imvpostit3"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffffff"
-        android:typeface="normal"
-        android:singleLine="false" />
+        android:textColor="#ffffffff" />
 
 
 
@@ -146,30 +143,29 @@
         android:background="@drawable/boutonvert"
         android:textColor="#ffeefff6"
         android:textSize="11dp"
-        android:clickable="true"
         android:layout_toEndOf="@+id/imvpostit1"
         android:layout_alignTop="@+id/imvpostit1"
         android:layout_above="@+id/imvpostit2"
         android:singleLine="false"
-        android:enabled="false" />
+        android:clickable="true" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Etats de la porte principale"
         android:id="@+id/bEtatPortePrinc"
-        android:clickable="true"
         android:background="@drawable/button"
         android:layout_below="@+id/lgtMoreMessage"
         android:layout_marginTop="34dp"
-        android:layout_alignEnd="@+id/bDelPostIt1" />
+        android:layout_alignEnd="@+id/bDelPostIt1"
+        android:clickable="false"
+        android:focusable="false" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Accès aux portes"
         android:id="@+id/bAccesPortes"
-        android:clickable="true"
         android:layout_marginTop="12dp"
         android:background="@drawable/button"
         android:layout_below="@+id/bEtatPortePrinc"
@@ -181,7 +177,6 @@
         android:layout_height="wrap_content"
         android:text="Accès I/O"
         android:id="@+id/button2"
-        android:clickable="true"
         android:layout_marginTop="12dp"
         android:background="@drawable/button"
         android:layout_below="@+id/bAccesPortes"
@@ -196,11 +191,10 @@
         android:background="@drawable/boutonvert"
         android:textColor="#ffeefff6"
         android:textSize="11dp"
-        android:clickable="true"
         android:layout_toEndOf="@+id/imvpostit2"
         android:layout_alignTop="@+id/smtUser2"
         android:layout_above="@+id/imvpostit3"
-        android:enabled="false" />
+        android:clickable="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -211,12 +205,11 @@
         android:background="@drawable/boutonvert"
         android:textColor="#ffeefff6"
         android:textSize="11dp"
-        android:clickable="true"
         android:layout_toEndOf="@+id/imvpostit1"
-        android:layout_alignTop="@+id/smtUser1"
         android:layout_alignEnd="@+id/bEtatPortePrinc"
         android:layout_alignBottom="@+id/imvpostit3"
-        android:enabled="false" />
+        android:clickable="true"
+        android:layout_alignTop="@+id/smtUser3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -255,7 +248,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="(5)"
+        android:text=""
         android:id="@+id/lgtNum"
         android:layout_alignTop="@+id/lgtMoreMessage"
         android:layout_toStartOf="@+id/lgtMoreMessage"

@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">FI5T</string>
     <string name="login_message">Connection</string>
+    <string name="title_activity_users">Users</string>
 
 </resources>
