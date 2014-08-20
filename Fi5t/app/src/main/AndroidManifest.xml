@@ -24,6 +24,22 @@
             android:name=".Users"
             android:label="@string/title_activity_users" >
         </activity>
+        <activity
+            android:name=".Parametre"
+            android:label="@string/title_activity_parametre" >
+        </activity>
+        <activity
+            android:name=".InfoFIST"
+            android:label="@string/title_activity_info_fist" >
+        </activity>
+        <activity
+            android:name=".POSTIT"
+            android:label="@string/title_activity_postit" >
+        </activity>
+        <activity
+            android:name=".Materiel"
+            android:label="@string/title_activity_materiel" >
+        </activity>
     </application>
 
 </manifest>

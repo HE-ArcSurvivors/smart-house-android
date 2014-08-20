@@ -2,6 +2,7 @@ package ch.he.arc.p1.g5.fi5t;
 
 //Import
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,24 +39,30 @@ public class Menu_Activity extends Activity{
     // }
     @Override
     public boolean onOptionsItemSelected(MenuItem Item)
-    {
+        {
+        Intent intent = null;
         switch (Item.getItemId())
         {
             case R.id.Users:
-                Log.i(TAG, "Users item was clicked");
+                intent = new Intent(getApplicationContext(),Users.class);
+                startActivity(intent);
                 return true;
 
             case R.id.action_settings:
-                Log.i(TAG,"FI5T item was clicked");
+                intent = new Intent(getApplicationContext(),InfoFIST.class);
+                startActivity(intent);
                 return true;
             case R.id.PostIt:
-                Log.i(TAG,"PostIt item was clicked");
+                intent = new Intent(getApplicationContext(),POSTIT.class);
+                startActivity(intent);
                 return true;
             case R.id.Material:
-                Log.i(TAG,"Material item was clicked");
+                intent = new Intent(getApplicationContext(),Materiel.class);
+                startActivity(intent);
                 return true;
             case R.id.Parameter:
-                Log.i(TAG,"Parameter item was clicked");
+                intent = new Intent(getApplicationContext(),Parametre.class);
+                startActivity(intent);
                 return true;
 
             default:
