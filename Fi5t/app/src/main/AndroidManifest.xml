@@ -44,6 +44,10 @@
             android:name=".MonProfil"
             android:label="@string/title_activity_mon_profil" >
         </activity>
+        <activity
+            android:name=".MyActivity"
+            android:label="@string/title_activity_my" >
+        </activity>
     </application>
 
 </manifest>

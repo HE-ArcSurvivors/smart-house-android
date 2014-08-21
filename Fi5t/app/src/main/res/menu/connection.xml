@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ch.he.arc.p1.g5.fi5t.Main" >
+    tools:context="ch.he.arc.p1.g5.fi5t.Connection" >
 
 </menu>

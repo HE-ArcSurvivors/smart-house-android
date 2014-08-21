@@ -2,6 +2,7 @@ package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -40,14 +42,21 @@ public class Materiel extends Menu_Activity {
                 String ConnectS=Connect.toString();
                 CharSequence searchString = "est Connectée";
                 // Test if parentString contains the searchString
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+
                 if(ConnectS.contains(searchString)){
 
                     ConnectS=ConnectS.substring(0,10); // Nom du périphérique doit être fixe.
                     ((TextView)view).setText(ConnectS);
                     ((TextView)view).onSaveInstanceState();
+                    Toast toast = Toast.makeText(context,"Déconnecté", duration);
+                    toast.show();
                 }
                 else{
                     ((TextView)view).setText(Connect+" est Connectée");
+                    Toast toast = Toast.makeText(context,"Connecté", duration);
+                    toast.show();
 
                 }
             }
@@ -72,7 +81,7 @@ public class Materiel extends Menu_Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.Material) {
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,6 +1,7 @@
 package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Main extends Menu_Activity{
@@ -28,13 +30,35 @@ public class Main extends Menu_Activity{
     boolean postIt1 = true;
     boolean postIt2 = true;
     boolean postIt3 = true;
-
+    Button bEtatPorte;
+    String EtatPorte="Ouverte"; //--------------------------Etat de la porte-----------------------------//
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bEtatPorte=(Button)findViewById(R.id.bEtatPortePrinc);
+        bEtatPorte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                if(EtatPorte=="Ouverte")
+                {
+                    Toast toast = Toast.makeText(context,"Fermé", duration);
+                    toast.show();
+                    EtatPorte="Fermé";
+                }
+                else {
+                    Toast toast = Toast.makeText(context, "Ouverte", duration);
+                    toast.show();
+                    EtatPorte="Ouverte";
+
+                }
+            }
+        });
 
 
         Bundle bundle = getIntent().getExtras();

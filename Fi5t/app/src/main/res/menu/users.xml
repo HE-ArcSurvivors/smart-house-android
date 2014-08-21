@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ch.he.arc.p1.g5.fi5t.Main" >
-    <item android:id="@+id/action_settings"
+    tools:context="ch.he.arc.p1.g5.fi5t.Users" >
+    <item android:id="@+id/PageAccueil"
         android:title="FI5T"
         android:orderInCategory="1"
         android:showAsAction="never"/>
@@ -9,6 +9,7 @@
         android:title="Utilisateurs"
         android:showAsAction="never"
         android:orderInCategory="2"/>
+
     <item android:id="@+id/PostIt"
         android:title="Post-It"
         android:showAsAction="never"
