@@ -34,9 +34,8 @@
         </activity>
         <activity
             android:name=".POSTIT"
-            android:label="@string/title_activity_postit"
-<<<<<<< HEAD
-            >
+            android:label="@string/title_activity_postit">
+
             <meta-data
                 android:name="andoid.app.default_searchable"
                 android:value=".POSTIT"
@@ -51,12 +50,7 @@
                 android:resource="@xml/searchable"
             />
 
-=======
-            android:theme="@style/AppTheme">
->>>>>>> baaa3d40036b373ffeb5f9078684dc83cdecb645
         </activity>
-
-
 
         <activity
             android:name=".Materiel"

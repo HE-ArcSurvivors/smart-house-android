@@ -15,9 +15,9 @@
     <string name="title_activity_materiel">Matériel(s) Disponible(s)</string>
     <string name="title_activity_mon_profil">Mon Profil</string>
     <string name="title_activity_my">MyActivity</string>
-<<<<<<< HEAD
+
     <string name="search_hint">Enter un pseudo</string>
-=======
+
     <string name="title_activity_blue_tests">Bluetooth CMD</string>
 
     <!--  BlueTests -->
@@ -113,6 +113,6 @@
     <string name="default_screenorientation_preference">0</string>
 
     <string name="return_to_app">Fi5t</string>
->>>>>>> baaa3d40036b373ffeb5f9078684dc83cdecb645
+
 
 </resources>
