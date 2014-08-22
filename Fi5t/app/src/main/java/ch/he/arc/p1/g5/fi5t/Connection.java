@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class Connection extends Activity {
 
-    Button bLogin;
+    Button bBlueTests, bLogin;
     TextView dStatus, dUsername, dPassword;
     ProgressBar mProgress;
 
@@ -25,12 +25,24 @@ public class Connection extends Activity {
         setContentView(R.layout.activity_connection);
 
         bLogin = (Button) findViewById(R.id.bLogin);
+        bBlueTests = (Button) findViewById(R.id.bBluetests);
         dStatus = (TextView) findViewById(R.id.dStatus);
         dUsername = (TextView) findViewById(R.id.dUsername);
         dPassword = (TextView) findViewById(R.id.dPassword);
         mProgress = (ProgressBar) findViewById(R.id.progressBarLogin);
 
         mProgress.setVisibility(View.INVISIBLE);
+
+        bBlueTests.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+
+                startActivity(new Intent (Connection.this, BlueTests.class));
+                finish();
+
+            }
+
+        });
 
 
         bLogin.setOnClickListener(new View.OnClickListener(){

@@ -29,10 +29,6 @@
             android:label="@string/title_activity_parametre" >
         </activity>
         <activity
-            android:name=".InfoFIST"
-            android:label="@string/title_activity_info_fist" >
-        </activity>
-        <activity
             android:name=".POSTIT"
             android:label="@string/title_activity_postit" >
         </activity>
@@ -45,9 +41,22 @@
             android:label="@string/title_activity_mon_profil" >
         </activity>
         <activity
-            android:name=".MyActivity"
-            android:label="@string/title_activity_my" >
+            android:name=".BlueTests"
+            android:label="@string/title_activity_blue_tests"
+            android:configChanges="keyboardHidden|orientation">
         </activity>
+        <activity android:name=".BlueDeviceList"
+            android:label="@string/select_device"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity android:name=".BluePreferences"/>
+
+
     </application>
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-sdk android:minSdkVersion="7" />
 
 </manifest>
