@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="12:00"
+        android:id="@+id/item_HeureTxt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:singleLine="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:maxLength="5"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Item_SlashTxt"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/item_HeureTxt"
+        android:text="/"
+        android:layout_alignParentTop="true"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="12.08.2014"
+        android:id="@+id/item_DateTxt"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/Item_SlashTxt"
+        android:layout_alignParentTop="true"
+        android:maxLength="10"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Jacqueline"
+        android:layout_marginTop="5dp"
+        android:id="@+id/item_IDutilisateurTxt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:maxLength="10"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Message1"
+        android:id="@+id/item_MessageTxt"
+        android:layout_below="@+id/item_HeureTxt"
+        android:layout_alignParentStart="true"
+        android:maxLength="22"
+        android:layout_marginLeft="10dp"
+        android:layout_toStartOf="@+id/item_StatutTxt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Non Lu"
+        android:id="@+id/item_StatutTxt"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/item_MessageTxt"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp" />
+</RelativeLayout>

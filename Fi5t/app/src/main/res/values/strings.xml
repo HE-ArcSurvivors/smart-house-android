@@ -13,5 +13,6 @@
     <string name="title_activity_materiel">Matériel(s) Disponible(s)</string>
     <string name="title_activity_mon_profil">Mon Profil</string>
     <string name="title_activity_my">MyActivity</string>
+    <string name="search_hint">Enter un pseudo</string>
 
 </resources>

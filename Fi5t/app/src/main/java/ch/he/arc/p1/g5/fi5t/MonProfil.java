@@ -35,7 +35,7 @@ public class MonProfil extends Menu_Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.PostIt) {
+        if (id == R.id.MonProfil) {
             return true;
         }
         return super.onOptionsItemSelected(item);
