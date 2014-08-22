@@ -4,12 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:icon="@drawable/logo_fist"
+        android:label="@string/app_name" >
         <activity
             android:name=".Connection"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/Connection">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,23 +19,23 @@
         </activity>
         <activity
             android:name=".Main"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".Users"
-            android:label="@string/title_activity_users" >
+            android:label="@string/title_activity_users"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".Parametre"
-            android:label="@string/title_activity_parametre" >
-        </activity>
-        <activity
-            android:name=".InfoFIST"
-            android:label="@string/title_activity_info_fist" >
+            android:label="@string/title_activity_parametre"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".POSTIT"
             android:label="@string/title_activity_postit"
+<<<<<<< HEAD
             >
             <meta-data
                 android:name="andoid.app.default_searchable"
@@ -50,22 +51,42 @@
                 android:resource="@xml/searchable"
             />
 
+=======
+            android:theme="@style/AppTheme">
+>>>>>>> baaa3d40036b373ffeb5f9078684dc83cdecb645
         </activity>
 
 
 
         <activity
             android:name=".Materiel"
-            android:label="@string/title_activity_materiel" >
+            android:label="@string/title_activity_materiel"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".MonProfil"
-            android:label="@string/title_activity_mon_profil" >
+            android:label="@string/title_activity_mon_profil"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".MyActivity"
-            android:label="@string/title_activity_my" >
+            android:name=".BlueTests"
+            android:label="@string/title_activity_blue_tests"
+            android:theme="@style/BluetoothTheme"
+            android:uiOptions="none"
+            android:configChanges="keyboardHidden|orientation">
         </activity>
+        <activity android:name=".BlueDeviceList"
+            android:label="@string/select_device"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity android:name=".BluePreferences"/>
+
+
     </application>
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-sdk android:minSdkVersion="7" />
 
 </manifest>
