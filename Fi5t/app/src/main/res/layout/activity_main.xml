@@ -254,5 +254,13 @@
         android:maxLength="3"
         android:textColor="#ffffffff" />
 
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageView"
+        android:layout_toEndOf="@+id/bEtatPortePrinc"
+        android:layout_alignBottom="@+id/bEtatPortePrinc"
+        android:layout_alignStart="@+id/bDelPostIt3" />
+
 
 </RelativeLayout>

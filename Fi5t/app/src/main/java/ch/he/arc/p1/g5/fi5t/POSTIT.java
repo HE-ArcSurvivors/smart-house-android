@@ -5,13 +5,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class POSTIT extends Menu_Activity {
+    private List<Message> MyMessages =new ArrayList<Message>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postit);
+        PopulateMessageList();
+
+    }
+
+    private void PopulateMessageList() {
+        MyMessages.add(new Message("12.08.2014","12:00","NonLu","Maman est à la maison","SuperMama",1));
     }
 
 

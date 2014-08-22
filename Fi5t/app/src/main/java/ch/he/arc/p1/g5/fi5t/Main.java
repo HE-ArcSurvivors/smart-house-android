@@ -32,13 +32,15 @@ public class Main extends Menu_Activity{
     boolean postIt3 = true;
     Button bEtatPorte;
     String EtatPorte="Ouverte"; //--------------------------Etat de la porte-----------------------------//
+    ImageView Im1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Im1=(ImageView) findViewById(R.id.imageView);
+        Im1.setBackgroundResource(R.drawable.opendoor);
         bEtatPorte=(Button)findViewById(R.id.bEtatPortePrinc);
         bEtatPorte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,10 +52,12 @@ public class Main extends Menu_Activity{
                     Toast toast = Toast.makeText(context,"Fermé", duration);
                     toast.show();
                     EtatPorte="Fermé";
+                    Im1.setBackgroundResource(R.drawable.closeddoor);
                 }
                 else {
                     Toast toast = Toast.makeText(context, "Ouverte", duration);
                     toast.show();
+                    Im1.setBackgroundResource(R.drawable.opendoor);
                     EtatPorte="Ouverte";
 
                 }
@@ -138,18 +142,18 @@ public class Main extends Menu_Activity{
     public void checkPostIts() {
 
 
-        final String postItMessage1 = "Je suis de sortie ce soir !";
-        final String postItMessage2 = "Je rentre à la maison à 18h00";
-        final String postItMessage3 = "Je fini un peu plus tôt l'école que prévu";
+        final String postItMessage1 = "Je suis de sortie ce soir !"; //-------------------------------Message------------------------//
+        final String postItMessage2 = "Je rentre à la maison à 18h00";//-------------------------------Message------------------------//
+        final String postItMessage3 = "Je fini un peu plus tôt l'école que prévu";//-------------------------------Message------------------------//
 
-        final String postItDate1 = "13:00/25.08.2014";
-        final String postItDate2 = "11:21/25.08.2014";
-        final String postItDate3 = "10:58/25.08.2014";
+        final String postItDate1 = "13:00/25.08.2014";//-------------------------------DateHeure------------------------//
+        final String postItDate2 = "11:21/25.08.2014";//-------------------------------DateHeure------------------------//
+        final String postItDate3 = "10:58/25.08.2014";//-------------------------------DateHeure------------------------//
 
 
-        final String postItFrom1 = "Franck";
-        final String postItFrom2 = "Maman";
-        final String postItFrom3 = "Franck";
+        final String postItFrom1 = "Franck";//-------------------------------ID------------------------//
+        final String postItFrom2 = "Maman";//-------------------------------ID------------------------//
+        final String postItFrom3 = "Franck";//-------------------------------ID------------------------//
 
         int numberMorePostIts = 1;
 
