@@ -1,5 +1,6 @@
 package ch.he.arc.p1.g5.fi5t;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -60,7 +61,7 @@ public class BlueTests extends Activity {
     public static final int ORIENTATION_LANDSCAPE = 2;
 
 
-   // private static TextView mTitle;
+    private static TextView mTitle;
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
@@ -189,14 +190,15 @@ public class BlueTests extends Activity {
         mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         // Set up the window layout
-        //requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_blue_tests);
-        //getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.blue_custom);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.blue_custom);
 
         // Set up the custom title
-        //mTitle = (TextView) findViewById(R.id.title_left_text);
-        //mTitle.setText(R.string.app_name);
-        //mTitle = (TextView) findViewById(R.id.title_right_text);
+        mTitle = (TextView) findViewById(R.id.title_left_text);
+        mTitle.setText(R.string.app_name);
+        mTitle = (TextView) findViewById(R.id.title_right_text);
 
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -420,9 +422,9 @@ public class BlueTests extends Activity {
         mInputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
-    //public int getTitleHeight() {
-    //    return mTitle.getHeight();
-    //}
+    public int getTitleHeight() {
+        return mTitle.getHeight();
+    }
 
     // The Handler that gets information back from the BluetoothService
     private final Handler mHandlerBT = new Handler() {
@@ -441,12 +443,22 @@ public class BlueTests extends Activity {
 
                             mInputManager.showSoftInput(mEmulatorView, InputMethodManager.SHOW_IMPLICIT);
 
-                            //mTitle.setText( R.string.title_connected_to );
-                            //mTitle.append(" " + mConnectedDeviceName);
+                            mTitle.setText( R.string.title_connected_to );
+                            mTitle.append(" " + mConnectedDeviceName);
+
+                            mTitle.setOnClickListener(new View.OnClickListener(){
+
+                                public void onClick(View v){
+
+                                    openOptionsMenu();
+
+                                }
+
+                            });
                             break;
 
                         case BluetoothServices.STATE_CONNECTING:
-                            //mTitle.setText(R.string.title_connecting);
+                            mTitle.setText(R.string.title_connecting);
                             break;
 
                         case BluetoothServices.STATE_LISTEN:
@@ -458,7 +470,17 @@ public class BlueTests extends Activity {
 
                             mInputManager.hideSoftInputFromWindow(mEmulatorView.getWindowToken(), 0);
 
-                            //mTitle.setText(R.string.title_not_connected);
+                            mTitle.setText(R.string.title_not_connected);
+
+                            mTitle.setOnClickListener(new View.OnClickListener(){
+
+                                public void onClick(View v){
+
+                                    openOptionsMenu();
+
+                                }
+
+                            });
 
                             break;
                     }
@@ -640,8 +662,16 @@ public class BlueTests extends Activity {
         return event.isSystem();
     }
 
+
+//    @Override
+//    public void onBackPressed() {
+//        openOptionsMenu();
+//
+//    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.blue_tests, menu);
         mMenuItemConnect = menu.getItem(0);
@@ -2744,7 +2774,7 @@ class EmulatorView extends View implements GestureDetector.OnGestureListener {
     private float mScrollRemainder;
     private TermKeyListener mKeyListener;
 
-    private BlueTests mBlueTerm;
+    private BlueTests mBlueTests;
 
     private Runnable mCheckSize = new Runnable() {
         public void run() {
@@ -2981,7 +3011,7 @@ class EmulatorView extends View implements GestureDetector.OnGestureListener {
                 byte[] mBuffer = new byte[1];
                 mBuffer[0] = (byte)mKeyListener.mapControlChar(c);
 
-                mBlueTerm.send(mBuffer);
+                mBlueTests.send(mBuffer);
             }
         };
     }
@@ -3049,7 +3079,7 @@ class EmulatorView extends View implements GestureDetector.OnGestureListener {
      *
      */
     public void initialize(BlueTests BlueTests) {
-        mBlueTerm = BlueTests;
+        mBlueTests = BlueTests;
         mTextSize = 15;
         mForeground = BlueTests.WHITE;
         mBackground = BlueTests.BLACK;
@@ -3112,12 +3142,12 @@ class EmulatorView extends View implements GestureDetector.OnGestureListener {
 
     public boolean onSingleTapUp(MotionEvent e) {
 
-        mBlueTerm.toggleKeyboard();
+        mBlueTests.toggleKeyboard();
         return true;
     }
 
     public void onLongPress(MotionEvent e) {
-        mBlueTerm.doOpenOptionsMenu();
+        mBlueTests.doOpenOptionsMenu();
     }
 
     @Override
@@ -3219,19 +3249,19 @@ class EmulatorView extends View implements GestureDetector.OnGestureListener {
     void updateSize() {
         Rect visibleRect;
 
-        if (mBlueTerm == null)
+        if (mBlueTests == null)
             return;
 
         if (mKnownSize) {
             visibleRect = new Rect();
             getWindowVisibleDisplayFrame(visibleRect);
             int w = visibleRect.width();
-            //int h = visibleRect.height() - mBlueTerm.getTitleHeight() - 2;
-            //if (w != mWidth || h != mHeight) {
-            //    mWidth = w;
-            //    mHeight = h;
-            //    updateSize( w, h );
-            //}
+            int h = visibleRect.height() - mBlueTests.getTitleHeight() - 2;
+            if (w != mWidth || h != mHeight) {
+                mWidth = w;
+                mHeight = h;
+                updateSize( w, h );
+            }
         }
     }
 
@@ -3266,13 +3296,13 @@ class EmulatorView extends View implements GestureDetector.OnGestureListener {
         float x = -mLeftColumn * mCharacterWidth;
         float y = mCharacterHeight;
         int endLine = mTopRow + mRows;
-//        int cx = mEmulator.getCursorCol();
-//        int cy = mEmulator.getCursorRow();
+        int cx = mEmulator.getCursorCol();
+        int cy = mEmulator.getCursorRow();
         for (int i = mTopRow; i < endLine; i++) {
             int cursorX = -1;
-//            if (i == cy) {
-//                cursorX = cx;
-//            }
+            if (i == cy) {
+                cursorX = cx;
+            }
             mTranscriptScreen.drawText(i, canvas, x, y, mTextRenderer, cursorX);
             y += mCharacterHeight;
         }
