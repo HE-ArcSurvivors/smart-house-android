@@ -61,10 +61,10 @@ public class BlueTests extends Activity {
     public static final int ORIENTATION_LANDSCAPE = 2;
 
 
-    private static TextView mTitle;
+    private static TextView tvTitle;
 
     // Name of the connected device
-    private String mConnectedDeviceName = null;
+    private String sConnectedDeviceName = null;
 
     /**
      * Set to true to add debugging code and logging.
@@ -119,18 +119,18 @@ public class BlueTests extends Activity {
 
     private static InputMethodManager mInputManager;
 
-    private boolean mEnablingBT;
-    private boolean mLocalEcho = false;
-    private int mFontSize = 9;
-    private int mColorId = 2;
-    private int mControlKeyId = 0;
-    private boolean mAllowInsecureConnections = true;
-    private int mIncomingEoL_0D = 0x0D;
-    private int mIncomingEoL_0A = 0x0A;
-    private int mOutgoingEoL_0D = 0x0D;
-    private int mOutgoingEoL_0A = 0x0A;
+    private boolean blnEnablingBT;
+    private boolean blnLocalEcho = false;
+    private int iFontSize = 9;
+    private int iColorId = 2;
+    private int iControlKeyId = 0;
+    private boolean blnAllowInsecureConnections = true;
+    private int iIncomingEoL_0D = 0x0D;
+    private int iIncomingEoL_0A = 0x0A;
+    private int iOutgoingEoL_0D = 0x0D;
+    private int iOutgoingEoL_0A = 0x0A;
 
-    private int mScreenOrientation = 0;
+    private int iScreenOrientation = 0;
 
     private static final String LOCALECHO_KEY = "localecho";
     private static final String FONTSIZE_KEY = "fontsize";
@@ -196,9 +196,9 @@ public class BlueTests extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.blue_custom);
 
         // Set up the custom title
-        mTitle = (TextView) findViewById(R.id.title_left_text);
-        mTitle.setText(R.string.app_name);
-        mTitle = (TextView) findViewById(R.id.title_right_text);
+        tvTitle = (TextView) findViewById(R.id.title_left_text);
+        tvTitle.setText(R.string.app_name);
+        tvTitle = (TextView) findViewById(R.id.title_right_text);
 
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -233,7 +233,7 @@ public class BlueTests extends Activity {
         if (DEBUG)
             Log.e(LOG_TAG, "++ ON START ++");
 
-        mEnablingBT = false;
+        blnEnablingBT = false;
     }
 
     @Override
@@ -244,7 +244,7 @@ public class BlueTests extends Activity {
             Log.e(LOG_TAG, "+ ON RESUME +");
         }
 
-        if (!mEnablingBT) { // If we are turning on the BT we cannot check if it's enable
+        if (!blnEnablingBT) { // If we are turning on the BT we cannot check if it's enable
             if ( (mBluetoothAdapter != null)  && (!mBluetoothAdapter.isEnabled()) ) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -254,7 +254,7 @@ public class BlueTests extends Activity {
                         .setCancelable( false )
                         .setPositiveButton(R.string.alert_dialog_yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                mEnablingBT = true;
+                                blnEnablingBT = true;
                                 Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                                 startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
                             }
@@ -324,34 +324,34 @@ public class BlueTests extends Activity {
     }
 
     private void readPrefs() {
-        mLocalEcho = mPrefs.getBoolean(LOCALECHO_KEY, mLocalEcho);
-        mFontSize = readIntPref(FONTSIZE_KEY, mFontSize, 20);
-        mColorId = readIntPref(COLOR_KEY, mColorId, COLOR_SCHEMES.length - 1);
-        mControlKeyId = readIntPref(CONTROLKEY_KEY, mControlKeyId, CONTROL_KEY_SCHEMES.length - 1);
-        mAllowInsecureConnections = mPrefs.getBoolean( ALLOW_INSECURE_CONNECTIONS_KEY, mAllowInsecureConnections);
+        blnLocalEcho = mPrefs.getBoolean(LOCALECHO_KEY, blnLocalEcho);
+        iFontSize = readIntPref(FONTSIZE_KEY, iFontSize, 20);
+        iColorId = readIntPref(COLOR_KEY, iColorId, COLOR_SCHEMES.length - 1);
+        iControlKeyId = readIntPref(CONTROLKEY_KEY, iControlKeyId, CONTROL_KEY_SCHEMES.length - 1);
+        blnAllowInsecureConnections = mPrefs.getBoolean( ALLOW_INSECURE_CONNECTIONS_KEY, blnAllowInsecureConnections);
 
-        mIncomingEoL_0D = readIntPref(INCOMING_EOL_0D_KEY, mIncomingEoL_0D, 0x0D0A);
-        mIncomingEoL_0A = readIntPref(INCOMING_EOL_0A_KEY, mIncomingEoL_0A, 0x0D0A);
-        mOutgoingEoL_0D = readIntPref(OUTGOING_EOL_0D_KEY, mOutgoingEoL_0D, 0x0D0A);
-        mOutgoingEoL_0A = readIntPref(OUTGOING_EOL_0A_KEY, mOutgoingEoL_0A, 0x0D0A);
+        iIncomingEoL_0D = readIntPref(INCOMING_EOL_0D_KEY, iIncomingEoL_0D, 0x0D0A);
+        iIncomingEoL_0A = readIntPref(INCOMING_EOL_0A_KEY, iIncomingEoL_0A, 0x0D0A);
+        iOutgoingEoL_0D = readIntPref(OUTGOING_EOL_0D_KEY, iOutgoingEoL_0D, 0x0D0A);
+        iOutgoingEoL_0A = readIntPref(OUTGOING_EOL_0A_KEY, iOutgoingEoL_0A, 0x0D0A);
 
-        mScreenOrientation = readIntPref(SCREENORIENTATION_KEY, mScreenOrientation, 2);
+        iScreenOrientation = readIntPref(SCREENORIENTATION_KEY, iScreenOrientation, 2);
     }
 
     private void updatePrefs() {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        mEmulatorView.setTextSize((int) (mFontSize * metrics.density));
+        mEmulatorView.setTextSize((int) (iFontSize * metrics.density));
         setColors();
-        mControlKeyCode = CONTROL_KEY_SCHEMES[mControlKeyId];
-        mSerialService.setAllowInsecureConnections( mAllowInsecureConnections );
+        mControlKeyCode = CONTROL_KEY_SCHEMES[iControlKeyId];
+        mSerialService.setAllowInsecureConnections( blnAllowInsecureConnections );
 
         if (mEmulatorView != null) {
-            mEmulatorView.setIncomingEoL_0D( mIncomingEoL_0D );
-            mEmulatorView.setIncomingEoL_0A( mIncomingEoL_0A );
+            mEmulatorView.setIncomingEoL_0D( iIncomingEoL_0D );
+            mEmulatorView.setIncomingEoL_0A( iIncomingEoL_0A );
         }
 
-        switch (mScreenOrientation) {
+        switch (iScreenOrientation) {
             case ORIENTATION_PORTRAIT:
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 break;
@@ -404,11 +404,11 @@ public class BlueTests extends Activity {
         if ( out.length == 1 ) {
 
             if ( out[0] == 0x0D ) {
-                out = handleEndOfLineChars( mOutgoingEoL_0D );
+                out = handleEndOfLineChars( iOutgoingEoL_0D );
             }
             else {
                 if ( out[0] == 0x0A ) {
-                    out = handleEndOfLineChars( mOutgoingEoL_0A );
+                    out = handleEndOfLineChars( iOutgoingEoL_0A );
                 }
             }
         }
@@ -423,7 +423,7 @@ public class BlueTests extends Activity {
     }
 
     public int getTitleHeight() {
-        return mTitle.getHeight();
+        return tvTitle.getHeight();
     }
 
     // The Handler that gets information back from the BluetoothService
@@ -443,10 +443,10 @@ public class BlueTests extends Activity {
 
                             mInputManager.showSoftInput(mEmulatorView, InputMethodManager.SHOW_IMPLICIT);
 
-                            mTitle.setText( R.string.title_connected_to );
-                            mTitle.append(" " + mConnectedDeviceName);
+                            tvTitle.setText( R.string.title_connected_to );
+                            tvTitle.append(" " + sConnectedDeviceName);
 
-                            mTitle.setOnClickListener(new View.OnClickListener(){
+                            tvTitle.setOnClickListener(new View.OnClickListener(){
 
                                 public void onClick(View v){
 
@@ -458,7 +458,7 @@ public class BlueTests extends Activity {
                             break;
 
                         case BluetoothServices.STATE_CONNECTING:
-                            mTitle.setText(R.string.title_connecting);
+                            tvTitle.setText(R.string.title_connecting);
                             break;
 
                         case BluetoothServices.STATE_LISTEN:
@@ -470,9 +470,9 @@ public class BlueTests extends Activity {
 
                             mInputManager.hideSoftInputFromWindow(mEmulatorView.getWindowToken(), 0);
 
-                            mTitle.setText(R.string.title_not_connected);
+                            tvTitle.setText(R.string.title_not_connected);
 
-                            mTitle.setOnClickListener(new View.OnClickListener(){
+                            tvTitle.setOnClickListener(new View.OnClickListener(){
 
                                 public void onClick(View v){
 
@@ -486,7 +486,7 @@ public class BlueTests extends Activity {
                     }
                     break;
                 case MESSAGE_WRITE:
-                    if (mLocalEcho) {
+                    if (blnLocalEcho) {
                         byte[] writeBuf = (byte[]) msg.obj;
                         mEmulatorView.write(writeBuf, msg.arg1);
                     }
@@ -501,9 +501,9 @@ public class BlueTests extends Activity {
 */
                 case MESSAGE_DEVICE_NAME:
                     // save the connected device's name
-                    mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+                    sConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
                     Toast.makeText(getApplicationContext(), getString(R.string.toast_connected_to) + " "
-                            + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+                            + sConnectedDeviceName, Toast.LENGTH_SHORT).show();
                     break;
                 case MESSAGE_TOAST:
                     Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST), Toast.LENGTH_SHORT).show();
@@ -725,7 +725,7 @@ public class BlueTests extends Activity {
     }
 
     private void setColors() {
-        int[] scheme = COLOR_SCHEMES[mColorId];
+        int[] scheme = COLOR_SCHEMES[iColorId];
         mEmulatorView.setColors(scheme[0], scheme[1]);
     }
 
@@ -736,7 +736,7 @@ public class BlueTests extends Activity {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String currentDateTimeString = format.format(new Date());
-        String fileName = sdCard.getAbsolutePath() + "/blueTerm_" + currentDateTimeString + ".log";
+        String fileName = sdCard.getAbsolutePath() + "/BlueTests_" + currentDateTimeString + ".log";
 
         mEmulatorView.setFileNameLog( fileName );
         mEmulatorView.startRecording();
@@ -1464,8 +1464,8 @@ class TerminalEmulator {
 
     private boolean mAlternateCharSet;
 
-    private int mIncomingEoL_0D = 0x0D;
-    private int mIncomingEoL_0A = 0x0A;
+    private int iIncomingEoL_0D = 0x0D;
+    private int iIncomingEoL_0A = 0x0A;
 
 
     /**
@@ -1590,11 +1590,11 @@ class TerminalEmulator {
                 }
 
                 if ( b == 0x0D ) {
-                    handleEndOfLineChars( mIncomingEoL_0D );
+                    handleEndOfLineChars( iIncomingEoL_0D );
                 }
                 else {
                     if ( b == 0x0A ) {
-                        handleEndOfLineChars( mIncomingEoL_0A );
+                        handleEndOfLineChars( iIncomingEoL_0A );
                     }
                     else {
                         process( b );
@@ -2446,11 +2446,11 @@ class TerminalEmulator {
     }
 
     public void setIncomingEoL_0D( int eol ) {
-        mIncomingEoL_0D = eol;
+        iIncomingEoL_0D = eol;
     }
 
     public void setIncomingEoL_0A( int eol ) {
-        mIncomingEoL_0A = eol;
+        iIncomingEoL_0A = eol;
     }
 }
 

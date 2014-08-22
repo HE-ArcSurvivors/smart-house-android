@@ -38,7 +38,7 @@ public class Connection extends Activity {
             public void onClick(View v){
 
                 startActivity(new Intent (Connection.this, BlueTests.class));
-                finish();
+
 
             }
 
