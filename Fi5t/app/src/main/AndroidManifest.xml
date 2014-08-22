@@ -33,9 +33,24 @@
         </activity>
         <activity
             android:name=".POSTIT"
-            android:label="@string/title_activity_postit"
-            android:theme="@style/AppTheme">
+            android:label="@string/title_activity_postit">
+
+            <meta-data
+                android:name="andoid.app.default_searchable"
+                android:value=".POSTIT"
+            />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="andoid.app.searchable"
+                android:resource="@xml/searchable"
+            />
+
         </activity>
+
         <activity
             android:name=".Materiel"
             android:label="@string/title_activity_materiel"
