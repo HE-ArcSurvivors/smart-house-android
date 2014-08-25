@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class POSTIT extends Menu_Activity {
+public class POSTIT extends Services {
     private List<Message> MyMessages =new ArrayList<Message>();
     SearchView SearchMessage;
     String Tamp="";

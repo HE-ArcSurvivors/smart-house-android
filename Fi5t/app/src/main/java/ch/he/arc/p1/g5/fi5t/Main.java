@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Main extends Menu_Activity{
+public class Main extends Services{
     private static final String TAG ="Page Accueil" ;
 
 

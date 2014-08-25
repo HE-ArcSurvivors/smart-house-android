@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class Parametre extends Menu_Activity {
+public class Parametre extends Services {
 
     Button bBluetoothCMD;
 

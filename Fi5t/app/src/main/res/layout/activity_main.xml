@@ -163,8 +163,8 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Accès aux portes"
-        android:id="@+id/bAccesPortes"
+        android:text="Contrôles On/Off"
+        android:id="@+id/bIO"
         android:layout_marginTop="12dp"
         android:background="@drawable/button"
         android:layout_below="@+id/bEtatPortePrinc"
@@ -174,11 +174,11 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Accès I/O"
-        android:id="@+id/button2"
+        android:text="Réglages"
+        android:id="@+id/bReglages"
         android:layout_marginTop="12dp"
         android:background="@drawable/button"
-        android:layout_below="@+id/bAccesPortes"
+        android:layout_below="@+id/bIO"
         android:layout_alignEnd="@+id/bDelPostIt1" />
 
     <Button

@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
-public class Materiel extends Menu_Activity {
+public class Materiel extends Services {
 
     ListView LvMats;
     ArrayAdapter adapter;

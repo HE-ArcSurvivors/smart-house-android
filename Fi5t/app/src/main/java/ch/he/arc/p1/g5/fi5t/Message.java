@@ -1,8 +1,5 @@
 package ch.he.arc.p1.g5.fi5t;
 
-/**
- * Created by raphael.schaffo on 22.08.2014.
- */
 public class Message {
     private String Date;
     private String Heure;

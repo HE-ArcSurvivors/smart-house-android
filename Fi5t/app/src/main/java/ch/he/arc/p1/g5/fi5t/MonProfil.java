@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class MonProfil extends Menu_Activity {
+public class MonProfil extends Services {
 
 
 

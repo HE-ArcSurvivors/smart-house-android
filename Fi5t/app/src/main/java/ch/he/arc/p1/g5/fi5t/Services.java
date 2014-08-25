@@ -1,6 +1,14 @@
 package ch.he.arc.p1.g5.fi5t;
 
-//Import
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.app.Activity;
 import android.app.Application;
 import android.content.ClipData;
@@ -11,12 +19,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
 
-// Classe Menu_Activity
 
-public class Menu_Activity extends Activity{
+public class Services extends Activity {
+
+    
 
     // Déclaration TAG
     private static final String TAG ="Menu" ;
@@ -24,10 +35,12 @@ public class Menu_Activity extends Activity{
     @Override
     public boolean onPrepareOptionsMenu(Menu menu)
     {
+
         if(Role!="Admin")
         {
             MenuItem item3  = menu.findItem(R.id.Users);
             item3.setVisible(false);}
+
         return true;
     }
 
@@ -40,20 +53,9 @@ public class Menu_Activity extends Activity{
 
     }
 
-    //@Override
-    //public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    // int id = item.getItemId();
-    //if (id == R.id.Users) {
-    // return true;
-    //}
-    // return super.onOptionsItemSelected(item);
-    // }
     @Override
     public boolean onOptionsItemSelected(MenuItem Item)
-        {
+    {
         Intent intent = null;
         switch (Item.getItemId())
         {
@@ -67,7 +69,7 @@ public class Menu_Activity extends Activity{
                 //toast.show();
                 if(Nom!=Users.class)
                 {intent = new Intent(getApplicationContext(),Users.class);
-                startActivity(intent);}
+                    startActivity(intent);}
                 if(Nom!=Main.class&&Nom!=Users.class)
                 {finish();
                 }
@@ -87,7 +89,7 @@ public class Menu_Activity extends Activity{
                 Class Nom2=this.getClass();
                 if(Nom2!=POSTIT.class)
                 {intent = new Intent(getApplicationContext(),POSTIT.class);
-                startActivity(intent);}
+                    startActivity(intent);}
                 if(Nom2!=Main.class&&Nom2!=POSTIT.class)
                 {finish();
                 }
@@ -96,7 +98,7 @@ public class Menu_Activity extends Activity{
                 Class Nom3=this.getClass();
                 if(Nom3!=Materiel.class)
                 {intent = new Intent(getApplicationContext(),Materiel.class);
-                startActivity(intent);}
+                    startActivity(intent);}
                 if(Nom3!=Main.class&&Nom3!=Materiel.class)
                 {finish();
                 }
@@ -107,7 +109,7 @@ public class Menu_Activity extends Activity{
                 Class Nom4=this.getClass();
                 if(Nom4!=Parametre.class)
                 {intent = new Intent(getApplicationContext(),Parametre.class);
-                startActivity(intent);}
+                    startActivity(intent);}
                 if(Nom4!=Main.class&&Nom4!=Parametre.class)
                 {finish();
                 }
@@ -117,7 +119,7 @@ public class Menu_Activity extends Activity{
                 Class Nom5=this.getClass();
                 if(Nom5!=MonProfil.class)
                 {intent = new Intent(getApplicationContext(),MonProfil.class);
-                startActivity(intent);}
+                    startActivity(intent);}
                 if(Nom5!=Main.class&&Nom5!=MonProfil.class)
                 {finish();
                 }
