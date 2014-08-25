@@ -29,8 +29,8 @@ public class Connection extends Activity {
         //bundle.putInt("VAL", 1);
         //myIntent.putExtras(bundle);
         //myIntent.putExtra("firstKeyName","FirstKeyValue");
-        startActivity(myIntent);
-        finish();
+        //startActivity(myIntent);
+        //finish();
 
         bLogin = (Button) findViewById(R.id.bLogin);
         bBlueTests = (Button) findViewById(R.id.bBluetests);

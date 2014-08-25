@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -25,13 +27,14 @@ import java.util.List;
 
 
 public class POSTIT extends Services {
-    private List<Message> MyMessages =new ArrayList<Message>();
 
+    private List<Message> MyMessages =new ArrayList<Message>();
     SearchView SearchMessage;
     ListView List;
     String Tamp="";
     String DataInstance="";
     String POPUP;
+    Button Newmessage;
 
    
 
@@ -40,6 +43,16 @@ public class POSTIT extends Services {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postit);
+        Newmessage=(Button)findViewById(R.id.bNewMessage);
+        Newmessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Newmessage.setTextColor(Color.parseColor("#FFFFFFFF"));
+                Intent NewMessageInstance=new Intent(POSTIT.this,NewMessage.class);
+                startActivity(NewMessageInstance);
+                finish();
+            }
+        });
 
         SearchMessage=(SearchView)findViewById(R.id.searchviewPostit);
         SearchMessage.setOnClickListener(new View.OnClickListener() {
