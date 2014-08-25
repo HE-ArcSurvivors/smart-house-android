@@ -26,9 +26,13 @@ import java.util.List;
 
 public class POSTIT extends Services {
     private List<Message> MyMessages =new ArrayList<Message>();
+
     SearchView SearchMessage;
+    ListView List;
     String Tamp="";
-    EditText message;
+    String DataInstance="";
+    String POPUP;
+
    
 
 
@@ -36,75 +40,65 @@ public class POSTIT extends Services {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postit);
+
         SearchMessage=(SearchView)findViewById(R.id.searchviewPostit);
-
-        message = (EditText) findViewById(R.id.extractEditText);
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        message.addTextChangedListener(new TextWatcher() {
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {
-                prefs.edit().putString("autoSave", s.toString()).commit();
-                Toast toast = Toast.makeText(context,s.toString(), duration);
-                toast.show();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,int after)
-            {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s)
-            {
-            }
-        });
-
-
-
         SearchMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onSearchRequested();
             }
         });
+
+
+        try
+        {
+
+            DataInstance=getIntent().getExtras().getString("valenvoyer");
+            POPUP="Message de "+ DataInstance;
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT; Toast toast = Toast.makeText(context,POPUP, duration);
+            toast.show();
+            Tamp=DataInstance;
+
+        }
+        catch(Exception e)
+        {   Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT; Toast toast = Toast.makeText(context,"Post-Its", duration);
+            toast.show(); }
+
+        final ArrayAdapter<Message> adapter =new MyListAdapter();
+        List =(ListView)findViewById(R.id.listViewPostIt);
+        List.setAdapter(adapter);
+        PopulateMessageList();
+
+
         SearchMessage.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 if(query!=null)
                 {
-
                     Tamp=query;
-                    message.setText(Tamp);
-                    Intent intent = new Intent(getApplicationContext(), POSTIT.class);
-                    startActivity(intent);
+                    DataInstance=Tamp;
+                    Intent Instance1= new Intent(POSTIT.this,POSTIT.class);
+                    Instance1.putExtra("valenvoyer",DataInstance.toString());
+                    startActivity(Instance1);
                     finish();
-
                 }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 return false;
-
             }
         });
-        PopulateMessageList();
-        PopulateListView();
+
 
     }
 
 
-    private void PopulateListView() {
-        ArrayAdapter<Message> adapter =new MyListAdapter();
-        ListView List =(ListView)findViewById(R.id.listViewPostIt);
-        List.setAdapter(adapter);
-    }
+
+
     private class MyListAdapter extends ArrayAdapter<Message>
     {
         public MyListAdapter(){super(POSTIT.this,R.layout.item_view,MyMessages);}
@@ -151,40 +145,40 @@ public class POSTIT extends Services {
 
     private void PopulateMessageList() {
 
-            if(message.getText().toString()=="Seb")
-            {
-                Tamp=message.getText().toString();
-            }
+
             Message Message1 =new Message("12.08.2014", "12:00", "NonLu", "Maman est à la maison", "SuperMama", 6);
-            if(Tamp==""||Tamp==Message1.getIDUtilisateur())
+            if(Tamp.matches("")==true||Tamp.matches(Message1.getIDUtilisateur())==true)
             {
                 MyMessages.add(Message1);
             }
+
+
             Message Message2=new Message("12.08.2014", "11:49", "NonLu", "Je t'aime mon Fils", "SuperMama", 5);
-            if(Tamp==""||Tamp==Message2.getIDUtilisateur())
+            if(Tamp.matches("")||Tamp.matches(Message2.getIDUtilisateur()))
             {
                 MyMessages.add(Message2);
             }
             Message Message3=new Message("12.08.2014", "11:41", "NonLu", "bonne journée", "Seb", 4);
-            if(Tamp==""||Tamp==Message3.getIDUtilisateur())
+            if(Tamp.matches("")||Tamp.matches(Message3.getIDUtilisateur()))
             {
                 MyMessages.add(Message3);
             }
             Message Message4=new Message("12.08.2014", "11:39", "NonLu", "Vivement les vacances", "Seb", 3);
-            if(Tamp==""||Tamp==Message4.getIDUtilisateur())
+            if(Tamp.matches("")||Tamp.matches(Message4.getIDUtilisateur()))
             {
                 MyMessages.add(Message4);
             }
             Message Message5=new Message("12.08.2014", "11:33", "NonLu", "Faudra recouvrir mes livres bisous", "Jordane", 2);
-            if(Tamp==""||Tamp==Message5.getIDUtilisateur())
+            if(Tamp.matches("")||Tamp.matches(Message5.getIDUtilisateur()))
             {
                 MyMessages.add(Message5);
             }
             Message Message6=new Message("12.08.2014", "11:33", "NonLu", "Le début des cours :D", "Jordane", 1);
-            if(Tamp==""||Tamp==Message6.getIDUtilisateur())
+            if(Tamp.matches("")||Tamp.matches(Message6.getIDUtilisateur()))
             {
                 MyMessages.add(Message6);
             }
+
 
             // for (int 0 au nombre élément dans la base de donnée -1, create Element
             // Si élément.getID=tamp add sinon pas ajouter.
