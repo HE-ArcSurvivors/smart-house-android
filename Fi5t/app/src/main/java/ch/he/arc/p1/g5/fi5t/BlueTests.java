@@ -197,7 +197,7 @@ public class BlueTests extends Activity {
 
         // Set up the custom title
         tvTitle = (TextView) findViewById(R.id.title_left_text);
-        tvTitle.setText(R.string.app_name);
+        //tvTitle.setText(R.string.app_name);
         tvTitle = (TextView) findViewById(R.id.title_right_text);
 
 
@@ -517,7 +517,7 @@ public class BlueTests extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.alert_dialog_no_bt)
                 .setIcon(android.R.drawable.ic_dialog_info)
-                .setTitle(R.string.app_name)
+                //.setTitle(R.string.app_name)
                 .setCancelable( false )
                 .setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
