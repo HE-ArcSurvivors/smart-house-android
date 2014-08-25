@@ -27,7 +27,7 @@ import java.io.FileOutputStream;
 
 public class Services extends Activity {
 
-    
+
 
     // Déclaration TAG
     private static final String TAG ="Menu" ;
