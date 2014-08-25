@@ -10,18 +10,24 @@
     android:background="@drawable/font"
     android:id="@+id/relativeLayout">
 
-    <TextView
+    <LinearLayout android:focusable="true"
+        android:focusableInTouchMode="true" android:layout_width="0px"
+        android:layout_height="0px" />
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Nom: "
         android:id="@+id/lgtLabelNom1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:textColor="#ffffffff"
-        android:textSize="22dp" />
+        android:textSize="22dp"
+        android:layout_above="@+id/tvPrenom"
+        android:layout_alignParentStart="true"
+        android:editable="false"
+        android:focusable="false"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -29,24 +35,27 @@
         android:id="@+id/tvNom"
         android:textColor="#ffe8e9e7"
         android:textSize="22dp"
-        android:layout_toEndOf="@+id/lgtLabel2"
-        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/lgtlabel3"
         android:maxLength="40"
-        android:layout_alignBottom="@+id/lgtLabelNom1" />
+        android:layout_above="@+id/tvPrenom"
+        android:layout_alignParentEnd="true"
+        android:singleLine="true"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Prénom: "
         android:id="@+id/lgtLabel2"
-        android:layout_marginTop="12dp"
         android:textColor="#ffffffff"
         android:textSize="22dp"
-        android:layout_below="@+id/lgtLabelNom1"
-        android:layout_alignParentStart="true" />
+        android:layout_toStartOf="@+id/tvNom"
+        android:layout_above="@+id/tvUsername"
+        android:layout_alignParentStart="true"
+        android:editable="false"
+        android:focusable="false"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -55,51 +64,53 @@
         android:textColor="#ffe8e9e7"
         android:textSize="22dp"
         android:layout_toEndOf="@+id/lgtLabel2"
-        android:layout_alignTop="@+id/lgtLabel2"
-        android:layout_alignParentEnd="true"
         android:maxLength="40"
-        android:layout_alignBottom="@+id/lgtLabel2" />
+        android:layout_above="@+id/tvUsername"
+        android:layout_alignParentEnd="true"
+        android:singleLine="true"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="ID: "
-        android:layout_marginTop="12dp"
+        android:text="Pseudo: "
         android:id="@+id/lgtlabel3"
         android:textColor="#ffffffff"
         android:textSize="22dp"
-        android:layout_below="@+id/lgtLabel2"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/tvRole"
+        android:layout_alignParentStart="true"
+        android:editable="false"
+        android:focusable="false"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="ID Inconnu"
-        android:id="@+id/tvID"
+        android:text="Pseudo Inconnu"
+        android:id="@+id/tvUsername"
         android:textColor="#ffe8e9e7"
         android:textSize="22dp"
         android:layout_toEndOf="@+id/lgtLabel2"
-        android:layout_alignTop="@+id/lgtlabel3"
-        android:layout_alignParentEnd="true"
         android:maxLength="40"
-        android:layout_alignBottom="@+id/lgtlabel3" />
+        android:layout_above="@+id/tvRole"
+        android:layout_alignParentEnd="true"
+        android:singleLine="true"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Rôle:  "
-        android:layout_marginTop="12dp"
         android:id="@+id/lgtLabel4"
         android:textColor="#ffffffff"
         android:textSize="22dp"
-        android:layout_below="@+id/lgtlabel3"
+        android:singleLine="false"
+        android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:singleLine="false" />
+        android:editable="false"
+        android:focusable="false"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -107,11 +118,25 @@
         android:id="@+id/tvRole"
         android:textColor="#ffffffff"
         android:textSize="22dp"
-        android:layout_toEndOf="@+id/lgtLabel4"
-        android:layout_alignTop="@+id/lgtLabel4"
-        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/lgtLabel2"
         android:maxLength="40"
-        android:layout_alignBottom="@+id/lgtLabel4"
-        android:layout_alignStart="@+id/tvID" />
+        android:singleLine="true"
+        android:layout_centerVertical="true"
+        android:editable="false"
+        android:focusable="false"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmer Modifications"
+        android:id="@+id/bConfirm"
+        style="@style/AppTheme"
+        android:textColor="#ffffffff"
+        android:layout_marginBottom="62dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:onClick="save"/>
+
 
 </RelativeLayout>

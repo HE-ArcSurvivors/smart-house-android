@@ -1,22 +1,39 @@
 package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 
 public class Connection extends Activity {
 
     Button bBlueTests, bLogin;
-    TextView dStatus, dUsername, dPassword;
+    TextView dStatus;
     ProgressBar mProgress;
+    CheckBox cbRemember;
+    EditText dUsername, dPassword;
+    SharedPreferences savedUser;
+    String sUsername;
+    String sPassword;
+
+    public static final String UserPassword = "UserPasswordKey" ;
+    public static final String Username = "UsernameKey" ;
+    public static final String Password = "PasswordKey" ;
+    public static final String Checkbox = "CheckboxKey" ;
+
 
 
     @Override
@@ -24,20 +41,39 @@ public class Connection extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
 
+        cbRemember = (CheckBox) findViewById(R.id.cbRemember);
+        dUsername = (EditText) findViewById(R.id.dUsername);
+        bLogin = (Button) findViewById(R.id.bLogin);
+
+        savedUser = getSharedPreferences(UserPassword, Context.MODE_PRIVATE);
+
         Intent myIntent = new Intent (Connection.this, MonProfil.class);
         //Bundle bundle = new Bundle();
         //bundle.putInt("VAL", 1);
         //myIntent.putExtras(bundle);
         //myIntent.putExtra("firstKeyName","FirstKeyValue");
-        startActivity(myIntent);
-        finish();
+        //startActivity(myIntent);
+        //finish();
 
-        bLogin = (Button) findViewById(R.id.bLogin);
+
         bBlueTests = (Button) findViewById(R.id.bBluetests);
         dStatus = (TextView) findViewById(R.id.dStatus);
-        dUsername = (TextView) findViewById(R.id.dUsername);
-        dPassword = (TextView) findViewById(R.id.dPassword);
+        dPassword = (EditText) findViewById(R.id.dPassword);
         mProgress = (ProgressBar) findViewById(R.id.progressBarLogin);
+
+
+        boolean checkBoxValue = savedUser.getBoolean(Checkbox, false);
+        if (checkBoxValue) {
+            cbRemember.setChecked(true);
+            if (savedUser.contains(Username)){
+                dUsername.setText(savedUser.getString(Username, ""));
+            }
+            if (savedUser.contains(Password)){
+                dPassword.setText(savedUser.getString(Password, ""));
+            }
+        }
+
+
 
         mProgress.setVisibility(View.INVISIBLE);
 
@@ -51,23 +87,28 @@ public class Connection extends Activity {
             }
 
         });
-
+        
 
         bLogin.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
 
                 //SystemClock.sleep(2000);
-                String sUsername = "TEST";
-                String sPassword = "TEST";
-                dUsername.setText("" + sUsername);
-                dPassword.setText("" + sPassword);
 
                 dStatus.setText("Connection in Progress");
 
                 mProgress.setVisibility(View.VISIBLE);
 
                 bLogin.setEnabled(false);
+
+                String password  = dPassword.getText().toString();;
+                String username  = dUsername.getText().toString();
+                Boolean checked  = cbRemember.isChecked();
+                Editor editor = savedUser.edit();
+                editor.putBoolean(Checkbox, checked);
+                editor.putString(Username, username);
+                editor.putString(Password, password);
+                editor.apply();
 
 
                 // Create Inner Thread Class
@@ -133,6 +174,8 @@ public class Connection extends Activity {
 
 
     }
+
+
 
 
     @Override

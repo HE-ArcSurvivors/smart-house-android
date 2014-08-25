@@ -26,7 +26,7 @@
         android:layout_below="@+id/dPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="53dp"
-        android:text="Log In" />
+        android:text="Log In"/>
 
     <ProgressBar
         android:id="@+id/progressBarLogin"
@@ -70,6 +70,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_alignBottom="@+id/bBluetests"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Se souvenir de moi"
+        android:id="@+id/cbRemember"
+        android:layout_below="@+id/bLogin"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

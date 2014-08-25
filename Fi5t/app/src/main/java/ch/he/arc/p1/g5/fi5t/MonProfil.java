@@ -1,22 +1,34 @@
 package ch.he.arc.p1.g5.fi5t;
 
+import ch.he.arc.p1.g5.fi5t.Services;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MonProfil extends Services {
 
-    TextView tvNom, tvPrenom, tvID, tvRole;
-    boolean error=false;
+    EditText tvNom, tvPrenom, tvUsername, tvRole;
+    Button bConfirm;
+    String whatAmI="nothing";
+    boolean loop = true;
 
+    SharedPreferences sharedProfile;
 
 
     @Override
@@ -24,21 +36,81 @@ public class MonProfil extends Services {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon_profil);
 
-        tvNom = (TextView) findViewById(R.id.tvNom);
-        tvPrenom = (TextView) findViewById(R.id.tvPrenom);
-        tvID = (TextView) findViewById(R.id.tvID);
-        tvRole = (TextView) findViewById(R.id.tvRole);
+        tvNom = (EditText) findViewById(R.id.tvNom);
+        tvPrenom = (EditText) findViewById(R.id.tvPrenom);
+        tvUsername = (EditText) findViewById(R.id.tvUsername);
+        tvRole = (EditText) findViewById(R.id.tvRole);
+        bConfirm = (Button) findViewById(R.id.bConfirm);
 
 
-        SharedPreferences sharedProfile = getSharedPreferences(MyProfile, Context.MODE_PRIVATE);
+        sharedProfile = getSharedPreferences(MyProfile, Context.MODE_PRIVATE);
+
+
+        if (sharedProfile.contains(LastName)){
+            tvNom.setText(sharedProfile.getString(LastName, ""));
+        }
         if (sharedProfile.contains(FirstName)){
-            tvNom.setText(sharedProfile.getString(FirstName, ""));
-        }else{
-            error = true;
+            tvPrenom.setText(sharedProfile.getString(FirstName, ""));
+        }
+        if (sharedProfile.contains(UserName)){
+            tvUsername.setText(sharedProfile.getString(UserName, ""));
+        }
+        if (sharedProfile.contains(UserRole)){
+            tvRole.setText(sharedProfile.getString(UserRole, ""));
         }
 
 
+        tvNom.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+
+                if (loop == true){
+                    bConfirm.setVisibility(View.VISIBLE);
+                    //loop = false;
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        tvPrenom.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+
+                if (loop == true){
+                    bConfirm.setVisibility(View.VISIBLE);
+                    //loop = false;
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+        tvUsername.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+
+                if (loop == true){
+                    bConfirm.setVisibility(View.VISIBLE);
+                    //loop = false;
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
+
     }
+
+    public void save(View view){
+        String nom  = tvNom.getText().toString();
+        String prenom  = tvPrenom.getText().toString();
+        String username  = tvUsername.getText().toString();
+        Editor editor = sharedProfile.edit();
+        editor.putString(LastName, nom);
+        editor.putString(FirstName, prenom);
+        editor.putString(UserName, username);
+        editor.apply();
+        bConfirm.setVisibility(View.INVISIBLE);
+    }
+
 
 
     @Override
@@ -50,9 +122,7 @@ public class MonProfil extends Services {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         if (id == R.id.MonProfil) {
             return true;

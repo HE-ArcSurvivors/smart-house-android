@@ -25,6 +25,7 @@ public class Services extends Activity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu)
     {
+        SharedPreferences sharedProfile = getSharedPreferences(MyProfile, Context.MODE_PRIVATE);
 
 
         if(Role!="Admin")
