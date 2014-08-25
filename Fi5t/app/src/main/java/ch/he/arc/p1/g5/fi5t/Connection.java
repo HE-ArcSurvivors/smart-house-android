@@ -54,7 +54,10 @@ public class Connection extends Activity {
         //myIntent.putExtra("firstKeyName","FirstKeyValue");
         //startActivity(myIntent);
         //finish();
+<<<<<<< HEAD
 
+=======
+>>>>>>> f597e1154a63c6db0303b3e5d36d76b96120febc
 
         bBlueTests = (Button) findViewById(R.id.bBluetests);
         dStatus = (TextView) findViewById(R.id.dStatus);
