@@ -24,6 +24,14 @@ public class Connection extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
 
+        Intent myIntent = new Intent (Connection.this, MonProfil.class);
+        //Bundle bundle = new Bundle();
+        //bundle.putInt("VAL", 1);
+        //myIntent.putExtras(bundle);
+        //myIntent.putExtra("firstKeyName","FirstKeyValue");
+        startActivity(myIntent);
+        finish();
+
         bLogin = (Button) findViewById(R.id.bLogin);
         bBlueTests = (Button) findViewById(R.id.bBluetests);
         dStatus = (TextView) findViewById(R.id.dStatus);

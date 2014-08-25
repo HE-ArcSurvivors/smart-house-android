@@ -2,15 +2,20 @@ package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MonProfil extends Services {
+
+    TextView tvNom, tvPrenom, tvID, tvRole;
+    boolean error=false;
 
 
 
@@ -18,6 +23,20 @@ public class MonProfil extends Services {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon_profil);
+
+        tvNom = (TextView) findViewById(R.id.tvNom);
+        tvPrenom = (TextView) findViewById(R.id.tvPrenom);
+        tvID = (TextView) findViewById(R.id.tvID);
+        tvRole = (TextView) findViewById(R.id.tvRole);
+
+
+        SharedPreferences sharedProfile = getSharedPreferences(MyProfile, Context.MODE_PRIVATE);
+        if (sharedProfile.contains(FirstName)){
+            tvNom.setText(sharedProfile.getString(FirstName, ""));
+        }else{
+            error = true;
+        }
+
 
     }
 

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ch.he.arc.p1.g5.fi5t.Main" >
     <item android:id="@+id/PageAccueil"
-        android:title="FI5T"
+        android:title="Accueil"
         android:orderInCategory="1"
         android:showAsAction="never"/>
     <item android:id="@+id/Users"

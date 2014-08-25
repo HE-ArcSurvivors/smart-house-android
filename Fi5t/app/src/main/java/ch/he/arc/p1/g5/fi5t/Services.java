@@ -1,32 +1,22 @@
 package ch.he.arc.p1.g5.fi5t;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.app.Activity;
-import android.app.Application;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
-import java.io.FileOutputStream;
 
 
 public class Services extends Activity {
 
+    public static final String MyProfile = "MyProfileKey" ;
+    public static final String FirstName = "FirstNameKey";
+    public static final String LastName = "LastNameKey";
+    public static final String UserName = "UserNameKey";
+    public static final String UserRole = "UserRoleKey";
 
 
     // Déclaration TAG
@@ -35,6 +25,7 @@ public class Services extends Activity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu)
     {
+
 
         if(Role!="Admin")
         {

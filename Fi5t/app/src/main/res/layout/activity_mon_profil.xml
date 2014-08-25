@@ -25,14 +25,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hughuenin"
-        android:id="@+id/lgtNom"
+        android:text="Nom Inconnu"
+        android:id="@+id/tvNom"
         android:textColor="#ffe8e9e7"
         android:textSize="22dp"
-        android:layout_toEndOf="@+id/lgtLabelNom1"
-        android:layout_above="@+id/lgtLabel2"
+        android:layout_toEndOf="@+id/lgtLabel2"
         android:layout_alignParentEnd="true"
-        android:maxLength="40" />
+        android:maxLength="40"
+        android:layout_alignBottom="@+id/lgtLabelNom1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,14 +50,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Jacqueline"
-        android:id="@+id/lgtPrenom"
+        android:text="Prénom Inconnu"
+        android:id="@+id/tvPrenom"
         android:textColor="#ffe8e9e7"
         android:textSize="22dp"
         android:layout_toEndOf="@+id/lgtLabel2"
         android:layout_alignTop="@+id/lgtLabel2"
         android:layout_alignParentEnd="true"
-        android:maxLength="40" />
+        android:maxLength="40"
+        android:layout_alignBottom="@+id/lgtLabel2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -75,14 +76,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Maman"
-        android:id="@+id/lgtID"
+        android:text="ID Inconnu"
+        android:id="@+id/tvID"
         android:textColor="#ffe8e9e7"
         android:textSize="22dp"
-        android:layout_toEndOf="@+id/lgtlabel3"
+        android:layout_toEndOf="@+id/lgtLabel2"
         android:layout_alignTop="@+id/lgtlabel3"
         android:layout_alignParentEnd="true"
-        android:maxLength="40" />
+        android:maxLength="40"
+        android:layout_alignBottom="@+id/lgtlabel3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -101,13 +103,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Administrateur"
-        android:id="@+id/lgtRole"
+        android:text="Rôle Inconnu"
+        android:id="@+id/tvRole"
         android:textColor="#ffffffff"
         android:textSize="22dp"
         android:layout_toEndOf="@+id/lgtLabel4"
         android:layout_alignTop="@+id/lgtLabel4"
         android:layout_alignParentEnd="true"
-        android:maxLength="40" />
+        android:maxLength="40"
+        android:layout_alignBottom="@+id/lgtLabel4"
+        android:layout_alignStart="@+id/tvID" />
 
 </RelativeLayout>
