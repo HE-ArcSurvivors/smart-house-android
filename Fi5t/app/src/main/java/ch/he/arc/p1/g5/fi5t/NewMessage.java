@@ -2,6 +2,7 @@ package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
@@ -9,10 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -24,6 +28,7 @@ public class NewMessage extends Activity {
     EditText eDestinataire;
     Button bEnvoyer;
     Integer Compteur=0;
+    CheckBox chkTous;
 
     //---------------------------Valeur d'envoie pour l'Intent Post-its-------------------------------//
     String DateEnvoie;
@@ -38,9 +43,29 @@ public class NewMessage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_message);
+        //-------Instanciation---------//
         eMessage=(EditText)findViewById(R.id.extMessage);
         eDestinataire=(EditText)findViewById(R.id.extDestinataire);
         bEnvoyer=(Button)findViewById(R.id.bEnvoyer);
+        chkTous=(CheckBox)findViewById(R.id.chkTous);
+        Calendar c = Calendar.getInstance();
+        
+
+        //------------------------------------------------------tous les utilisateurs sont destinataires ?-------------------------//
+        chkTous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(chkTous.isChecked()==true) {
+                    eDestinataire.setText("Tous");
+                    eDestinataire.setEnabled(false);
+                }
+                else {
+                    eDestinataire.setText("");
+                    eDestinataire.setEnabled(true);
+                }
+            }
+        });
+        //------------------------------------------------------tous les utilisateurs sont destinataires ?-------------------------//
 
         //------------------------------------------Ajout des destinataires existant--------------------------------------------------//
         final List<String> list = new ArrayList<String>();
@@ -55,7 +80,7 @@ public class NewMessage extends Activity {
                 String[] f= (String[]) list.toArray(new String[0]);
                 for( int i = 0 ; i < f.length;i++)
                 {
-                    if(f[i].matches(eDestinataire.getText().toString())==true)
+                    if(f[i].matches(eDestinataire.getText().toString())==true||chkTous.isChecked()==true)
                     {
                         Compteur++;
                     }
@@ -68,6 +93,13 @@ public class NewMessage extends Activity {
                         Toast toast = Toast.makeText(context, "Message Envoyé", duration);
                         toast.show();
                         Compteur = 0;
+
+                        Intent Instance1= new Intent(NewMessage.this,POSTIT.class);
+                        Instance1.putExtra("ValDestinataire",eDestinataire.getText().toString());
+                        Instance1.putExtra("ValMessage",eMessage.getText().toString());
+
+                        startActivity(Instance1);
+                        finish();
                     }
                 }
             }
