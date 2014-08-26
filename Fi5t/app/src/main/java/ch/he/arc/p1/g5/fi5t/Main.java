@@ -3,7 +3,9 @@ package ch.he.arc.p1.g5.fi5t;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +21,7 @@ public class Main extends Services{
 
     // Variable utiliser pour les POST-IT
 
-    Button bClosePostIt1, bClosePostIt2, bClosePostIt3, bEtatPorte;
+    Button bClosePostIt1, bClosePostIt2, bClosePostIt3, bEtatPorte,bReglages;
     ImageView iPostIt1, iPostIt2, iPostIt3, Im1;
     TextView tPostItDate1, tPostItDate2, tPostItDate3;
     TextView tPostItFrom1, tPostItFrom2, tPostItFrom3;
@@ -32,6 +34,15 @@ public class Main extends Services{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Im1=(ImageView) findViewById(R.id.imageView);
+        bReglages=(Button)findViewById(R.id.bReglages);
+        bReglages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ParametreInstance=new Intent(Main.this,Parametre.class);
+                startActivity(ParametreInstance);
+
+            }
+        });
         Im1.setBackgroundResource(R.drawable.opendoor);
         bEtatPorte=(Button)findViewById(R.id.bEtatPortePrinc);
         bEtatPorte.setOnClickListener(new View.OnClickListener() {
@@ -41,10 +52,16 @@ public class Main extends Services{
                 {
                     BlueFetch.DoorStatus=false;
                     Im1.setBackgroundResource(R.drawable.closeddoor);
+                    bEtatPorte.setTextColor(Color.parseColor("#FFFF0000"));
+
+
+
                 }
                 else {
                     Im1.setBackgroundResource(R.drawable.opendoor);
                     BlueFetch.DoorStatus=true;
+                    bEtatPorte.setTextColor(Color.parseColor("#FF000000"));
+
 
                 }
             }
