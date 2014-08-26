@@ -6,15 +6,47 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="ch.he.arc.p1.g5.fi5t.Parametre">
+    tools:context="ch.he.arc.p1.g5.fi5t.Parametre"
+    android:background="@drawable/font">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Bluetooth CMD"
+        android:layout_marginTop="15dp"
         android:id="@+id/bBluetoothCMD"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="97dp" />
+        android:background="@drawable/button" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="  Réglages Chauffages  "
+        android:id="@+id/bReglagesChauffage"
+        android:layout_below="@+id/bBluetoothCMD"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/button" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Accès Maison"
+        android:id="@+id/bAccesMaison"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/bReglagesChauffage"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Autre(s) Fonction(s)"
+        android:id="@+id/bAutresFonctions"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/bAccesMaison"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button" />
 
 </RelativeLayout>

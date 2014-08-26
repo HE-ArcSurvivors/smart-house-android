@@ -33,7 +33,7 @@
         <activity
             android:name=".POSTIT"
             android:label="@string/title_activity_postit"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="andoid.app.default_searchable"
                 android:value=".POSTIT" />
@@ -54,7 +54,7 @@
         <activity
             android:name=".MonProfil"
             android:label="@string/title_activity_mon_profil"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".BlueTests"
@@ -72,6 +72,10 @@
         <activity
             android:name=".NewMessage"
             android:label="@string/title_activity_new_message" >
+        </activity>
+        <activity
+            android:name=".Chauffage"
+            android:label="@string/title_activity_chauffage" >
         </activity>
     </application>
 

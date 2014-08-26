@@ -98,9 +98,9 @@ public class Users extends Services {
 
             MyUsers.add(User);
 
+        UserClass User2=new UserClass("Romain", "Yakovenko", "Admin", "MightyPinguin", "983JTRHG", 2);
 
-
-
+            MyUsers.add(User2);
     }
 
     @Override
