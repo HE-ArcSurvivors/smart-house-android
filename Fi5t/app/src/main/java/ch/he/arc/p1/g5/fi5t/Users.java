@@ -24,7 +24,7 @@ public class Users extends Services {
 
 
     //-----------------ListView------------------------//////
-    ListView ListeUtilisateurs = (ListView)findViewById(R.id.ltvUtilisateur);
+    ListView ListeUtilisateurs ;
 
 
     //------------------------Autres---------------------------------------/////
@@ -39,6 +39,7 @@ public class Users extends Services {
         bModifier=(Button)findViewById(R.id.bModifier);
         bNouveau=(Button)findViewById(R.id.bNouveau);
         bSupprimer=(Button)findViewById(R.id.bSupprimer);
+        ListeUtilisateurs= (ListView)findViewById(R.id.ltvUtilisateur);
 
         final ArrayAdapter<UserClass> adapter =new MyListAdapter();
         ListeUtilisateurs.setAdapter(adapter);
