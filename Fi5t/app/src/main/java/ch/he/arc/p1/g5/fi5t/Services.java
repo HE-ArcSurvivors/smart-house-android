@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-
+import android.widget.Toast;
 
 
 public class Services extends Activity {
@@ -17,6 +17,11 @@ public class Services extends Activity {
     public static final String LastName = "LastNameKey";
     public static final String UserName = "UserNameKey";
     public static final String UserRole = "UserRoleKey";
+    public static final String Password = "PasswordKey" ;
+    public static final String RememberMeCheckbox = "RememberMeCheckboxKey" ;
+
+    public static final String OfflineUsername = "OfflineUsernameKey";
+    public static final String OfflinePassword = "OfflinePasswordKey";
 
 
     // Déclaration TAG
@@ -25,8 +30,6 @@ public class Services extends Activity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu)
     {
-        SharedPreferences sharedProfile = getSharedPreferences(MyProfile, Context.MODE_PRIVATE);
-
 
         if(Role!="Admin")
         {
@@ -38,6 +41,16 @@ public class Services extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+        //Context context = getApplicationContext();
+
+        //String Test = MonProfil.FirstName;
+        //SharedPreferences sharedProfile = getSharedPreferences(MyProfile,MODE_PRIVATE);
+        //String string = sharedProfile.getString(LastName,"default_value_here_if_string_is_missing");
+
+        //CharSequence text = "Hello toast!";
+        //int duration = Toast.LENGTH_SHORT;
+        //Toast.makeText(context, string, duration).show();
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);

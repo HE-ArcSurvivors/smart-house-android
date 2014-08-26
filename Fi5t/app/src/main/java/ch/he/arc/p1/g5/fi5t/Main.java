@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class Main extends Services{
@@ -20,19 +19,12 @@ public class Main extends Services{
 
     // Variable utiliser pour les POST-IT
 
-    Button bClosePostIt1, bClosePostIt2, bClosePostIt3;
-    ImageView iPostIt1, iPostIt2, iPostIt3;
+    Button bClosePostIt1, bClosePostIt2, bClosePostIt3, bEtatPorte;
+    ImageView iPostIt1, iPostIt2, iPostIt3, Im1;
     TextView tPostItDate1, tPostItDate2, tPostItDate3;
     TextView tPostItFrom1, tPostItFrom2, tPostItFrom3;
     TextView tPostItMessage1, tPostItMessage2, tPostItMessage3;
     TextView tNumberMorePostIts, tStringMorePostIts;
-
-    boolean postIt1 = true;
-    boolean postIt2 = true;
-    boolean postIt3 = true;
-    Button bEtatPorte;
-    String EtatPorte="Ouverte"; //--------------------------Etat de la porte-----------------------------//
-    ImageView Im1;
 
 
     @Override
@@ -45,47 +37,21 @@ public class Main extends Services{
         bEtatPorte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                if(EtatPorte=="Ouverte")
+                if(BlueFetch.DoorStatus==true)
                 {
-                    Toast toast = Toast.makeText(context,"Fermé", duration);
-                    toast.show();
-                    EtatPorte="Fermé";
+                    BlueFetch.DoorStatus=false;
                     Im1.setBackgroundResource(R.drawable.closeddoor);
                 }
                 else {
-                    Toast toast = Toast.makeText(context, "Ouverte", duration);
-                    toast.show();
                     Im1.setBackgroundResource(R.drawable.opendoor);
-                    EtatPorte="Ouverte";
+                    BlueFetch.DoorStatus=true;
 
                 }
             }
         });
 
-
-        Bundle bundle = getIntent().getExtras();
-
-        //Boolean yourBool = getIntent().getExtras().getBoolean("postIt1");
-
-        /*
-        if(bundle.getBoolean("postIt1")== false)
-        {
-            Toast.makeText(Home.this,
-                    "YOUR ARE AT HOME!", Toast.LENGTH_SHORT).show();
-        }
-        */
-
         setPostIts();
     }
-
-
-
-
-
-
-
 
 
 
@@ -141,29 +107,13 @@ public class Main extends Services{
 
     public void checkPostIts() {
 
-
-        final String postItMessage1 = "Je suis de sortie ce soir !"; //-------------------------------Message------------------------//
-        final String postItMessage2 = "Je rentre à la maison à 18h00";//-------------------------------Message------------------------//
-        final String postItMessage3 = "Je fini un peu plus tôt l'école que prévu";//-------------------------------Message------------------------//
-
-        final String postItDate1 = "13:00/25.08.2014";//-------------------------------DateHeure------------------------//
-        final String postItDate2 = "11:21/25.08.2014";//-------------------------------DateHeure------------------------//
-        final String postItDate3 = "10:58/25.08.2014";//-------------------------------DateHeure------------------------//
-
-
-        final String postItFrom1 = "Franck";//-------------------------------ID------------------------//
-        final String postItFrom2 = "Maman";//-------------------------------ID------------------------//
-        final String postItFrom3 = "Franck";//-------------------------------ID------------------------//
-
-        int numberMorePostIts = 1;
-
         bClosePostIt1 = (Button) findViewById(R.id.bDelPostIt1);
         tPostItDate1 = (TextView) findViewById(R.id.smtDateHeure1);
         tPostItFrom1 = (TextView) findViewById(R.id.smtUser1);
         tPostItMessage1 = (TextView) findViewById(R.id.smtMessage1);
 
 
-        switch (numberMorePostIts) {
+        switch (BlueFetch.numberMorePostIts) {
             case 0:
                 tStringMorePostIts.setText(" ");
                 tNumberMorePostIts.setText(" ");
@@ -181,60 +131,60 @@ public class Main extends Services{
         }
 
 
-        if (postIt1 == true) {
+        if (BlueFetch.postIt1 == true) {
 
             iPostIt1.setVisibility(View.VISIBLE);
             bClosePostIt1.setVisibility(View.VISIBLE);
             tPostItDate1.setVisibility(View.VISIBLE);
-            tPostItDate1.setText(postItDate1);
+            tPostItDate1.setText(BlueFetch.postItDate1);
             tPostItFrom1.setVisibility(View.VISIBLE);
-            tPostItFrom1.setText(postItFrom1);
+            tPostItFrom1.setText(BlueFetch.postItFrom1);
             tPostItMessage1.setVisibility(View.VISIBLE);
-            tPostItMessage1.setText(postItMessage1);
+            tPostItMessage1.setText(BlueFetch.postItMessage1);
 
         }
 
-        if (postIt1 == true && postIt2 == true) {
+        if (BlueFetch.postIt1 == true && BlueFetch.postIt2 == true) {
 
 
 
             iPostIt2.setVisibility(View.VISIBLE);
             bClosePostIt2.setVisibility(View.VISIBLE);
             tPostItDate2.setVisibility(View.VISIBLE);
-            tPostItDate2.setText(postItDate2);
+            tPostItDate2.setText(BlueFetch.postItDate2);
             tPostItFrom2.setVisibility(View.VISIBLE);
-            tPostItFrom2.setText(postItFrom2);
+            tPostItFrom2.setText(BlueFetch.postItFrom2);
             tPostItMessage2.setVisibility(View.VISIBLE);
-            tPostItMessage2.setText(postItMessage2);
+            tPostItMessage2.setText(BlueFetch.postItMessage2);
 
 
 
 
         }
 
-        if (postIt1 == true && postIt2 == true && postIt3 == true) {
+        if (BlueFetch.postIt1 == true && BlueFetch.postIt2 == true && BlueFetch.postIt3 == true) {
 
             iPostIt3.setVisibility(View.VISIBLE);
             bClosePostIt3.setVisibility(View.VISIBLE);
             tPostItDate3.setVisibility(View.VISIBLE);
-            tPostItDate3.setText(postItDate3);
+            tPostItDate3.setText(BlueFetch.postItDate3);
             tPostItFrom3.setVisibility(View.VISIBLE);
-            tPostItFrom3.setText(postItFrom3);
+            tPostItFrom3.setText(BlueFetch.postItFrom3);
             tPostItMessage3.setVisibility(View.VISIBLE);
-            tPostItMessage3.setText(postItMessage3);
+            tPostItMessage3.setText(BlueFetch.postItMessage3);
 
         }
 
-        if (postIt1 == true && postIt2 == true && postIt3 == true) {
+        if (BlueFetch.postIt1 == true && BlueFetch.postIt2 == true && BlueFetch.postIt3 == true) {
 
             iPostIt3.setVisibility(View.VISIBLE);
             bClosePostIt3.setVisibility(View.VISIBLE);
             tPostItDate3.setVisibility(View.VISIBLE);
-            tPostItDate3.setText(postItDate3);
+            tPostItDate3.setText(BlueFetch.postItDate3);
             tPostItFrom3.setVisibility(View.VISIBLE);
-            tPostItFrom3.setText(postItFrom3);
+            tPostItFrom3.setText(BlueFetch.postItFrom3);
             tPostItMessage3.setVisibility(View.VISIBLE);
-            tPostItMessage3.setText(postItMessage3);
+            tPostItMessage3.setText(BlueFetch.postItMessage3);
 
         }
 
@@ -243,9 +193,9 @@ public class Main extends Services{
             @Override
             public void onClick(View v) {
 
-                if (postIt2 == false) {
+                if (BlueFetch.postIt2 == false) {
 
-                    if (postIt3==true){
+                    if (BlueFetch.postIt3==true){
 
                     }else {
                         iPostIt1.setVisibility(View.INVISIBLE);
@@ -253,22 +203,22 @@ public class Main extends Services{
                         tPostItDate1.setVisibility(View.INVISIBLE);
                         tPostItFrom1.setVisibility(View.INVISIBLE);
                         tPostItMessage1.setVisibility(View.INVISIBLE);
-                        postIt1 = false;
+                        BlueFetch.postIt1 = false;
                     }
 
                 } else {
                     tPostItDate1.setText(tPostItDate2.getText());
                     tPostItFrom1.setText(tPostItFrom2.getText());
                     tPostItMessage1.setText(tPostItMessage2.getText());
-                    postIt2 = false;
+                    BlueFetch.postIt2 = false;
 
-                    if (postIt3 == false) {
+                    if (BlueFetch.postIt3 == false) {
                         iPostIt2.setVisibility(View.INVISIBLE);
                         bClosePostIt2.setVisibility(View.INVISIBLE);
                         tPostItDate2.setVisibility(View.INVISIBLE);
                         tPostItFrom2.setVisibility(View.INVISIBLE);
                         tPostItMessage2.setVisibility(View.INVISIBLE);
-                        postIt2 = false;
+                        BlueFetch.postIt2 = false;
                     } else {
                         tPostItDate2.setText(tPostItDate3.getText());
                         tPostItFrom2.setText(tPostItFrom3.getText());
@@ -278,7 +228,7 @@ public class Main extends Services{
                         tPostItDate3.setVisibility(View.INVISIBLE);
                         tPostItFrom3.setVisibility(View.INVISIBLE);
                         tPostItMessage3.setVisibility(View.INVISIBLE);
-                        postIt3 = false;
+                        BlueFetch.postIt3 = false;
 
                     }
 
@@ -292,13 +242,13 @@ public class Main extends Services{
             @Override
             public void onClick(View v) {
 
-                if (postIt3 == false) {
+                if (BlueFetch.postIt3 == false) {
                     iPostIt2.setVisibility(View.INVISIBLE);
                     bClosePostIt2.setVisibility(View.INVISIBLE);
                     tPostItDate2.setVisibility(View.INVISIBLE);
                     tPostItFrom2.setVisibility(View.INVISIBLE);
                     tPostItMessage2.setVisibility(View.INVISIBLE);
-                    postIt2 = false;
+                    BlueFetch.postIt2 = false;
                 }else {
                     tPostItDate2.setText(tPostItDate3.getText());
                     tPostItFrom2.setText(tPostItFrom3.getText());
@@ -308,7 +258,7 @@ public class Main extends Services{
                     tPostItDate3.setVisibility(View.INVISIBLE);
                     tPostItFrom3.setVisibility(View.INVISIBLE);
                     tPostItMessage3.setVisibility(View.INVISIBLE);
-                    postIt3 = false;
+                    BlueFetch.postIt3 = false;
                 }
 
             }
@@ -323,16 +273,8 @@ public class Main extends Services{
                 tPostItDate3.setVisibility(View.INVISIBLE);
                 tPostItFrom3.setVisibility(View.INVISIBLE);
                 tPostItMessage3.setVisibility(View.INVISIBLE);
-                postIt3 = false;
+                BlueFetch.postIt3 = false;
 
-                /*
-                    Intent i = new Intent(Home.this, Home.class);
-                    i.putExtra("postIt1", true);
-                    i.putExtra("postIt2", true);
-                    i.putExtra("postIt3", false);
-                //startIn();
-
-*/
             }
         });
 

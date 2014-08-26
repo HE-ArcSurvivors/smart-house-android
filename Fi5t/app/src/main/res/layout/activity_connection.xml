@@ -16,6 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="86dp"
         android:password="false"
+        android:gravity="center"
         android:text="@string/login_message"
         android:textSize="30dp" />
 

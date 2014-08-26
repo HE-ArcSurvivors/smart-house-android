@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.widget.Toast;
 
 
 public class Connection extends Activity {
@@ -28,11 +29,9 @@ public class Connection extends Activity {
     SharedPreferences savedUser;
     String sUsername;
     String sPassword;
+    Boolean blnChecked;
 
-    public static final String UserPassword = "UserPasswordKey" ;
-    public static final String Username = "UsernameKey" ;
-    public static final String Password = "PasswordKey" ;
-    public static final String Checkbox = "CheckboxKey" ;
+
 
 
 
@@ -41,20 +40,21 @@ public class Connection extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
 
+        //Intent myIntent = new Intent (Connection.this, MonProfil.class);
+        //startActivity(myIntent);
+        //finish();
+
+        Context context = getApplicationContext();
+        SharedPreferences sharedProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+        String string = sharedProfile.getString(Services.LastName,"");
+        int duration = Toast.LENGTH_SHORT;
+        Toast.makeText(context, string, duration).show();
+
         cbRemember = (CheckBox) findViewById(R.id.cbRemember);
         dUsername = (EditText) findViewById(R.id.dUsername);
         bLogin = (Button) findViewById(R.id.bLogin);
 
-        savedUser = getSharedPreferences(UserPassword, Context.MODE_PRIVATE);
-
-        Intent myIntent = new Intent (Connection.this, MonProfil.class);
-        //Bundle bundle = new Bundle();
-        //bundle.putInt("VAL", 1);
-        //myIntent.putExtras(bundle);
-        //myIntent.putExtra("firstKeyName","FirstKeyValue");
-        //startActivity(myIntent);
-        //finish();
-
+        savedUser = getSharedPreferences(Services.MyProfile, Context.MODE_PRIVATE);
 
         bBlueTests = (Button) findViewById(R.id.bBluetests);
         dStatus = (TextView) findViewById(R.id.dStatus);
@@ -62,14 +62,14 @@ public class Connection extends Activity {
         mProgress = (ProgressBar) findViewById(R.id.progressBarLogin);
 
 
-        boolean checkBoxValue = savedUser.getBoolean(Checkbox, false);
+        boolean checkBoxValue = savedUser.getBoolean(Services.RememberMeCheckbox, false);
         if (checkBoxValue) {
             cbRemember.setChecked(true);
-            if (savedUser.contains(Username)){
-                dUsername.setText(savedUser.getString(Username, ""));
+            if (savedUser.contains(Services.UserName)){
+                dUsername.setText(savedUser.getString(Services.UserName, ""));
             }
-            if (savedUser.contains(Password)){
-                dPassword.setText(savedUser.getString(Password, ""));
+            if (savedUser.contains(Services.Password)){
+                dPassword.setText(savedUser.getString(Services.Password, ""));
             }
         }
 
@@ -101,57 +101,83 @@ public class Connection extends Activity {
 
                 bLogin.setEnabled(false);
 
-                String password  = dPassword.getText().toString();;
-                String username  = dUsername.getText().toString();
-                Boolean checked  = cbRemember.isChecked();
-                Editor editor = savedUser.edit();
-                editor.putBoolean(Checkbox, checked);
-                editor.putString(Username, username);
-                editor.putString(Password, password);
-                editor.apply();
 
 
-                // Create Inner Thread Class
-                new Thread(new Runnable() {
-                    public void run() {
+                sPassword = dPassword.getText().toString();
+                sUsername = dUsername.getText().toString();
+                blnChecked = cbRemember.isChecked();
 
-                        SystemClock.sleep(1000);
+                if (sPassword.matches(BlueFetch.AuthorizedPassword) && sUsername.matches(BlueFetch.AuthorizedUsername)) {
 
-                        mProgress.post(new Runnable() {
-                            public void run() {
-                                mProgress.setVisibility(View.INVISIBLE);
-                            }
-                        });
-
-                        dStatus.post(new Runnable() {
-                            public void run() {
-                                dStatus.setText("Connected!");
-                            }
-                        });
-
-                        SystemClock.sleep(500);
-
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                // some code that needs to be ran in UI thread
-                                Intent myIntent = new Intent (Connection.this, Main.class);
-                                //Bundle bundle = new Bundle();
-                                //bundle.putInt("VAL", 1);
-                                //myIntent.putExtras(bundle);
-
-                                //myIntent.putExtra("firstKeyName","FirstKeyValue");
-
-                                startActivity(myIntent);
-
-                                finish();
+                    Editor editor = savedUser.edit();
+                    editor.putBoolean(Services.RememberMeCheckbox, blnChecked);
+                    editor.putString(Services.UserName, sUsername);
+                    editor.putString(Services.Password, sPassword);
+                    editor.apply();
 
 
-                            }
-                        });
+                    // Create Inner Thread Class
+                    new Thread(new Runnable() {
+                        public void run() {
+
+                            SystemClock.sleep(1000);
+
+                            mProgress.post(new Runnable() {
+                                public void run() {
+                                    mProgress.setVisibility(View.INVISIBLE);
+                                }
+                            });
+
+                            dStatus.post(new Runnable() {
+                                public void run() {
+                                    dStatus.setText("Connected!");
+                                }
+                            });
+
+                            SystemClock.sleep(500);
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    // some code that needs to be ran in UI thread
+                                    Intent myIntent = new Intent(Connection.this, Main.class);
+
+                                    startActivity(myIntent);
+
+                                    finish();
 
 
-                    }
-                }).start();
+                                }
+                            });
+
+
+                        }
+                    }).start();
+                }else{
+
+                    new Thread(new Runnable() {
+                        public void run() {
+
+                            SystemClock.sleep(1000);
+
+                            mProgress.post(new Runnable() {
+                                public void run() {
+                                    mProgress.setVisibility(View.INVISIBLE);
+                                }
+                            });
+
+                            dStatus.post(new Runnable() {
+                                public void run() {
+                                    dStatus.setText("Mauvais \n Username ou Password!");
+                                }
+                            });
+
+
+
+                        }
+                    }).start();
+                    bLogin.setEnabled(true);
+
+                }
 
 
 
