@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class NewMessage extends Activity {
+public class NewMessage extends Services {
 
     String Destinataire;
     String Message;
@@ -29,6 +29,7 @@ public class NewMessage extends Activity {
     Button bEnvoyer;
     Integer Compteur=0;
     CheckBox chkTous;
+    Calendar c = Calendar.getInstance();
 
     //---------------------------Valeur d'envoie pour l'Intent Post-its-------------------------------//
     String DateEnvoie;
@@ -36,7 +37,7 @@ public class NewMessage extends Activity {
     String MessageEnvoie;
     String DestinataireEnvoie;
     String UtilisateurActuelleEnvoie="Moi";
-    Calendar c = Calendar.getInstance();
+
     //---------------------------Valeur d'envoie pour l'Intent Post-its-------------------------------//
 
 

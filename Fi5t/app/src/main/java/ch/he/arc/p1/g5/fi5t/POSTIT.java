@@ -43,6 +43,8 @@ public class POSTIT extends Services {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postit);
+
+
         Newmessage=(Button)findViewById(R.id.bNewMessage);
         Newmessage.setOnClickListener(new View.OnClickListener() {
             @Override

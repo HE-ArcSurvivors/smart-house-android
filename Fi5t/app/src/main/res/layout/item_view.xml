@@ -16,19 +16,8 @@
         android:singleLine="false"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
-        android:maxLength="5"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/Item_SlashTxt"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/item_HeureTxt"
-        android:text="/"
-        android:layout_alignParentTop="true"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:maxLength="10" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,11 +25,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="12.08.2014"
         android:id="@+id/item_DateTxt"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/Item_SlashTxt"
-        android:layout_alignParentTop="true"
         android:maxLength="10"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:layout_marginLeft="54dp"
+        android:layout_above="@+id/item_MessageTxt"
+        android:layout_toEndOf="@+id/item_HeureTxt" />
 
     <TextView
         android:layout_width="wrap_content"
