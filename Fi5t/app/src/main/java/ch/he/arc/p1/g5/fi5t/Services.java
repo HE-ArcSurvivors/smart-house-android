@@ -24,6 +24,14 @@ public class Services extends Activity {
     public static final String OfflineUsername = "OfflineUsernameKey";
     public static final String OfflinePassword = "OfflinePasswordKey";
 
+    public static final String ExterneFirstName = "FirstNameKey";
+    public static final String ExterneLastName = "LastNameKey";
+    public static final String ExterneUserName = "UserNameKey";
+    public static final String ExterneUserRole = "UserRoleKey";
+    public static final String ExternePassword = "PasswordKey" ;
+
+
+
 
     // Déclaration TAG
     private static final String TAG ="Menu" ;
