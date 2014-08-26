@@ -1,6 +1,9 @@
 package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +19,7 @@ import java.util.List;
 
 
 public class Users extends Services {
+
 
     //----------------------Button--------------------//////
     Button bModifier;
@@ -35,6 +39,24 @@ public class Users extends Services {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
+
+        //Initialisation de l'utilisation de la memoire interne
+        SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+
+        //Pour recuperer les informations depuis le service
+        String UserName = UserProfile.getString(Services.UserName,"");
+
+        //Initialisation de l'ecriture
+        Editor editor = UserProfile.edit();
+
+        //Pour ecrire les informations dans le service
+        String test = "banana";
+        editor.putString(Services.UserName, test);
+
+        //Pour sauver les informations
+        editor.apply();
+
+
 
         bModifier=(Button)findViewById(R.id.bModifier);
         bNouveau=(Button)findViewById(R.id.bNouveau);
@@ -121,4 +143,76 @@ public class Users extends Services {
         }
         return super.onOptionsItemSelected(item);
     }
+}
+
+class UserClass {
+
+    String Nom;
+    String Prenom;
+    String Role;
+    String MDP;
+    String Pseudo;
+    int MessageEnvoyer;
+
+
+
+
+    public UserClass(String sNom,String sPrenom,String sRole,String sMDP,String sPseudo,Integer iMessageEnvoyer) {
+        super();
+        Nom=sNom;
+        Prenom=sPrenom;
+        Role=sRole;
+        MDP=sMDP;
+        Pseudo=sPseudo;
+        MessageEnvoyer=iMessageEnvoyer;
+
+    }
+
+    public String getNom()
+    {
+        return Nom;
+    }
+    public String getPrenom()
+    {
+        return Prenom;
+    }
+    public String getRole()
+    {
+        return Role;
+    }
+    public String getMDP()
+    {
+        return MDP;
+    }
+    public String getPseudo()
+    {
+        return Pseudo;
+    }
+    public Integer getImessage()
+    {
+        return MessageEnvoyer;
+    }
+    public void setNom(String NNom)
+    {
+        Nom=NNom;
+    }
+    public void setPrenom(String NPrenom)
+    {
+        Prenom=NPrenom;
+    }
+    public void setRole(String NRole)
+    {
+        Role=NRole;
+    }
+    public void setMDP(String NMDP)
+    {
+        MDP=NMDP;
+    }
+    public void setPseudo(String NPseudo)
+    {
+        Pseudo=NPseudo;
+    }
+
+
+
 }

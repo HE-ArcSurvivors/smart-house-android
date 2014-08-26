@@ -121,9 +121,8 @@
         android:layout_toEndOf="@+id/lgtLabel2"
         android:maxLength="40"
         android:singleLine="true"
-        android:layout_centerVertical="true"
-        android:editable="false"
-        android:focusable="false"/>
+        android:layout_alignBottom="@+id/lgtLabel4"
+        android:layout_alignEnd="@+id/tvUsername" />
 
     <Button
         android:layout_width="wrap_content"

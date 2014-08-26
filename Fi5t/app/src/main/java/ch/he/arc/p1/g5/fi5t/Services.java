@@ -19,22 +19,32 @@ public class Services extends Activity {
     public static final String UserRole = "UserRoleKey";
     public static final String Password = "PasswordKey" ;
     public static final String RememberMeCheckbox = "RememberMeCheckboxKey" ;
+    public static final String SentMessage = "SentMessageKey" ;
 
     public static final String OfflineUsername = "OfflineUsernameKey";
     public static final String OfflinePassword = "OfflinePasswordKey";
 
+    public static final String ExterneFirstName = "FirstNameKey";
+    public static final String ExterneLastName = "LastNameKey";
+    public static final String ExterneUserName = "UserNameKey";
+    public static final String ExterneUserRole = "UserRoleKey";
+    public static final String ExternePassword = "PasswordKey" ;
+
+
+
 
     // Déclaration TAG
     private static final String TAG ="Menu" ;
-    String Role="Admin"; //---------------------------------------------Rôle------------------------------------------//
     @Override
     public boolean onPrepareOptionsMenu(Menu menu)
     {
+        SharedPreferences UserProfile = getSharedPreferences(MyProfile,MODE_PRIVATE);
 
-        if(Role!="Admin")
+        if(!UserProfile.getString(UserRole,"").matches("Admin"))
         {
             MenuItem item3  = menu.findItem(R.id.Users);
-            item3.setVisible(false);}
+            item3.setVisible(false);
+        }
 
         return true;
     }
