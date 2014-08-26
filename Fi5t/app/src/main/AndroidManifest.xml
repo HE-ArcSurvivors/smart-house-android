@@ -32,7 +32,8 @@
         </activity>
         <activity
             android:name=".POSTIT"
-            android:label="@string/title_activity_postit" >
+            android:label="@string/title_activity_postit"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="andoid.app.default_searchable"
                 android:value=".POSTIT" />

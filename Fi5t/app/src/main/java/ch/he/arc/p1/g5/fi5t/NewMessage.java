@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class NewMessage extends Activity {
+public class NewMessage extends Services {
 
     String Destinataire;
     String Message;
@@ -29,13 +29,15 @@ public class NewMessage extends Activity {
     Button bEnvoyer;
     Integer Compteur=0;
     CheckBox chkTous;
+    Calendar c = Calendar.getInstance();
 
     //---------------------------Valeur d'envoie pour l'Intent Post-its-------------------------------//
     String DateEnvoie;
     String HeureEnvoie;
     String MessageEnvoie;
     String DestinataireEnvoie;
-    String UtilisateurActuelleEnvoie;
+    String UtilisateurActuelleEnvoie="Moi";
+
     //---------------------------Valeur d'envoie pour l'Intent Post-its-------------------------------//
 
 
@@ -48,8 +50,9 @@ public class NewMessage extends Activity {
         eDestinataire=(EditText)findViewById(R.id.extDestinataire);
         bEnvoyer=(Button)findViewById(R.id.bEnvoyer);
         chkTous=(CheckBox)findViewById(R.id.chkTous);
-        Calendar c = Calendar.getInstance();
-        
+
+
+
 
         //------------------------------------------------------tous les utilisateurs sont destinataires ?-------------------------//
         chkTous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -93,13 +96,22 @@ public class NewMessage extends Activity {
                         Toast toast = Toast.makeText(context, "Message Envoyé", duration);
                         toast.show();
                         Compteur = 0;
+                        //Integer Num = c.get(Calendar.DATE);
+                        //String eDate =Num.toString();
+                       // String eHeure = c.getTime().toString();
 
-                        Intent Instance1= new Intent(NewMessage.this,POSTIT.class);
-                        Instance1.putExtra("ValDestinataire",eDestinataire.getText().toString());
-                        Instance1.putExtra("ValMessage",eMessage.getText().toString());
+                        //Intent IntentSend= new Intent(NewMessage.this,POSTIT.class);
+                        //Bundle extras = new Bundle();
+                        //extras.putString("ValDestinataire",eDestinataire.getText().toString());
+                        //extras.putString("ValMessage",eMessage.getText().toString());
+                        //extras.putString("ValDate",eDate);
+                        //extras.putString("ValMessage", eHeure);
+                        //extras.putString("ValUserAct", UtilisateurActuelleEnvoie);
+                        //IntentSend.putExtras(extras);
 
-                        startActivity(Instance1);
-                        finish();
+                        //startActivity(IntentSend);
+                       // finish();
+
                     }
                 }
             }
