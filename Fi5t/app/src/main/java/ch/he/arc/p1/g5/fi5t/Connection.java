@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 public class Connection extends Activity {
 
-    Button bBlueTests, bLogin;
+    Button bBlueTests, bLogin, bTest;
     TextView dStatus;
     ProgressBar mProgress;
     CheckBox cbRemember;
@@ -40,15 +40,29 @@ public class Connection extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
 
+        //bTest.setVisibility(View.INVISIBLE);
+        bTest = (Button) findViewById(R.id.bTest);
+        bTest.setText("Test Users");
+        bTest.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+
+                startActivity(new Intent (Connection.this, Users.class));
+
+
+            }
+
+        });
+
         //Intent myIntent = new Intent (Connection.this, MonProfil.class);
         //startActivity(myIntent);
         //finish();
 
-        Context context = getApplicationContext();
-        SharedPreferences sharedProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
-        String string = sharedProfile.getString(Services.LastName,"");
-        int duration = Toast.LENGTH_SHORT;
-        Toast.makeText(context, string, duration).show();
+        //Context context = getApplicationContext();
+        //SharedPreferences sharedProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+        //String string = sharedProfile.getString(Services.LastName,"");
+        //int duration = Toast.LENGTH_SHORT;
+        //Toast.makeText(context, string, duration).show();
 
         cbRemember = (CheckBox) findViewById(R.id.cbRemember);
         dUsername = (EditText) findViewById(R.id.dUsername);

@@ -12,6 +12,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.KeyListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -95,6 +96,18 @@ public class MonProfil extends Services {
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
+        //tvRole.setFocusable(false);
+        tvRole.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+
+                if (loop == true){
+                    bConfirm.setVisibility(View.VISIBLE);
+                    //loop = false;
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
 
 
     }
@@ -103,10 +116,12 @@ public class MonProfil extends Services {
         String nom  = tvNom.getText().toString();
         String prenom  = tvPrenom.getText().toString();
         String username  = tvUsername.getText().toString();
+        String userrole  = tvRole.getText().toString();
         Editor editor = sharedProfile.edit();
         editor.putString(LastName, nom);
         editor.putString(FirstName, prenom);
         editor.putString(UserName, username);
+        editor.putString(UserRole, userrole);
         editor.apply();
         bConfirm.setVisibility(View.INVISIBLE);
     }
