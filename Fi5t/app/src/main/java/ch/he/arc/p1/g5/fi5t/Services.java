@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class Services extends Activity {
 
     public static final String MyProfile = "MyProfileKey" ;
+    public static final String NombreUtilisateurs="NombreUtilisateursKey";
     public static final String FirstName = "FirstNameKey";
     public static final String LastName = "LastNameKey";
     public static final String UserName = "UserNameKey";
@@ -24,11 +25,11 @@ public class Services extends Activity {
     public static final String OfflineUsername = "OfflineUsernameKey";
     public static final String OfflinePassword = "OfflinePasswordKey";
 
-    public static final String ExterneFirstName = "FirstNameKey";
-    public static final String ExterneLastName = "LastNameKey";
-    public static final String ExterneUserName = "UserNameKey";
-    public static final String ExterneUserRole = "UserRoleKey";
-    public static final String ExternePassword = "PasswordKey" ;
+    public static final String ExterneFirstName = "ExterneFirstNameKey";
+    public static final String ExterneLastName = "ExterneLastNameKey";
+    public static final String ExterneUserName = "ExterneUserNameKey";
+    public static final String ExterneUserRole = "ExterneUserRoleKey";
+    public static final String ExternePassword = "ExternePasswordKey" ;
 
 
 
@@ -95,9 +96,8 @@ public class Services extends Activity {
                 Class Nom1=this.getClass();
                 if(Nom1!=Main.class)
                 {
-                    intent = new Intent(getApplicationContext(),Main.class);
-                    startActivity(intent);
-                    finish();
+
+                    onBackPressed();
                 }
                 return true;
             case R.id.PostIt:

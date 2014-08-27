@@ -34,6 +34,7 @@ public class Main extends Services{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Im1=(ImageView) findViewById(R.id.imageView);
+
         bReglages=(Button)findViewById(R.id.bReglages);
         bReglages.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,36 +78,76 @@ public class Main extends Services{
         bClosePostIt1 = (Button) findViewById(R.id.bDelPostIt1);
         bClosePostIt2 = (Button) findViewById(R.id.bDelPostIt2);
         bClosePostIt3 = (Button) findViewById(R.id.bDelPostIt3);
+        iPostIt1 = (ImageView) findViewById(R.id.imvpostit1);
+        iPostIt2 = (ImageView) findViewById(R.id.imvpostit2);
+        iPostIt3 = (ImageView) findViewById(R.id.imvpostit3);
+        tPostItDate1 = (TextView) findViewById(R.id.smtDateHeure1);
+        tPostItDate2 = (TextView) findViewById(R.id.smtDateHeure2);
+        tPostItDate3 = (TextView) findViewById(R.id.smtDateHeure3);
+        tPostItMessage1 = (TextView) findViewById(R.id.smtMessage1);
+        tPostItMessage2 = (TextView) findViewById(R.id.smtMessage2);
+        tPostItMessage3 = (TextView) findViewById(R.id.smtMessage3);
+        tPostItFrom1 = (TextView) findViewById(R.id.smtUser3);
+        tPostItFrom2 = (TextView) findViewById(R.id.smtUser2);
+        tPostItFrom3 = (TextView) findViewById(R.id.smtUser3);
+
+
+
+
+        iPostIt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent LecturePostit=new Intent(Main.this,LecturePostIt.class);
+                LecturePostit.putExtra("RecupID",tPostItFrom1.getText().toString());
+                LecturePostit.putExtra("RecupDate",tPostItDate1.getText().toString());
+                LecturePostit.putExtra("RecupMessages",tPostItMessage1.getText().toString());
+                startActivity(LecturePostit);
+
+            }
+        });
+        iPostIt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent LecturePostit=new Intent(Main.this,LecturePostIt.class);
+                LecturePostit.putExtra("RecupID",tPostItFrom2.getText().toString());
+                LecturePostit.putExtra("RecupDate",tPostItDate2.getText().toString());
+                LecturePostit.putExtra("RecupMessages",tPostItMessage2.getText().toString());
+                startActivity(LecturePostit);
+
+            }
+        });
+        iPostIt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent LecturePostit=new Intent(Main.this,LecturePostIt.class);
+                LecturePostit.putExtra("RecupID",tPostItFrom3.getText().toString());
+                LecturePostit.putExtra("RecupDate",tPostItDate3.getText().toString());
+                LecturePostit.putExtra("RecupMessages",tPostItMessage3.getText().toString());
+                startActivity(LecturePostit);
+
+            }
+        });
         bClosePostIt1.setVisibility(View.INVISIBLE);
         bClosePostIt2.setVisibility(View.INVISIBLE);
         bClosePostIt3.setVisibility(View.INVISIBLE);
 
-        iPostIt1 = (ImageView) findViewById(R.id.imvpostit1);
-        iPostIt2 = (ImageView) findViewById(R.id.imvpostit2);
-        iPostIt3 = (ImageView) findViewById(R.id.imvpostit3);
         iPostIt1.setVisibility(View.INVISIBLE);
         iPostIt2.setVisibility(View.INVISIBLE);
         iPostIt3.setVisibility(View.INVISIBLE);
 
-        tPostItDate1 = (TextView) findViewById(R.id.smtDateHeure1);
-        tPostItDate2 = (TextView) findViewById(R.id.smtDateHeure2);
-        tPostItDate3 = (TextView) findViewById(R.id.smtDateHeure3);
+
         tPostItDate1.setVisibility(View.INVISIBLE);
         tPostItDate2.setVisibility(View.INVISIBLE);
         tPostItDate3.setVisibility(View.INVISIBLE);
 
 
 
-        tPostItMessage1 = (TextView) findViewById(R.id.smtMessage1);
-        tPostItMessage2 = (TextView) findViewById(R.id.smtMessage2);
-        tPostItMessage3 = (TextView) findViewById(R.id.smtMessage3);
+
         tPostItMessage1.setVisibility(View.INVISIBLE);
         tPostItMessage2.setVisibility(View.INVISIBLE);
         tPostItMessage3.setVisibility(View.INVISIBLE);
 
-        tPostItFrom1 = (TextView) findViewById(R.id.smtUser3);
-        tPostItFrom2 = (TextView) findViewById(R.id.smtUser2);
-        tPostItFrom3 = (TextView) findViewById(R.id.smtUser3);
+
         tPostItFrom1.setVisibility(View.INVISIBLE);
         tPostItFrom2.setVisibility(View.INVISIBLE);
         tPostItFrom3.setVisibility(View.INVISIBLE);
@@ -147,7 +188,18 @@ public class Main extends Services{
                 break;
         }
 
+        if (BlueFetch.postIt1 == false) {
 
+            iPostIt1.setVisibility(View.INVISIBLE);
+            bClosePostIt1.setVisibility(View.INVISIBLE);
+            tPostItDate1.setVisibility(View.INVISIBLE);
+            tPostItDate1.setText(BlueFetch.postItDate1);
+            tPostItFrom1.setVisibility(View.INVISIBLE);
+            tPostItFrom1.setText(BlueFetch.postItFrom1);
+            tPostItMessage1.setVisibility(View.INVISIBLE);
+            tPostItMessage1.setText(BlueFetch.postItMessage1);
+
+        }
         if (BlueFetch.postIt1 == true) {
 
             iPostIt1.setVisibility(View.VISIBLE);

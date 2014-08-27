@@ -25,6 +25,7 @@ public class Users extends Services {
     Button bModifier;
     Button bNouveau;
     Button bSupprimer;
+    Integer iNombreUtilisateur;
 
 
     //-----------------ListView------------------------//////
@@ -41,20 +42,20 @@ public class Users extends Services {
         setContentView(R.layout.activity_users);
 
         //Initialisation de l'utilisation de la memoire interne
-        SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+        //SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
 
         //Pour recuperer les informations depuis le service
-        String UserName = UserProfile.getString(Services.UserName,"");
+        //String UserName = UserProfile.getString(Services.UserName,"");
 
         //Initialisation de l'ecriture
-        Editor editor = UserProfile.edit();
+        //Editor editor = UserProfile.edit();
 
         //Pour ecrire les informations dans le service
-        String test = "banana";
-        editor.putString(Services.UserName, test);
+        //String test = "banana";
+        //editor.putString(Services.UserName, test);
 
         //Pour sauver les informations
-        editor.apply();
+        //editor.apply();
 
 
 
@@ -88,20 +89,20 @@ public class Users extends Services {
 
             //----------Heure --------//
             TextView HeureTextView=(TextView)ItemView.findViewById(R.id.item_HeureTxt);
-            HeureTextView.setText(CurrentUsers.getPrenom());
+            HeureTextView.setText("");
 
             //-------------Date-------------//
             TextView DateTextView=(TextView)ItemView.findViewById(R.id.item_DateTxt);
-            DateTextView.setText(CurrentUsers.getNom());
+            DateTextView.setText("");
 
             //-------------Status-------------//
             TextView StatusTextView=(TextView)ItemView.findViewById(R.id.item_StatutTxt);
-            StatusTextView.setText(CurrentUsers.getRole());
+            StatusTextView.setText("");
 
             //-------------IDutilisateur------------//
 
             TextView UtilisateurTextView=(TextView)ItemView.findViewById(R.id.item_IDutilisateurTxt);
-            UtilisateurTextView.setText(CurrentUsers.getMDP());
+            UtilisateurTextView.setText("");
 
 
             //-------------IDutilisateur------------//
@@ -116,13 +117,33 @@ public class Users extends Services {
     private void PopulateUserList() {
 
 
-        UserClass User=new UserClass("Raphaël", "Schaffo", "Admin", "DarkRanger22", "273GJHG", 1);
 
+        //Initialisation de l'utilisation de la memoire interne
+        SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+        Editor editor = UserProfile.edit();
+        //------------------------------ On va recevoir le nombre d'utilisateur de la base de données-------------------///
+        String nom = "Rémininator";
+        Integer nombre = 2;
+        //------------------------------ On va recevoir le nombre d'utilisateur de la base de données-------------------///
+        editor.putInt(Services.NombreUtilisateurs, nombre);
+        editor.putString(ExterneUserName, nom);
+
+        //Pour sauver les informations
+        editor.apply();
+
+        //Pour recuperer les informations depuis le service
+        Integer fois = UserProfile.getInt(Services.NombreUtilisateurs,0);
+        int i;
+        for (i=0; i<fois; i++) {
+            String Recuperation=UserProfile.getString(Services.ExterneUserName,"");
+            UserClass User=new UserClass("", "", "", "",Recuperation,  1);
             MyUsers.add(User);
+        }
 
-        UserClass User2=new UserClass("Romain", "Yakovenko", "Admin", "MightyPinguin", "983JTRHG", 2);
 
-            MyUsers.add(User2);
+
+
+
     }
 
     @Override

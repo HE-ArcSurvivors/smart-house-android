@@ -2,6 +2,7 @@ package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,12 @@ public class POSTIT extends Services {
     String DataInstance="";
     String POPUP;
     Button Newmessage;
+
+    String RecupID;
+    String RecupMessage;
+    String RecupDate;
+    String RecupHeure;
+    String RecupStatus;
 
    
 
@@ -85,9 +93,37 @@ public class POSTIT extends Services {
         List =(ListView)findViewById(R.id.listViewPostIt);
         List.setAdapter(adapter);
         PopulateMessageList();
+        List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //------------------Modifer Status du Message--------------------/////////
 
 
-        SearchMessage.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+                //------------------Modifer Status du Message--------------------/////////
+                Message selItem = (Message) adapter.getItem(position);
+                RecupID=selItem.getIDUtilisateur();
+                RecupMessage=selItem.getMessages();
+                RecupStatus=selItem.getStatus();
+                RecupHeure=selItem.getHeure();
+                RecupDate=selItem.getDate();
+                Intent LecturePostit=new Intent(POSTIT.this,LecturePostIt.class);
+                LecturePostit.putExtra("RecupID",RecupID);
+                LecturePostit.putExtra("RecupMessages",RecupMessage);
+                LecturePostit.putExtra("RecupStatus",RecupStatus);
+                LecturePostit.putExtra("RecupDate",RecupHeure+" / " + RecupDate);
+                startActivity(LecturePostit);
+
+
+
+
+            }
+        });
+
+
+
+
+                SearchMessage.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if(query!=null)

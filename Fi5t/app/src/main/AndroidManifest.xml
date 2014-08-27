@@ -77,6 +77,10 @@
             android:name=".Chauffage"
             android:label="@string/title_activity_chauffage" >
         </activity>
+        <activity
+            android:name=".LecturePostIt"
+            android:label="@string/title_activity_lecture_post_it" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />

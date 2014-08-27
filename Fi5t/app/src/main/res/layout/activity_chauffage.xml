@@ -24,7 +24,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Température Min: "
         android:layout_marginTop="12dp"
-        android:id="@+id/textView2"
+        android:id="@+id/txVPseudo"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
@@ -34,8 +34,8 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/edtTempMin"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_alignTop="@+id/textView2"
+        android:layout_toEndOf="@+id/txVPseudo"
+        android:layout_alignTop="@+id/txVPseudo"
         android:text="15" />
 
     <EditText
@@ -44,7 +44,7 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/edtTempMax"
-        android:layout_toEndOf="@+id/textView2"
+        android:layout_toEndOf="@+id/txVPseudo"
         android:text="25"
         android:layout_alignParentTop="true"
         android:layout_above="@+id/edtTempMin" />
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Température:"
-        android:id="@+id/textView3"
+        android:id="@+id/txvDateHeure"
         android:layout_alignTop="@+id/txtVTemp"
         android:layout_alignParentStart="true" />
 
@@ -65,8 +65,8 @@
         android:text="15"
         android:layout_marginTop="15dp"
         android:id="@+id/txtVTemp"
-        android:layout_toEndOf="@+id/textView3"
-        android:layout_below="@+id/textView2" />
+        android:layout_toEndOf="@+id/txvDateHeure"
+        android:layout_below="@+id/txVPseudo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
         android:id="@+id/textView5"
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/txtVTemp"
-        android:layout_below="@+id/textView2" />
+        android:layout_below="@+id/txVPseudo" />
 
 
     <SeekBar
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/seekBar"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/txvDateHeure"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/bValiderTemp"
         android:max="25" />
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:text="Valider"
         android:id="@+id/bValiderTemp"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/txvDateHeure"
         android:layout_alignParentStart="true"
         android:layout_marginTop="50dp"
         android:background="@drawable/button"
