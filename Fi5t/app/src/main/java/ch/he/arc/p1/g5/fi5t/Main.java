@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Timer;
+
 
 public class Main extends Services{
     private static final String TAG ="Page Accueil" ;
@@ -33,13 +35,15 @@ public class Main extends Services{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Im1=(ImageView) findViewById(R.id.imageView);
 
         bReglages=(Button)findViewById(R.id.bReglages);
         bReglages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ParametreInstance=new Intent(Main.this,Parametre.class);
+                
+               Intent ParametreInstance=new Intent(Main.this,Parametre.class);
                 startActivity(ParametreInstance);
 
             }
