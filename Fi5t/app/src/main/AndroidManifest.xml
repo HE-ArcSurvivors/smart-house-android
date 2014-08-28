@@ -23,7 +23,7 @@
         <activity
             android:name=".Users"
             android:label="@string/title_activity_users"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/ListView" >
         </activity>
         <activity
             android:name=".Parametre"
@@ -33,7 +33,7 @@
         <activity
             android:name=".POSTIT"
             android:label="@string/title_activity_postit"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/ListView" >
             <meta-data
                 android:name="andoid.app.default_searchable"
                 android:value=".POSTIT" />
@@ -49,7 +49,7 @@
         <activity
             android:name=".Materiel"
             android:label="@string/title_activity_materiel"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/ListView"  >
         </activity>
         <activity
             android:name=".MonProfil"
@@ -71,15 +71,18 @@
         <activity android:name=".BluePreferences" />
         <activity
             android:name=".NewMessage"
-            android:label="@string/title_activity_new_message" >
+            android:label="@string/title_activity_new_message"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".Chauffage"
-            android:label="@string/title_activity_chauffage" >
+            android:label="@string/title_activity_chauffage"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".LecturePostIt"
-            android:label="@string/title_activity_lecture_post_it" >
+            android:label="@string/title_activity_lecture_post_it"
+            android:theme="@style/AppTheme">
         </activity>
     </application>
 

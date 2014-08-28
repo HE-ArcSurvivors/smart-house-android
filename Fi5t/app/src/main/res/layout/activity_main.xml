@@ -241,7 +241,7 @@
         android:layout_below="@+id/smtDateHeure2"
         android:layout_alignStart="@+id/smtDateHeure2"
         android:maxLength="40"
-        android:textColor="#ff7a7a7a" />
+        android:textColor="#ffffffff" />
 
     <TextView
         android:layout_width="wrap_content"
