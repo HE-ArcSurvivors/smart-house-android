@@ -47,16 +47,6 @@ public class Chauffage extends Services{
         skTemp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
                 if(Secure==0)
                 {
                     Integer iTempMin=Integer.parseInt(edtTempMin.getText().toString());
@@ -67,6 +57,16 @@ public class Chauffage extends Services{
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context,"Veuillez valider la saisie", duration);
                     toast.show();}
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
 
 
             }
