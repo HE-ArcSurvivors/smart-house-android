@@ -65,7 +65,7 @@ public class Main extends Services{
                 else {
                     Im1.setBackgroundResource(R.drawable.opendoor);
                     BlueFetch.DoorStatus=true;
-                    bEtatPorte.setTextColor(Color.parseColor("#FF000000"));
+                    bEtatPorte.setTextColor(Color.parseColor("#ff7a7a7a"));
 
 
                 }

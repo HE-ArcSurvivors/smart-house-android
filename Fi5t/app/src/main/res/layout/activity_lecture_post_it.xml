@@ -27,7 +27,7 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textColor="#ff000000" />
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:id="@+id/txVPseudo"
         android:layout_alignTop="@+id/textView"
         android:layout_toEndOf="@+id/textView"
-        android:textColor="#ff000000" />
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         android:id="@+id/txvDateHeure"
         android:layout_below="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:textColor="#ff000000"
+        android:textColor="#ff7a7a7a"
         android:textSize="19dp" />
 
     <TextView
@@ -61,5 +61,5 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/txvDateHeure"
         android:layout_alignStart="@+id/txvDateHeure"
-        android:textColor="#ff000000" />
+        android:textColor="#ff7a7a7a" />
 </RelativeLayout>

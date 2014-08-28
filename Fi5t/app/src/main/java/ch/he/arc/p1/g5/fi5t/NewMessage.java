@@ -61,7 +61,7 @@ public class NewMessage extends Services {
                 if(chkTous.isChecked()==true) {
                     eDestinataire.setText("Tous");
                     eDestinataire.setEnabled(false);
-                }
+                                       }
                 else {
                     eDestinataire.setText("");
                     eDestinataire.setEnabled(true);

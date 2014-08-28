@@ -39,7 +39,7 @@
         android:maxLength="40"
         android:layout_above="@+id/tvPrenom"
         android:layout_alignParentEnd="true"
-        android:singleLine="true"/>
+        android:singleLine="true" />
 
     <EditText
         android:layout_width="wrap_content"

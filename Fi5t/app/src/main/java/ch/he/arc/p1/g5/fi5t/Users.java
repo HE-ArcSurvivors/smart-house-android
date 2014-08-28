@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,6 +64,7 @@ public class Users extends Services {
         bNouveau=(Button)findViewById(R.id.bNouveau);
         bSupprimer=(Button)findViewById(R.id.bSupprimer);
         ListeUtilisateurs= (ListView)findViewById(R.id.ltvUtilisateur);
+
 
         final ArrayAdapter<UserClass> adapter =new MyListAdapter();
         ListeUtilisateurs.setAdapter(adapter);

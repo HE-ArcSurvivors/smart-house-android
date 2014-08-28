@@ -61,7 +61,8 @@
         android:layout_alignTop="@+id/imvpostit1"
         android:layout_margin="5dp"
         android:layout_alignParentStart="true"
-        android:textSize="11dp" />
+        android:textSize="11dp"
+        android:textColor="#ff7a7a7a" />
 
 
     <TextView
@@ -73,7 +74,8 @@
         android:id="@+id/smtDateHeure2"
         android:layout_alignTop="@+id/imvpostit2"
         android:layout_alignParentStart="true"
-        android:textSize="11dp" />
+        android:textSize="11dp"
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,7 +86,8 @@
         android:id="@+id/smtDateHeure3"
         android:layout_alignTop="@+id/imvpostit3"
         android:layout_alignParentStart="true"
-        android:textSize="11dp" />
+        android:textSize="11dp"
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,7 +100,8 @@
         android:textIsSelectable="false"
         android:textSize="11dp"
         android:layout_alignTop="@+id/smtDateHeure3"
-        android:layout_alignStart="@+id/smtUser1" />
+        android:layout_alignStart="@+id/smtUser1"
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -108,7 +112,8 @@
         android:layout_toEndOf="@+id/smtBievenue"
         android:maxLength="10"
         android:textSize="11dp"
-        android:layout_alignTop="@+id/smtDateHeure2" />
+        android:layout_alignTop="@+id/smtDateHeure2"
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -119,7 +124,8 @@
         android:maxLength="10"
         android:textSize="11dp"
         android:layout_alignTop="@+id/smtDateHeure1"
-        android:layout_alignEnd="@+id/smtUser2" />
+        android:layout_alignEnd="@+id/smtUser2"
+        android:textColor="#ff7a7a7a" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -135,18 +141,18 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="52dp"
-        android:layout_height="24dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:text="X"
         android:id="@+id/bDelPostIt1"
         android:background="@drawable/boutonvert"
         android:textColor="#ffeefff6"
         android:textSize="11dp"
         android:layout_toEndOf="@+id/imvpostit1"
-        android:layout_alignTop="@+id/imvpostit1"
         android:layout_above="@+id/imvpostit2"
         android:singleLine="false"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_below="@+id/smtUser1" />
 
     <Button
         android:layout_width="fill_parent"
@@ -156,9 +162,10 @@
         android:background="@drawable/button"
         android:layout_below="@+id/lgtMoreMessage"
         android:layout_marginTop="34dp"
-        android:layout_alignEnd="@+id/bDelPostIt1"
+
         android:clickable="false"
-        android:focusable="false" />
+        android:focusable="false"
+        android:textColor="#ff7a7a7a" />
 
     <Button
         android:layout_width="fill_parent"
@@ -169,7 +176,8 @@
         android:background="@drawable/button"
         android:layout_below="@+id/bEtatPortePrinc"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/bDelPostIt1" />
+        android:textColor="#ff7a7a7a"
+        android:layout_alignEnd="@+id/bEtatPortePrinc" />
 
     <Button
         android:layout_width="fill_parent"
@@ -179,36 +187,37 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/button"
         android:layout_below="@+id/bIO"
-        android:layout_alignEnd="@+id/bDelPostIt1" />
+        android:textColor="#ff7a7a7a"
+        android:layout_alignEnd="@+id/bIO" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="52dp"
-        android:layout_height="24dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:text="X"
         android:id="@+id/bDelPostIt2"
         android:background="@drawable/boutonvert"
         android:textColor="#ffeefff6"
         android:textSize="11dp"
         android:layout_toEndOf="@+id/imvpostit2"
-        android:layout_alignTop="@+id/smtUser2"
         android:layout_above="@+id/imvpostit3"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_below="@+id/smtUser2" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="55dp"
-        android:layout_height="24dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:text="X"
         android:id="@+id/bDelPostIt3"
         android:background="@drawable/boutonvert"
         android:textColor="#ffeefff6"
         android:textSize="11dp"
         android:layout_toEndOf="@+id/imvpostit1"
-        android:layout_alignEnd="@+id/bEtatPortePrinc"
         android:layout_alignBottom="@+id/imvpostit3"
         android:clickable="true"
-        android:layout_alignTop="@+id/smtUser3" />
+        android:layout_alignEnd="@+id/bDelPostIt2"
+        android:layout_below="@+id/smtUser3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -219,7 +228,8 @@
         android:layout_below="@+id/smtDateHeure1"
         android:layout_alignStart="@+id/smtDateHeure1"
         android:textSize="11dp"
-        android:maxLength="40" />
+        android:maxLength="40"
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -230,7 +240,8 @@
         android:textSize="11dp"
         android:layout_below="@+id/smtDateHeure2"
         android:layout_alignStart="@+id/smtDateHeure2"
-        android:maxLength="40" />
+        android:maxLength="40"
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -241,7 +252,8 @@
         android:textSize="11dp"
         android:layout_below="@+id/smtDateHeure3"
         android:layout_alignStart="@+id/smtDateHeure3"
-        android:maxLength="40" />
+        android:maxLength="40"
+        android:textColor="#ff7a7a7a" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -40,7 +40,7 @@
         android:layout_toEndOf="@+id/searchviewPostit"
         android:background="@drawable/button"
         android:layout_alignParentEnd="true"
-        android:textColor="#ff000000"
+        android:textColor="#ff7a7a7a"
         android:clickable="true"
         android:focusable="true" />
 
