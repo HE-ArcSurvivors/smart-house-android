@@ -21,7 +21,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class BlueFetch extends Services {
-    //------------------------------------------------ON RECOIS----------------------------------------------//
 
 
 
@@ -33,7 +32,6 @@ public class BlueFetch extends Services {
     static boolean postIt1 = true;
     static boolean postIt2 = true;
     static boolean postIt3 = true;
-
     static int numberMorePostIts = 1;
 
     static String postItMessage1 = "Je suis de sortie ce soir !";
@@ -52,7 +50,6 @@ public class BlueFetch extends Services {
     static String postItFrom3 = "Franck";
 
 
-<<<<<<< HEAD
         TextView tvLabel;
         EditText etTextbox;
         BluetoothAdapter mBluetoothAdapter;
@@ -210,50 +207,5 @@ public class BlueFetch extends Services {
             msg.show();
         }
     }
-=======
-    //-----Nombre Utilisateur--------//
-    static Integer BlfNombreUtilisateur = 4;
-
-    //-----Nombre POSTIT--------//
-
-    static Integer BlfNombrePOSTIT = 8;
-
-
-    static Integer IDExternUser = 1;
-    static String ExternPseudoName = "Schaffora";
-    static String ExternUserFirstName="Raphaël";
-    static String ExternUserName="Schaffo";
-    static String ExterneMotDePasse="10001000";
-    static String ExternUserRoles="Admin";
-
-    static Integer POSTITACTUID = 1;
-    static String POSTITSENDPseudo="Schaffora";
-    static String POSTITMessage="Je suis en retard";
-    static String POSTITDate="21/08/2014";
-    static String POSTITHeure="12:13";
-    static String POSTITStatus="NON LU";
-
-
-       // Gestion des températures//
-    static Integer TemperatureMinimum= 12;
-    static Integer TemperatureActuelle = 18;
-    static Integer TemperatureMaximum= 39;
-
-    // --------------------------------------------------------ON ENVOIE----------------------------------//
-    //ID Utilisateur Selectionner //
-    static String DeleteUser="0";
-
-
-    // ID Utilisateur Modifier //
-    static String ExternIDModifier="0";
-    static String ExternNomModifier="";
-    static String ExternPrenomModifier="";
-    static String ExternPseudoModifier="";
-    static String ExternMDPModifier="";
-    static String ExternRoleModifier="";
-
-
-
->>>>>>> 5533708721183c9587e64e8114aa5a0aa14af662
 
 

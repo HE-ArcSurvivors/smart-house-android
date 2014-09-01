@@ -14,6 +14,8 @@ public class Services extends Activity {
 
     public static final String MyProfile = "MyProfileKey" ;
     public static final String NombreUtilisateurs="NombreUtilisateursKey";
+    public static final String NombrePOSTIT="NombrePOSTITKey";
+
     public static final String FirstName = "FirstNameKey";
     public static final String LastName = "LastNameKey";
     public static final String UserName = "UserNameKey";
@@ -29,7 +31,43 @@ public class Services extends Activity {
     public static final String ExterneLastName = "ExterneLastNameKey";
     public static final String ExterneUserName = "ExterneUserNameKey";
     public static final String ExterneUserRole = "ExterneUserRoleKey";
-    public static final String ExternePassword = "ExternePasswordKey" ;
+    public static final String ExternePassword = "ExternePasswordKey";
+    public static final String ExterneUserID = "ExterneUserIDKey" ;
+
+    public static final String TemperatureChauffage = "TemperatureChauffageKey" ;
+    public static final String TemperatureChauffageMin = "TemperatureChauffageMinKey" ;
+    public static final String TemperatureChauffageMax = "TemperatureChauffageMaxKey" ;
+
+
+
+    public static final String DeleteUserID="DeleteUserIDKey";
+
+    public static final String ModifyUserID="ModifyUserIDKey";
+    public static final String ModifyUserName="ModifyUserNameKey";
+    public static final String ModifyUserFirstName="ModifyUserFirstNameKey";
+    public static final String ModifyUserPseudo="ModifyUserPseudoKey";
+    public static final String ModifyUserMDP="ModifyUserMDPKey";
+    public static final String ModifyUserRole="ModifyUserRoleKey";
+
+
+
+    public static final String NEWUserName="NEWUserNameKey";
+    public static final String NEWUserFirstName="NEWUserFirstNameKey";
+    public static final String NEWUserPseudo="NEWUserPseudoKey";
+    public static final String NEWUserMDP="NEWUserMDPKey";
+    public static final String NEWUserRole="NEWUserRoleKey";
+
+    public static final String ExternePOSTITDATE = "ExternePOSTITDATEKey";
+    public static final String ExternePOSTITHEURE = "ExternePOSTITHEUREKey";
+    public static final String ExternePOSTITENVOYERPSEUDO = "ExternePOSTITENVOYERPSEUDOKey";
+    public static final String ExternePOSTITSTATUS = "ExternePOSTITSTATUS";
+    public static final String ExternePOSTITMESSAGE = "ExternePOSTITMESSAGEKey";
+    public static final String ExternePOSTITID = "ExternePOSTITIDKey" ;
+
+
+
+
+
 
 
 

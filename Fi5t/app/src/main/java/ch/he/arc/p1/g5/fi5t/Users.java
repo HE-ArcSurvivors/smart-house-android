@@ -1,7 +1,9 @@
 package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
@@ -10,10 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,6 @@ public class Users extends Services {
     Button bModifier;
     Button bNouveau;
     Button bSupprimer;
-    Integer iNombreUtilisateur;
 
 
     //-----------------ListView------------------------//////
@@ -35,6 +38,21 @@ public class Users extends Services {
 
     //------------------------Autres---------------------------------------/////
     private List<UserClass> MyUsers =new ArrayList<UserClass>();
+
+    // String utiliser pour récupérer l'élément selectionnée//
+    String IDUtilisateurDel;
+    String PseudoUtilisateurDel;
+
+
+    String IDUtilisateurModif;
+    String NomUtilisateurModif;
+    String PrenomUtilisateurModif;
+    String MDPUtilisateurModif;
+    String RoleUtilisateurModif;
+    String PseudoUtilisateurModif;
+
+
+
 
 
     @Override
@@ -58,20 +76,90 @@ public class Users extends Services {
         //Pour sauver les informations
         //editor.apply();
 
-
-
         bModifier=(Button)findViewById(R.id.bModifier);
         bNouveau=(Button)findViewById(R.id.bNouveau);
         bSupprimer=(Button)findViewById(R.id.bSupprimer);
+        bModifier.setVisibility(View.INVISIBLE);
+        bSupprimer.setVisibility(View.INVISIBLE);
+        bNouveau.setVisibility(View.INVISIBLE);
+
         ListeUtilisateurs= (ListView)findViewById(R.id.ltvUtilisateur);
-
-
         final ArrayAdapter<UserClass> adapter =new MyListAdapter();
         ListeUtilisateurs.setAdapter(adapter);
         PopulateUserList();
 
+        ListeUtilisateurs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ListeUtilisateurs.setSelector(R.drawable.button);
+                bModifier.setVisibility(View.VISIBLE);
+                bSupprimer.setVisibility(View.VISIBLE);
+                bNouveau.setVisibility(View.VISIBLE);
 
-    }
+                UserClass sellUser=(UserClass) adapter.getItem(position);
+
+                // ----------------Delete-------------//
+                IDUtilisateurDel=sellUser.getID().toString();
+                PseudoUtilisateurDel=sellUser.getPseudo().toString();
+
+
+               //---------------Modifer---------------//
+                IDUtilisateurModif=sellUser.getID().toString();
+                PseudoUtilisateurModif=sellUser.getPseudo().toString();
+                NomUtilisateurModif=sellUser.getNom();
+                PrenomUtilisateurModif=sellUser.getPrenom();
+                MDPUtilisateurModif=sellUser.getMDP();
+                RoleUtilisateurModif=sellUser.getRole();
+
+
+
+            }
+        });
+        bSupprimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences UserDel = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+                SharedPreferences.Editor editorDel = UserDel.edit();
+                editorDel .putString(Services.DeleteUserID,IDUtilisateurDel);
+                editorDel .apply();
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                ///////////Fonction qui écris le nouveau Service.ID dans bluefetch del ID///////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT; Toast toast = Toast.makeText(context,PseudoUtilisateurDel+" à été supprimé", duration);
+                toast.show();
+                Intent ApresDel=new Intent(Users.this,Users.class);
+                startActivity(ApresDel);
+                finish();
+            }
+        });
+
+        bNouveau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent NewUser=new Intent(Users.this,AjouterModifer.class);
+                startActivity(NewUser);
+                finish();
+            }
+        });
+        bModifier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ModifyUser=new Intent(Users.this,AjouterModifer.class);
+                ModifyUser.putExtra("ModifyPseudo",PseudoUtilisateurModif);
+                ModifyUser.putExtra("ModifyNom",NomUtilisateurModif);
+                ModifyUser.putExtra("ModifyPrenom",PrenomUtilisateurModif);
+                ModifyUser.putExtra("ModifyMDP",MDPUtilisateurModif);
+                ModifyUser.putExtra("ModifyRole",RoleUtilisateurModif);
+                ModifyUser.putExtra("ModifyID",IDUtilisateurModif);
+                startActivity(ModifyUser);
+                finish();
+            }
+        });
+
+   }
     private class MyListAdapter extends ArrayAdapter<UserClass>
     {
         public MyListAdapter(){super(Users.this,R.layout.item_view,MyUsers);}
@@ -89,25 +177,25 @@ public class Users extends Services {
 
 
 
-            //----------Heure --------//
+            //----------VIDE --------//
             TextView HeureTextView=(TextView)ItemView.findViewById(R.id.item_HeureTxt);
             HeureTextView.setText("");
 
-            //-------------Date-------------//
+            //-------------VIDE------------//
             TextView DateTextView=(TextView)ItemView.findViewById(R.id.item_DateTxt);
             DateTextView.setText("");
 
-            //-------------Status-------------//
+            //-------------VIDE-------------//
             TextView StatusTextView=(TextView)ItemView.findViewById(R.id.item_StatutTxt);
             StatusTextView.setText("");
 
-            //-------------IDutilisateur------------//
+            //-------------VIDE------------//
 
             TextView UtilisateurTextView=(TextView)ItemView.findViewById(R.id.item_IDutilisateurTxt);
             UtilisateurTextView.setText("");
 
 
-            //-------------IDutilisateur------------//
+            //-------------PSEUDO-----------//
             TextView MessageTextView=(TextView)ItemView.findViewById(R.id.item_MessageTxt);
             MessageTextView.setText(CurrentUsers.getPseudo());
 
@@ -123,22 +211,41 @@ public class Users extends Services {
         //Initialisation de l'utilisation de la memoire interne
         SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
         Editor editor = UserProfile.edit();
-        //------------------------------ On va recevoir le nombre d'utilisateur de la base de données-------------------///
-        String nom = "Rémininator";
-        Integer nombre = 2;
-        //------------------------------ On va recevoir le nombre d'utilisateur de la base de données-------------------///
-        editor.putInt(Services.NombreUtilisateurs, nombre);
-        editor.putString(ExterneUserName, nom);
 
-        //Pour sauver les informations
+       //------------------------------ On va recevoir le nombre d'utilisateur de la base de données-------------------///
+        editor.putInt(Services.NombreUtilisateurs, BlueFetch.BlfNombreUtilisateur);
+
+
+        editor.putInt(ExterneUserID,BlueFetch.IDExternUser);
+        editor.putString(ExterneUserName,BlueFetch.ExternPseudoName.toString());
+        editor.putString(ExterneFirstName,BlueFetch.ExternUserFirstName);
+        editor.putString(ExterneLastName,BlueFetch.ExternUserName);
+        editor.putString(ExternePassword,BlueFetch.ExterneMotDePasse);
+        editor.putString(ExterneUserRole,BlueFetch.ExternUserRoles);
+
+
+       //Pour sauver les informations
         editor.apply();
 
         //Pour recuperer les informations depuis le service
         Integer fois = UserProfile.getInt(Services.NombreUtilisateurs,0);
         int i;
+
         for (i=0; i<fois; i++) {
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////Fonction qui retourne le nom et le reste de l'utilisateur num 1,2,3,4////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////
+
             String Recuperation=UserProfile.getString(Services.ExterneUserName,"");
-            UserClass User=new UserClass("", "", "", "",Recuperation,  1);
+            Integer Recuperation2=UserProfile.getInt(Services.ExterneUserID, 0);
+            String Recuperation3=UserProfile.getString(Services.ExterneFirstName,"");
+            String Recuperation4=UserProfile.getString(Services.ExterneLastName,"");
+            String Recuperation5=UserProfile.getString(Services.ExternePassword,"");
+            String Recuperation6=UserProfile.getString(Services.ExterneUserRole,"");
+
+            UserClass User=new UserClass(Recuperation4, Recuperation3, Recuperation6, Recuperation5,Recuperation,  Recuperation2);
             MyUsers.add(User);
         }
 
@@ -175,7 +282,7 @@ class UserClass {
     String Role;
     String MDP;
     String Pseudo;
-    int MessageEnvoyer;
+    int IDUser;
 
 
 
@@ -187,7 +294,7 @@ class UserClass {
         Role=sRole;
         MDP=sMDP;
         Pseudo=sPseudo;
-        MessageEnvoyer=iMessageEnvoyer;
+        IDUser=iMessageEnvoyer;
 
     }
 
@@ -211,9 +318,9 @@ class UserClass {
     {
         return Pseudo;
     }
-    public Integer getImessage()
+    public Integer getID()
     {
-        return MessageEnvoyer;
+        return IDUser;
     }
     public void setNom(String NNom)
     {

@@ -2,6 +2,7 @@ package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -32,17 +33,65 @@ public class Chauffage extends Services{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chauffage);
 
-        bValiderTemp=(Button)findViewById(R.id.bValiderTemp);
+
+        //------------------------Déclaration de variable------------------------------//
+
         txvTemp=(TextView)findViewById(R.id.txtVTemp);
         edtTempMax=(EditText)findViewById(R.id.edtTempMax);
         edtTempMin=(EditText)findViewById(R.id.edtTempMin);
+
+        //------------------------Déclaration de variable------------------------------//
+
+
+
+       SharedPreferences UserChauffage = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+       SharedPreferences.Editor editorChauffage = UserChauffage.edit();
+
+        editorChauffage.putInt(Services.TemperatureChauffage,BlueFetch.TemperatureActuelle);
+        editorChauffage.putInt(Services.TemperatureChauffageMax,BlueFetch.TemperatureMaximum);
+        editorChauffage.putInt(Services.TemperatureChauffageMin,BlueFetch.TemperatureMinimum);
+        editorChauffage.apply();
+
+        Integer TempActuRecu=UserChauffage.getInt(Services.TemperatureChauffage,0);
+        Integer TempMaxRecu=UserChauffage.getInt(Services.TemperatureChauffageMax,0);
+        Integer TempMinRecu=UserChauffage.getInt(Services.TemperatureChauffageMin,0);
+        edtTempMax.setText(TempMaxRecu.toString());
+        edtTempMin.setText(TempMinRecu.toString());
+        txvTemp.setText(TempActuRecu.toString());
         skTemp=(SeekBar)findViewById(R.id.seekBar);
         bValiderTextChange=(Button)findViewById(R.id.bTextChange);
-        txvTemp.setText(edtTempMin.getText().toString());
+
         Integer iTempMax= Integer.parseInt(edtTempMax.getText().toString());
-        Integer iTempMin=Integer.parseInt(edtTempMin.getText().toString());
+        final Integer iTempMin=Integer.parseInt(edtTempMin.getText().toString());
         Integer iTemp=iTempMax-iTempMin;
         skTemp.setMax(iTemp);
+
+
+
+
+
+
+
+        //-------------------------------Validation---------------------------------//
+        bValiderTemp=(Button)findViewById(R.id.bValiderTemp);
+        bValiderTemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+                SharedPreferences.Editor editor = UserProfile.edit();
+                editor.putInt(Services.TemperatureChauffage, iTempMin);
+                editor.apply();
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////Mettre valeur de services dans bluefetch/////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+        });
+        //-------------------------------Validation---------------------------------//
+
+        //------------------Changement seekbar-------------------------------------//
 
         skTemp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -71,7 +120,10 @@ public class Chauffage extends Services{
 
             }
         });
+        //------------------Changement seekbar-------------------------------------//
 
+
+        //-----------------------Validation d'éditage----------------------------//
         bValiderTextChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +147,9 @@ public class Chauffage extends Services{
                 }
             }
         });
+        //-----------------------Validation d'éditage----------------------------//
 
+        //-------------------------Editage---------------------------------------//
         edtTempMax.addTextChangedListener(new TextWatcher(){
             public void afterTextChanged(Editable s) {
 
@@ -122,6 +176,7 @@ public class Chauffage extends Services{
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
+        //-------------------------Editage---------------------------------------//
 
 
 
