@@ -5,6 +5,7 @@ import android.content.SharedPreferences.Editor;
 import android.text.LoginFilter;
 
 public class BlueFetch extends Services {
+    //------------------------------------------------ON RECOIS----------------------------------------------//
 
     static String AuthorizedUsername = "banana" ;
     static String AuthorizedPassword = "king";
@@ -14,6 +15,7 @@ public class BlueFetch extends Services {
     static boolean postIt1 = true;
     static boolean postIt2 = true;
     static boolean postIt3 = true;
+
     static int numberMorePostIts = 1;
 
     static String postItMessage1 = "Je suis de sortie ce soir !";
@@ -30,6 +32,49 @@ public class BlueFetch extends Services {
     static String postItDate3 = "11:21 / 25.08.2014";
 
     static String postItFrom3 = "Franck";
+
+
+    //-----Nombre Utilisateur--------//
+    static Integer BlfNombreUtilisateur = 4;
+
+    //-----Nombre POSTIT--------//
+
+    static Integer BlfNombrePOSTIT = 8;
+
+
+    static Integer IDExternUser = 1;
+    static String ExternPseudoName = "Schaffora";
+    static String ExternUserFirstName="Raphaël";
+    static String ExternUserName="Schaffo";
+    static String ExterneMotDePasse="10001000";
+    static String ExternUserRoles="Admin";
+
+    static Integer POSTITACTUID = 1;
+    static String POSTITSENDPseudo="Schaffora";
+    static String POSTITMessage="Je suis en retard";
+    static String POSTITDate="21/08/2014";
+    static String POSTITHeure="12:13";
+    static String POSTITStatus="NON LU";
+
+
+       // Gestion des températures//
+    static Integer TemperatureMinimum= 12;
+    static Integer TemperatureActuelle = 18;
+    static Integer TemperatureMaximum= 39;
+
+    // --------------------------------------------------------ON ENVOIE----------------------------------//
+    //ID Utilisateur Selectionner //
+    static String DeleteUser="0";
+
+
+    // ID Utilisateur Modifier //
+    static String ExternIDModifier="0";
+    static String ExternNomModifier="";
+    static String ExternPrenomModifier="";
+    static String ExternPseudoModifier="";
+    static String ExternMDPModifier="";
+    static String ExternRoleModifier="";
+
 
 
 

@@ -107,6 +107,7 @@ public class POSTIT extends Services {
                 RecupStatus=selItem.getStatus();
                 RecupHeure=selItem.getHeure();
                 RecupDate=selItem.getDate();
+
                 Intent LecturePostit=new Intent(POSTIT.this,LecturePostIt.class);
                 LecturePostit.putExtra("RecupID",RecupID);
                 LecturePostit.putExtra("RecupMessages",RecupMessage);
@@ -196,43 +197,46 @@ public class POSTIT extends Services {
 
     private void PopulateMessageList() {
 
+        SharedPreferences MessageProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+        SharedPreferences.Editor editorMessage = MessageProfile.edit();
+        editorMessage.putInt(Services.NombrePOSTIT, BlueFetch.BlfNombrePOSTIT);
+        editorMessage.putInt(ExternePOSTITID,BlueFetch.POSTITACTUID);
+        editorMessage.putString(ExternePOSTITDATE,BlueFetch.POSTITDate);
+        editorMessage.putString(ExternePOSTITHEURE,BlueFetch.POSTITHeure);
+        editorMessage.putString(ExternePOSTITENVOYERPSEUDO,BlueFetch.POSTITSENDPseudo);
+        editorMessage.putString(ExternePOSTITMESSAGE,BlueFetch.POSTITMessage);
+        editorMessage.putString(ExternePOSTITSTATUS,BlueFetch.POSTITStatus);
+        editorMessage.apply();
 
-            Message Message1 =new Message("12.08.2014", "12:00", "NonLu", "Maman est à la maison", "SuperMama", 6);
-            if(Tamp.matches("")==true||Tamp.matches(Message1.getIDUtilisateur())==true)
+        Integer fois = MessageProfile.getInt(Services.NombrePOSTIT,0);
+        int i;
+
+        for (i=0; i<fois; i++) {
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////Fonction qui retourne le message et le reste du Postit num 1,2,3,4////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////
+
+            String Recuperation4=MessageProfile.getString(Services.ExternePOSTITDATE,"");
+            Integer Recuperation2=MessageProfile.getInt(Services.ExternePOSTITID, 0);
+            String Recuperation3=MessageProfile.getString(Services.ExternePOSTITHEURE,"");
+            String Recuperation=MessageProfile.getString(Services.ExternePOSTITENVOYERPSEUDO,"");
+            String Recuperation5=MessageProfile.getString(Services.ExternePOSTITMESSAGE,"");
+            String Recuperation6=MessageProfile.getString(Services.ExternePOSTITSTATUS,"");
+
+            Message MessageNow=new Message(Recuperation4, Recuperation3, Recuperation6, Recuperation5,Recuperation,  Recuperation2);
+            if(Tamp.matches("")==true||Tamp.matches(MessageNow.getIDUtilisateur())==true)
             {
-                MyMessages.add(Message1);
+                 MyMessages.add(MessageNow);
             }
+        }
 
 
-            Message Message2=new Message("12.08.2014", "11:49", "NonLu", "Je t'aime mon Fils", "SuperMama", 5);
-            if(Tamp.matches("")||Tamp.matches(Message2.getIDUtilisateur()))
-            {
-                MyMessages.add(Message2);
-            }
-            Message Message3=new Message("12.08.2014", "11:41", "NonLu", "bonne journée", "Seb", 4);
-            if(Tamp.matches("")||Tamp.matches(Message3.getIDUtilisateur()))
-            {
-                MyMessages.add(Message3);
-            }
-            Message Message4=new Message("12.08.2014", "11:39", "NonLu", "Vivement les vacances", "Seb", 3);
-            if(Tamp.matches("")||Tamp.matches(Message4.getIDUtilisateur()))
-            {
-                MyMessages.add(Message4);
-            }
-            Message Message5=new Message("12.08.2014", "11:33", "NonLu", "Faudra recouvrir mes livres bisous", "Jordane", 2);
-            if(Tamp.matches("")||Tamp.matches(Message5.getIDUtilisateur()))
-            {
-                MyMessages.add(Message5);
-            }
-            Message Message6=new Message("12.08.2014", "11:33", "NonLu", "Le début des cours :D", "Jordane", 1);
-            if(Tamp.matches("")||Tamp.matches(Message6.getIDUtilisateur()))
-            {
-                MyMessages.add(Message6);
-            }
 
 
-            // for (int 0 au nombre élément dans la base de donnée -1, create Element
-            // Si élément.getID=tamp add sinon pas ajouter.
+
+
 
     }
 
