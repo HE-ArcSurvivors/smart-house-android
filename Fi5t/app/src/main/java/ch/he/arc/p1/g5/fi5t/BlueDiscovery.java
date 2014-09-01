@@ -1,5 +1,6 @@
 package ch.he.arc.p1.g5.fi5t;
 
+import java.util.Set;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -12,13 +13,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.Set;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * This Activity appears as a dialog. It lists any paired devices and
@@ -26,10 +27,10 @@ import java.util.Set;
  * by the user, the MAC address of the device is sent back to the parent
  * Activity in the result Intent.
  */
-public class BlueDeviceList extends Activity {
+public class BlueDiscovery extends Activity {
     // Debugging
-    private static final String TAG = "DeviceListActivity";
-    private static final boolean D = false;
+    private static final String TAG = "BlueDiscovery";
+    private static final boolean D = true;
 
     // Return Intent extra
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
@@ -45,14 +46,14 @@ public class BlueDeviceList extends Activity {
 
         // Setup the window
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.blue_device_list);
+        setContentView(R.layout.blue_discovery);
 
-        // Set result CANCELED incase the user backs out
+        // Set result CANCELED in case the user backs out
         setResult(Activity.RESULT_CANCELED);
 
         // Initialize the button to perform device discovery
         Button scanButton = (Button) findViewById(R.id.button_scan);
-        scanButton.setOnClickListener(new View.OnClickListener() {
+        scanButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 doDiscovery();
                 v.setVisibility(View.GONE);
@@ -61,8 +62,8 @@ public class BlueDeviceList extends Activity {
 
         // Initialize array adapters. One for already paired devices and
         // one for newly discovered devices
-        mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.blue_device_detail);
-        mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.blue_device_detail);
+        mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.blue_discovery);
+        mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.blue_discovery);
 
         // Find and set up the ListView for paired devices
         ListView pairedListView = (ListView) findViewById(R.id.paired_devices);
@@ -136,36 +137,22 @@ public class BlueDeviceList extends Activity {
     }
 
     // The on-click listener for all devices in the ListViews
-    private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
+    private OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
-            String noDevicesPaired = getResources().getText(R.string.none_paired).toString();
-            String noDevicesFound = getResources().getText(R.string.none_found).toString();
-
-
             // Cancel discovery because it's costly and we're about to connect
             mBtAdapter.cancelDiscovery();
 
+            // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
+            String address = info.substring(info.length() - 17);
 
-            if ( (info != noDevicesPaired)  &&  (info != noDevicesFound) ){
+            // Create the result Intent and include the MAC address
+            Intent intent = new Intent();
+            intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
 
-                if (info.length() >= 17) {
-                    // Get the device MAC address, which is the last 17 chars in the View
-                    String address = info.substring(info.length() - 17);
-
-                    // Create the result Intent and include the MAC address
-                    Intent intent = new Intent();
-                    intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
-
-                    // Set result and finish this Activity
-                    setResult(Activity.RESULT_OK, intent);
-                }
-                else {
-                    setResult(Activity.RESULT_CANCELED);
-                }
-
-                finish();
-            }
+            // Set result and finish this Activity
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         }
     };
 

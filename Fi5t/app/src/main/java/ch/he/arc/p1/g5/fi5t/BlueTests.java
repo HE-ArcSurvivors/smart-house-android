@@ -115,7 +115,7 @@ public class BlueTests extends Activity {
     private TermKeyListener mKeyListener;
 
 
-    private static BluetoothServices mSerialService = null;
+    public static BluetoothServices mSerialService = null;
 
     private static InputMethodManager mInputManager;
 

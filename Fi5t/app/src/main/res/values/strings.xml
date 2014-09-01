@@ -16,6 +16,16 @@
     <string name="title_activity_my">MyActivity</string>
     <string name="search_hint">Enter un pseudo</string>
     <string name="title_activity_blue_tests">Bluetooth CMD</string>
+    <string name="title_activity_blue_discovery">Choose your Module</string>
+    <string name="title_activity_blue_connection">Choose your Module</string>
+
+
+    <string name="discoverable">Discoverable</string>
+    <string name="insecure_connect">Insecure Connection</string>
+    <string name="secure_connect">Secure Connection</string>
+
+    <string name="send">Send</string>
+
 
     <!-- BlueTests -->
     <string name="alert_dialog_no_bt">Cannot use this application without bluetooth.</string>
@@ -29,7 +39,7 @@
     <string name="toast_connection_lost">Device connection was lost</string>
     <string name="not_connected">You are not connected to a device</string>
     <string name="title_connecting">connecting...</string>
-    <string name="title_connected_to">connected: </string>
+    <string name="title_connected_to">connected to: </string>
     <string name="title_not_connected">not connected</string>
 
     <!-- DeviceListActivity -->
