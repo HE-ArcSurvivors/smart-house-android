@@ -3,6 +3,7 @@ package ch.he.arc.p1.g5.fi5t;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Timer;
 
@@ -23,18 +25,78 @@ public class Main extends Services{
 
     // Variable utiliser pour les POST-IT
 
-    Button bClosePostIt1, bClosePostIt2, bClosePostIt3, bEtatPorte,bReglages;
+    Button bClosePostIt1, bClosePostIt2, bClosePostIt3, bEtatPorte,bReglages,bIO;
     ImageView iPostIt1, iPostIt2, iPostIt3, Im1;
     TextView tPostItDate1, tPostItDate2, tPostItDate3;
     TextView tPostItFrom1, tPostItFrom2, tPostItFrom3;
     TextView tPostItMessage1, tPostItMessage2, tPostItMessage3;
     TextView tNumberMorePostIts, tStringMorePostIts;
 
+    String message;
+
+    boolean test = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        bIO=(Button)findViewById(R.id.bIO);
+
+        bIO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (test){
+                //Door Status
+                Connection.sendMessage("abc");
+                bIO.setText("Sent: abc");
+                test = false;
+
+
+                }else{
+                    Connection.sendMessage("abd");
+                    bIO.setText("Sent: abd");
+                    test = true;
+                }
+
+                }
+
+        });
+
+        //////// Initializing Blue Values //////
+
+        //Get Door Status
+        //Toast.makeText(getApplicationContext(), "Before: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+        //Connection.sendMessage("1, 22");
+        Connection.sendMessage("$$$");
+
+        SystemClock.sleep(50);
+        BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+
+        new Thread(new Runnable() {
+            public void run() {
+
+                //SystemClock.sleep(200);
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+
+                        //BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+                        //Toast.makeText(getApplicationContext(), "After: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+                        //SystemClock.sleep(50);
+                        //Connection.sendMessage("---\r\n");
+
+                    }
+                });
+
+
+
+
+            }
+        }).start();
 
         Im1=(ImageView) findViewById(R.id.imageView);
 
@@ -48,25 +110,47 @@ public class Main extends Services{
 
             }
         });
-        Im1.setBackgroundResource(R.drawable.opendoor);
+
+        //SystemClock.sleep(50);
+        Toast.makeText(getApplicationContext(), "CMD: " + BlueFetch.DoorStatus, Toast.LENGTH_SHORT).show();
+
+        SystemClock.sleep(50);
+        Connection.sendMessage("---\r\n");
+
+        Toast.makeText(getApplicationContext(), "End: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+
+
+        if(BlueFetch.DoorStatus=="true")
+        {
+            Im1.setBackgroundResource(R.drawable.opendoor);
+        }else{
+            Im1.setBackgroundResource(R.drawable.closeddoor);
+        }
+
         bEtatPorte=(Button)findViewById(R.id.bEtatPortePrinc);
+
         bEtatPorte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(BlueFetch.DoorStatus==true)
+                //Door Status
+                Connection.sendMessage("1, 22");
+                BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+
+                if(BlueFetch.DoorStatus=="true")
                 {
-                    BlueFetch.DoorStatus=false;
+                    BlueFetch.DoorStatus="false";
                     Im1.setBackgroundResource(R.drawable.closeddoor);
                     bEtatPorte.setTextColor(Color.parseColor("#FFFF0000"));
-
-
+                    //Close door
+                    Connection.sendMessage("1, 21");
 
                 }
                 else {
                     Im1.setBackgroundResource(R.drawable.opendoor);
-                    BlueFetch.DoorStatus=true;
+                    BlueFetch.DoorStatus="true";
                     bEtatPorte.setTextColor(Color.parseColor("#ff7a7a7a"));
-
+                    //open door
+                    Connection.sendMessage("1, 20");
 
                 }
             }

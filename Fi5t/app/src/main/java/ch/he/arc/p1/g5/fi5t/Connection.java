@@ -36,8 +36,6 @@ import android.bluetooth.BluetoothSocket;
 public class Connection extends Activity {
 
 
-    //private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
     TextView tvModuleInfo;
     Button bBlueTests, bLogin;
     Button bModule;
@@ -84,7 +82,7 @@ public class Connection extends Activity {
     // Local Bluetooth adapter
     private BluetoothAdapter mBluetoothAdapter = null;
     // Member object for the chat services
-    private BlueConnection mChatService = null;
+    private static BlueConnection mChatService = null;
 
 
 
@@ -161,6 +159,10 @@ public class Connection extends Activity {
 
             public void onClick(View v){
 
+                //Intent myIntent = new Intent(Connection.this, Main.class);
+
+                //startActivity(myIntent);
+
                 //SystemClock.sleep(2000);
 
                 dStatus.setText("Connection in Progress");
@@ -175,7 +177,7 @@ public class Connection extends Activity {
                 sUsername = dUsername.getText().toString();
                 blnChecked = cbRemember.isChecked();
 
-                //String message = "00"+" ,"+sUsername+" ,"+sPassword+" ,";
+                //String message = "1"+" ,"+00"+" ,"+sUsername+" ,"+sPassword;
                 //sendMessage(message);
 
                 //String message2 = "$$$";
@@ -184,15 +186,12 @@ public class Connection extends Activity {
                 new Thread(new Runnable() {
                     public void run() {
 
-                        SystemClock.sleep(1000);
+                        SystemClock.sleep(500);
 
                         runOnUiThread(new Runnable() {
                             public void run() {
 
-                                //Toast.makeText(getApplicationContext(), "recieved: " + BlueFetch.AuthorizedLogin, Toast.LENGTH_SHORT).show();
-
-
-                                if (BlueFetch.AuthorizedLogin.matches(BlueFetch.AuthorizedResponse)){
+                                if (BlueFetch.ReceivedResponse.matches(BlueFetch.AuthorizedLogin)){
 
                                     //Toast.makeText(getApplicationContext(), "CONNECTED: ", Toast.LENGTH_SHORT).show();
 
@@ -231,6 +230,7 @@ public class Connection extends Activity {
                                                     sendMessage("---\r\n");
 
                                                     startActivity(myIntent);
+                                                    //startActivityForResult(myIntent);
 
                                                     //finish();
 
@@ -266,7 +266,7 @@ public class Connection extends Activity {
                                 new Thread(new Runnable() {
                                     public void run() {
 
-                                        SystemClock.sleep(1000);
+                                        SystemClock.sleep(500);
 
                                         mProgress.post(new Runnable() {
                                             public void run() {
@@ -401,7 +401,7 @@ public class Connection extends Activity {
      * Sends a message.
      * @param message  A string of text to send.
      */
-    private void sendMessage(String message) {
+    public static void sendMessage(String message) {
         // Check that we're actually connected before trying anything
         if (mChatService.getState() != BlueConnection.STATE_CONNECTED) {
             //Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
@@ -478,7 +478,7 @@ public class Connection extends Activity {
                     String readMessage = new String(readBuf, 0, msg.arg1);
                     //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
 
-                    BlueFetch.AuthorizedLogin = readMessage;
+                    BlueFetch.ReceivedResponse = readMessage;
                     break;
                 case MESSAGE_DEVICE_NAME:
                     // save the connected device's name

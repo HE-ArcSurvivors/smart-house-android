@@ -85,6 +85,10 @@ public class Services extends Activity {
             item3.setVisible(false);
         }
 
+        MenuItem itemMateriel  = menu.findItem(R.id.Material);
+        itemMateriel.setVisible(false);
+
+
         return true;
     }
 
