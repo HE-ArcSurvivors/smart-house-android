@@ -28,7 +28,7 @@ public class Materiel extends Services {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materiel);
         LvMats = (ListView) findViewById(R.id.lvMateriel);
-        String[] MyItems = {"Matériel1 est Connectée", "Matériel2", "Matériel3", "Matériel4", "Matériel5", "Matériel6", "Matériel7", "Matériel8", "Matériel9", "Matériel10"};
+        String[] MyItems = {"Matériel1 est Connectée", "Matériel2", "Matériel3", "Matériel4", "Matériel5", "Matériel6", "Matériel7"};
         LvMats.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MyItems));
         LvMats = (ListView) findViewById(R.id.lvMateriel);
         LvMats.setOnItemClickListener(new AdapterView.OnItemClickListener() {

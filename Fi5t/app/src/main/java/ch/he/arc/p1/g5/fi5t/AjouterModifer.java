@@ -62,6 +62,8 @@ public class AjouterModifer extends Services {
         SedtRole=intent.getStringExtra("ModifyRole");
         SedtID=intent.getStringExtra("ModifyID");
 
+        //Connection.sendMessage("---\r\n");
+
         edtNom.setText(SedtNom);
         edtPrenom.setText(SedtPrenom);
         edtPseudo.setText(SedtPseudo);
