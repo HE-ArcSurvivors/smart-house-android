@@ -235,7 +235,7 @@ public class Connection extends Activity {
 
                                                     startActivity(myIntent);
 
-                                                    finish();
+                                                    //finish();
 
 
 
