@@ -181,7 +181,7 @@ public class Connection extends Activity {
                 //String message2 = "$$$";
                 sendMessage(sPassword);
 
-                String test = 'C' + 'M' + 'D';
+                //String test = 'C' + 'M' + 'D';
 
 
 
@@ -197,13 +197,102 @@ public class Connection extends Activity {
                                 //Toast.makeText(getApplicationContext(), "recieved: " + BlueFetch.AuthorizedLogin, Toast.LENGTH_SHORT).show();
 
 
-                                if (BlueFetch.AuthorizedLogin.matches("CMD")){
+                                if (BlueFetch.AuthorizedLogin.matches("CMD\r\n")){
 
-                                    Toast.makeText(getApplicationContext(), "CONNECTED: ", Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getApplicationContext(), "CONNECTED: ", Toast.LENGTH_SHORT).show();
 
-                                }
+                                    Editor editor = savedUser.edit();
+                                    editor.putBoolean(Services.RememberMeCheckbox, blnChecked);
+                                    editor.putString(Services.UserName, sUsername);
+                                    editor.putString(Services.Password, sPassword);
+                                    editor.apply();
+
+
+                                    // Create Inner Thread Class
+                                    new Thread(new Runnable() {
+                                        public void run() {
+
+                                            SystemClock.sleep(1000);
+
+                                            mProgress.post(new Runnable() {
+                                                public void run() {
+                                                    mProgress.setVisibility(View.INVISIBLE);
+                                                }
+                                            });
+
+                                            dStatus.post(new Runnable() {
+                                                public void run() {
+                                                    dStatus.setText("Connected!");
+                                                }
+                                            });
+
+                                            SystemClock.sleep(200);
+
+                                            runOnUiThread(new Runnable() {
+                                                public void run() {
+                                                    // some code that needs to be ran in UI thread
+                                                    Intent myIntent = new Intent(Connection.this, Main.class);
+
+                                                    startActivity(myIntent);
+
+                                                    finish();
+
+
+
+
+                                                }
+                                            });
+
+                                            SystemClock.sleep(2000);
+
+                                            runOnUiThread(new Runnable() {
+                                                public void run() {
+
+                                                    bLogin.setText("Previous Session");
+                                                    bLogin.setEnabled(true);
+
+
+
+
+                                                }
+                                            });
+
+
+
+
+
+                                        }
+                                    }).start();
+
+                                }else{
+
+                                new Thread(new Runnable() {
+                                    public void run() {
+
+                                        SystemClock.sleep(1000);
+
+                                        mProgress.post(new Runnable() {
+                                            public void run() {
+                                                mProgress.setVisibility(View.INVISIBLE);
+                                            }
+                                        });
+
+                                        dStatus.post(new Runnable() {
+                                            public void run() {
+                                                dStatus.setText("Mauvais \n Username ou Password!");
+                                            }
+                                        });
+
+
+
+                                    }
+                                }).start();
+                                bLogin.setEnabled(true);
 
                             }
+
+
+                        }
                         });
 
 
@@ -215,95 +304,8 @@ public class Connection extends Activity {
 
                 //if (sPassword.matches(BlueFetch.AuthorizedPassword) && sUsername.matches(BlueFetch.AuthorizedUsername)) {
 
-                    Editor editor = savedUser.edit();
-                    editor.putBoolean(Services.RememberMeCheckbox, blnChecked);
-                    editor.putString(Services.UserName, sUsername);
-                    editor.putString(Services.Password, sPassword);
-                    editor.apply();
 
 
-                    // Create Inner Thread Class
-                    new Thread(new Runnable() {
-                        public void run() {
-
-                            SystemClock.sleep(1000);
-
-                            mProgress.post(new Runnable() {
-                                public void run() {
-                                    mProgress.setVisibility(View.INVISIBLE);
-                                }
-                            });
-
-                            dStatus.post(new Runnable() {
-                                public void run() {
-                                    dStatus.setText("Connected!");
-                                }
-                            });
-
-                            SystemClock.sleep(200);
-
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    // some code that needs to be ran in UI thread
-                                    Intent myIntent = new Intent(Connection.this, Main.class);
-
-                                    //startActivity(myIntent);
-
-                                    //finish();
-
-
-
-
-                                }
-                            });
-
-                            SystemClock.sleep(2000);
-
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-
-                                    bLogin.setText("Previous Session");
-                                    bLogin.setEnabled(true);
-
-
-
-
-                                }
-                            });
-
-
-
-
-
-                        }
-                    }).start();
-//                }else{
-//
-//                    new Thread(new Runnable() {
-//                        public void run() {
-//
-//                            SystemClock.sleep(1000);
-//
-//                            mProgress.post(new Runnable() {
-//                                public void run() {
-//                                    mProgress.setVisibility(View.INVISIBLE);
-//                                }
-//                            });
-//
-//                            dStatus.post(new Runnable() {
-//                                public void run() {
-//                                    dStatus.setText("Mauvais \n Username ou Password!");
-//                                }
-//                            });
-//
-//
-//
-//                        }
-//                    }).start();
-//                    bLogin.setEnabled(true);
-//
-//                }
-//
             }
 
         });
