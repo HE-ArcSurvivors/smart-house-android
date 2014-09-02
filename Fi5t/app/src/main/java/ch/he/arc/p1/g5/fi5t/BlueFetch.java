@@ -26,6 +26,7 @@ public class BlueFetch extends Services {
 
     static String AuthorizedUsername = "banana" ;
     static String AuthorizedLogin = "king";
+    static String AuthorizedResponse = "CMD\r\n";
 
     static Boolean DoorStatus = true;
 

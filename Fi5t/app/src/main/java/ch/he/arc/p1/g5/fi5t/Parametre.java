@@ -25,7 +25,7 @@ public class Parametre extends Services {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context,"Paramètre", duration);
-        toast.show();
+        //toast.show();
         bReglageChauffage=(Button)findViewById(R.id.bReglagesChauffage);
         bReglageChauffage.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -181,11 +181,6 @@ public class Connection extends Activity {
                 //String message2 = "$$$";
                 sendMessage(sPassword);
 
-                //String test = 'C' + 'M' + 'D';
-
-
-
-
                 new Thread(new Runnable() {
                     public void run() {
 
@@ -197,7 +192,7 @@ public class Connection extends Activity {
                                 //Toast.makeText(getApplicationContext(), "recieved: " + BlueFetch.AuthorizedLogin, Toast.LENGTH_SHORT).show();
 
 
-                                if (BlueFetch.AuthorizedLogin.matches("CMD\r\n")){
+                                if (BlueFetch.AuthorizedLogin.matches(BlueFetch.AuthorizedResponse)){
 
                                     //Toast.makeText(getApplicationContext(), "CONNECTED: ", Toast.LENGTH_SHORT).show();
 
@@ -233,6 +228,8 @@ public class Connection extends Activity {
                                                     // some code that needs to be ran in UI thread
                                                     Intent myIntent = new Intent(Connection.this, Main.class);
 
+                                                    sendMessage("---\r\n");
+
                                                     startActivity(myIntent);
 
                                                     //finish();
@@ -248,7 +245,7 @@ public class Connection extends Activity {
                                             runOnUiThread(new Runnable() {
                                                 public void run() {
 
-                                                    bLogin.setText("Previous Session");
+                                                    //bLogin.setText("Previous Session");
                                                     bLogin.setEnabled(true);
 
 
@@ -300,11 +297,6 @@ public class Connection extends Activity {
 
                     }
                 }).start();
-
-
-                //if (sPassword.matches(BlueFetch.AuthorizedPassword) && sUsername.matches(BlueFetch.AuthorizedUsername)) {
-
-
 
             }
 
