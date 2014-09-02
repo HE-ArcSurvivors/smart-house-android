@@ -159,9 +159,9 @@ public class Connection extends Activity {
 
             public void onClick(View v){
 
-                //Intent myIntent = new Intent(Connection.this, Main.class);
+                Intent myIntent = new Intent(Connection.this, Main.class);
 
-                //startActivity(myIntent);
+                startActivity(myIntent);
 
                 //SystemClock.sleep(2000);
 
