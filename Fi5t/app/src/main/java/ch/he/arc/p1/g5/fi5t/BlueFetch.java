@@ -1,5 +1,6 @@
 package ch.he.arc.p1.g5.fi5t;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.text.LoginFilter;
@@ -23,10 +24,8 @@ import android.widget.Toast;
 public class BlueFetch extends Services {
     //------------------------------------------------ON RECOIS----------------------------------------------//
 
-
-
     static String AuthorizedUsername = "banana" ;
-    static String AuthorizedPassword = "king";
+    static String AuthorizedLogin;
 
     static Boolean DoorStatus = true;
 
@@ -52,7 +51,7 @@ public class BlueFetch extends Services {
     static String postItFrom3 = "Franck";
 
 
-<<<<<<< HEAD
+
         TextView tvLabel;
         EditText etTextbox;
         BluetoothAdapter mBluetoothAdapter;
@@ -209,8 +208,8 @@ public class BlueFetch extends Services {
                     theMsg, (Toast.LENGTH_LONG));
             msg.show();
         }
-    }
-=======
+
+
     //-----Nombre Utilisateur--------//
     static Integer BlfNombreUtilisateur = 4;
 
@@ -254,6 +253,16 @@ public class BlueFetch extends Services {
 
 
 
->>>>>>> 5533708721183c9587e64e8114aa5a0aa14af662
+
+    // --------------------------------------------------------FONCTIONS----------------------------------//
+
+    void checkUsernamePassword(String Username, String Password){
+
+
+
+    }
+
+
+}
 
 

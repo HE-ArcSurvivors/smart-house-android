@@ -175,7 +175,45 @@ public class Connection extends Activity {
                 sUsername = dUsername.getText().toString();
                 blnChecked = cbRemember.isChecked();
 
-                if (sPassword.matches(BlueFetch.AuthorizedPassword) && sUsername.matches(BlueFetch.AuthorizedUsername)) {
+                //String message = "00"+" ,"+sUsername+" ,"+sPassword+" ,";
+                //sendMessage(message);
+
+                //String message2 = "$$$";
+                sendMessage(sPassword);
+
+                String test = 'C' + 'M' + 'D';
+
+
+
+
+                new Thread(new Runnable() {
+                    public void run() {
+
+                        SystemClock.sleep(1000);
+
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                //Toast.makeText(getApplicationContext(), "recieved: " + BlueFetch.AuthorizedLogin, Toast.LENGTH_SHORT).show();
+
+
+                                if (BlueFetch.AuthorizedLogin.matches("CMD")){
+
+                                    Toast.makeText(getApplicationContext(), "CONNECTED: ", Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+                        });
+
+
+
+
+                    }
+                }).start();
+
+
+                //if (sPassword.matches(BlueFetch.AuthorizedPassword) && sUsername.matches(BlueFetch.AuthorizedUsername)) {
 
                     Editor editor = savedUser.edit();
                     editor.putBoolean(Services.RememberMeCheckbox, blnChecked);
@@ -209,7 +247,7 @@ public class Connection extends Activity {
                                     // some code that needs to be ran in UI thread
                                     Intent myIntent = new Intent(Connection.this, Main.class);
 
-                                    startActivity(myIntent);
+                                    //startActivity(myIntent);
 
                                     //finish();
 
@@ -239,33 +277,33 @@ public class Connection extends Activity {
 
                         }
                     }).start();
-                }else{
-
-                    new Thread(new Runnable() {
-                        public void run() {
-
-                            SystemClock.sleep(1000);
-
-                            mProgress.post(new Runnable() {
-                                public void run() {
-                                    mProgress.setVisibility(View.INVISIBLE);
-                                }
-                            });
-
-                            dStatus.post(new Runnable() {
-                                public void run() {
-                                    dStatus.setText("Mauvais \n Username ou Password!");
-                                }
-                            });
-
-
-
-                        }
-                    }).start();
-                    bLogin.setEnabled(true);
-
-                }
-
+//                }else{
+//
+//                    new Thread(new Runnable() {
+//                        public void run() {
+//
+//                            SystemClock.sleep(1000);
+//
+//                            mProgress.post(new Runnable() {
+//                                public void run() {
+//                                    mProgress.setVisibility(View.INVISIBLE);
+//                                }
+//                            });
+//
+//                            dStatus.post(new Runnable() {
+//                                public void run() {
+//                                    dStatus.setText("Mauvais \n Username ou Password!");
+//                                }
+//                            });
+//
+//
+//
+//                        }
+//                    }).start();
+//                    bLogin.setEnabled(true);
+//
+//                }
+//
             }
 
         });
@@ -372,7 +410,7 @@ public class Connection extends Activity {
     private void sendMessage(String message) {
         // Check that we're actually connected before trying anything
         if (mChatService.getState() != BlueConnection.STATE_CONNECTED) {
-            Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -383,8 +421,8 @@ public class Connection extends Activity {
             mChatService.write(send);
 
             // Reset out string buffer to zero and clear the edit text field
-            mOutStringBuffer.setLength(0);
-            mOutEditText.setText(mOutStringBuffer);
+            //mOutStringBuffer.setLength(0);
+            //mOutEditText.setText(mOutStringBuffer);
         }
     }
 
@@ -444,7 +482,9 @@ public class Connection extends Activity {
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
                     String readMessage = new String(readBuf, 0, msg.arg1);
-                    mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+                    //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+
+                    BlueFetch.AuthorizedLogin = readMessage;
                     break;
                 case MESSAGE_DEVICE_NAME:
                     // save the connected device's name
