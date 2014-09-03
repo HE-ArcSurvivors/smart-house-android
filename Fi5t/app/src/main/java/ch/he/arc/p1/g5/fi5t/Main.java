@@ -29,6 +29,8 @@ public class Main extends Services{
     boolean test = true;
 
     String test2;
+    String data;
+    String send;
 
 
     @Override
@@ -38,7 +40,7 @@ public class Main extends Services{
 
 
 
-        bIO=(Button)findViewById(R.id.bValiderIO);
+      bIO=(Button)findViewById(R.id.bValiderIO);
         tStringMorePostIts = (TextView) findViewById(R.id.lgtMoreMessage);
 
         bIO=(Button)findViewById(R.id.bValiderIO);
@@ -55,27 +57,41 @@ public class Main extends Services{
                         public void run() {
                             runOnUiThread(new Runnable() {
                                 public void run() {
-                                  String data = "P1";
-                                  String send;
-                                  for (int i = 0; i < data.length(); i++) {
-                                  send = "" + data.charAt(i);
-                                  Connection.sendMessage(send);
-                                  //SystemClock.sleep(100);
-                                  }
+                                  data = "P1";
+//                                  for (int i = 0; i < data.length(); i++) {
+//                                  send = "" + data.charAt(i);
+//                                  Connection.sendMessage(send);
+//                                  //SystemClock.sleep(100);
+//
+//                                  }
+                                  Connection.sendMessage(data);
                                 }
                             });
 
                             test = false;
 
-                            SystemClock.sleep(100);
+                            SystemClock.sleep(500);
 
 
                             runOnUiThread(new Runnable() {
                                 public void run() {
                                     //Connection.sendMessage("a");
+//                                    send = "";
+
+//                                    for (int i=0;i<20;i++){
+//
+//                                        if (BlueFetch.ReceivedResponse == "~"){
+//                                            Toast.makeText(getApplicationContext(), "BREAK: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+//                                            break;
+//                                        }
+//                                        send = send + BlueFetch.ReceivedResponse;
+//                                        SystemClock.sleep(50);
+//
+//                                    }
+                                    tStringMorePostIts.setText("ouverte: "+BlueFetch.ReceivedResponse);
 
                                     //SystemClock.sleep(500);
-                                    tStringMorePostIts.setText("abc: "+BlueFetch.ReceivedResponse);
+//                                    tStringMorePostIts.setText("abc: "+send);
                                     //bIO.setEnabled(true);
                                     bIO.setText("Ouverte");
                                 }
@@ -100,19 +116,20 @@ public class Main extends Services{
                                     String data = "P0";
                                     String send;
 
-                                    for (int i = 0; i < data.length(); i++) {
-                                        send = "" + data.charAt(i);
-                                        Connection.sendMessage(send);
-
-                                        //SystemClock.sleep(100);
-                                    }
+//                                    for (int i = 0; i < data.length(); i++) {
+//                                        send = "" + data.charAt(i);
+//                                        Connection.sendMessage(send);
+//
+//                                        //SystemClock.sleep(100);
+//                                    }
+                                    Connection.sendMessage(data);
                                 }
                             });
 
 
                             test = true;
 
-                            SystemClock.sleep(100);
+                            SystemClock.sleep(500);
                             //bIO.setEnabled(true);
                             //test2 = BlueFetch.ReceivedResponse;
 
@@ -121,7 +138,7 @@ public class Main extends Services{
                                     //Connection.sendMessage("a");
 
                                     //SystemClock.sleep(500);
-                                    tStringMorePostIts.setText("abc: "+BlueFetch.ReceivedResponse);
+                                    tStringMorePostIts.setText("fermee: "+BlueFetch.ReceivedResponse);
                                     //bIO.setEnabled(true);
                                     bIO.setText("Fermee");
                                 }
@@ -142,27 +159,33 @@ public class Main extends Services{
         //Connection.sendMessage("$$$");
 
         //SystemClock.sleep(50);
-        BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+        //BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
 
         new Thread(new Runnable() {
             public void run() {
-
-                //SystemClock.sleep(200);
-
                 runOnUiThread(new Runnable() {
                     public void run() {
-
-                        //BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
-                        //Toast.makeText(getApplicationContext(), "After: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
-                        //SystemClock.sleep(50);
-                        //Connection.sendMessage("---\r\n");
-
+                        data = "22";
+                        for (int i = 0; i < data.length(); i++) {
+                            send = "" + data.charAt(i);
+                            Connection.sendMessage(send);
+                        }
                     }
                 });
 
+                SystemClock.sleep(500);
 
-
-
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+                        if(BlueFetch.DoorStatus=="1")
+                        {
+                            Im1.setBackgroundResource(R.drawable.opendoor);
+                        }else{
+                            Im1.setBackgroundResource(R.drawable.closeddoor);
+                        }
+                    }
+                });
             }
         }).start();
 
@@ -188,12 +211,12 @@ public class Main extends Services{
         //Toast.makeText(getApplicationContext(), "End: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
 
 
-        if(BlueFetch.DoorStatus=="true")
-        {
-            Im1.setBackgroundResource(R.drawable.opendoor);
-        }else{
-            Im1.setBackgroundResource(R.drawable.closeddoor);
-        }
+//        if(BlueFetch.DoorStatus=="true")
+//        {
+//            Im1.setBackgroundResource(R.drawable.opendoor);
+//        }else{
+//            Im1.setBackgroundResource(R.drawable.closeddoor);
+//        }
 
         bEtatPorte=(Button)findViewById(R.id.bEtatPortePrinc);
 
@@ -201,37 +224,85 @@ public class Main extends Services{
             @Override
             public void onClick(View v) {
                 //Door Status
-                Connection.sendMessage("1, 22");
-                BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+                new Thread(new Runnable() {
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                data = "22";
+                                for (int i = 0; i < data.length(); i++) {
+                                    send = "" + data.charAt(i);
+                                    Connection.sendMessage(send);
+                                }
+                            }
+                        });
 
-                if(BlueFetch.DoorStatus=="true")
+                        SystemClock.sleep(500);
+
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+                                if(BlueFetch.DoorStatus=="1")
+                                {
+                                    Im1.setBackgroundResource(R.drawable.opendoor);
+                                }else{
+                                    Im1.setBackgroundResource(R.drawable.closeddoor);
+                                }
+                            }
+                        });
+                    }
+                }).start();
+
+                if(BlueFetch.DoorStatus=="1")
                 {
-                    BlueFetch.DoorStatus="false";
+                    //BlueFetch.DoorStatus="false";
                     Im1.setBackgroundResource(R.drawable.closeddoor);
                     bEtatPorte.setTextColor(Color.parseColor("#FFFF0000"));
                     //Close door
-                    Connection.sendMessage("1, 21");
+                    new Thread(new Runnable() {
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    data = "21";
+                                    for (int i = 0; i < data.length(); i++) {
+                                        send = "" + data.charAt(i);
+                                        Connection.sendMessage(send);
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
 
-                }
-                else {
+                }else {
                     Im1.setBackgroundResource(R.drawable.opendoor);
-                    BlueFetch.DoorStatus="true";
+                    //BlueFetch.DoorStatus="true";
                     bEtatPorte.setTextColor(Color.parseColor("#ff7a7a7a"));
                     //open door
-                    Connection.sendMessage("1, 20");
+                    new Thread(new Runnable() {
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    data = "20";
+                                    for (int i = 0; i < data.length(); i++) {
+                                        send = "" + data.charAt(i);
+                                        Connection.sendMessage(send);
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
 
                 }
             }
         });
-        bIO=(Button)findViewById(R.id.bValiderIO);
-        bIO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent IO=new Intent(Main.this,IO.class);
-                startActivity(IO);
-                finish();
-            }
-        });
+//        bIO=(Button)findViewById(R.id.bValiderIO);
+//        bIO.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent IO=new Intent(Main.this,IO.class);
+//                startActivity(IO);
+//                //finish();
+//            }
+//        });
 
         setPostIts();
     }

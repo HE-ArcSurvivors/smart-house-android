@@ -32,7 +32,7 @@ public class BlueFetch extends Services {
     static String AuthorizedPassword = "king";
     static String AuthorizedLogin = "CMD\r\n";
 
-    static String DoorStatus = "false";
+    static String DoorStatus = "0";
 
     static boolean postIt1 = true;
     static boolean postIt2 = true;
