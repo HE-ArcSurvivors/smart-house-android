@@ -8,7 +8,9 @@
         android:label="@string/app_name" >
         <activity
             android:name=".Connection"
-            android:theme="@style/Connection" >
+            android:theme="@style/Connection"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,22 +20,26 @@
         <activity
             android:name=".Main"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Users"
             android:label="@string/title_activity_users"
-            android:theme="@style/ListView" >
+            android:theme="@style/ListView"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Parametre"
             android:label="@string/title_activity_parametre"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".POSTIT"
             android:label="@string/title_activity_postit"
-            android:theme="@style/ListView" >
+            android:theme="@style/ListView"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="andoid.app.default_searchable"
                 android:value=".POSTIT" />
@@ -49,19 +55,22 @@
         <activity
             android:name=".Materiel"
             android:label="@string/title_activity_materiel"
-            android:theme="@style/ListView" >
+            android:theme="@style/ListView"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MonProfil"
             android:label="@string/title_activity_mon_profil"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".BlueTests"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_blue_tests"
             android:theme="@style/BluetoothTheme"
-            android:uiOptions="none" >
+            android:uiOptions="none"
+            >
         </activity>
         <activity
             android:name=".BlueDeviceList"
@@ -72,22 +81,26 @@
         <activity
             android:name=".NewMessage"
             android:label="@string/title_activity_new_message"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Chauffage"
             android:label="@string/title_activity_chauffage"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".LecturePostIt"
             android:label="@string/title_activity_lecture_post_it"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".AjouterModifer"
             android:label="@string/title_activity_ajouter_modifer"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".BlueDiscovery"
@@ -101,7 +114,9 @@
         </activity>
         <activity
             android:name=".IO"
-            android:label="@string/title_activity_io" >
+            android:label="@string/title_activity_io"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
         </activity>
     </application>
 
