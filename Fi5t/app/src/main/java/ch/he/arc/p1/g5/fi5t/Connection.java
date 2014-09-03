@@ -475,9 +475,10 @@ public class Connection extends Activity {
                 case MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
+
                     String readMessage = new String(readBuf, 0, msg.arg1);
                     //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
-
+                    //SystemClock.sleep(500);
                     BlueFetch.ReceivedResponse = readMessage;
                     break;
                 case MESSAGE_DEVICE_NAME:

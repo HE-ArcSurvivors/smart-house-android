@@ -36,6 +36,8 @@ public class Main extends Services{
 
     boolean test = true;
 
+    String test2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +46,92 @@ public class Main extends Services{
 
 
         bIO=(Button)findViewById(R.id.bIO);
+        tStringMorePostIts = (TextView) findViewById(R.id.lgtMoreMessage);
 
         bIO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //bIO.setEnabled(false);
 
                 if (test){
-                //Door Status
-                Connection.sendMessage("abc");
-                bIO.setText("Sent: abc");
-                test = false;
+
+                    new Thread(new Runnable() {
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                  String data = "P1";
+                                  String send;
+                                  for (int i = 0; i < data.length(); i++) {
+                                  send = "" + data.charAt(i);
+                                  Connection.sendMessage(send);
+                                  //SystemClock.sleep(100);
+                                  }
+                                }
+                            });
+
+                            test = false;
+
+                            SystemClock.sleep(100);
 
 
-                }else{
-                    Connection.sendMessage("abd");
-                    bIO.setText("Sent: abd");
-                    test = true;
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    //Connection.sendMessage("a");
+
+                                    //SystemClock.sleep(500);
+                                    tStringMorePostIts.setText("abc: "+BlueFetch.ReceivedResponse);
+                                    //bIO.setEnabled(true);
+                                    bIO.setText("Ouverte");
+                                }
+                            });
+                        }
+                    }).start();
+
+                //bIO.setText("Sent: abc");
+                //test = false;
+                //SystemClock.sleep(200);
+                //Toast.makeText(getApplicationContext(), "Recieved: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+
+
+
+                }
+                else{
+                    new Thread(new Runnable() {
+                        public void run() {
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    String data = "P0";
+                                    String send;
+
+                                    for (int i = 0; i < data.length(); i++) {
+                                        send = "" + data.charAt(i);
+                                        Connection.sendMessage(send);
+
+                                        //SystemClock.sleep(100);
+                                    }
+                                }
+                            });
+
+
+                            test = true;
+
+                            SystemClock.sleep(100);
+                            //bIO.setEnabled(true);
+                            //test2 = BlueFetch.ReceivedResponse;
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    //Connection.sendMessage("a");
+
+                                    //SystemClock.sleep(500);
+                                    tStringMorePostIts.setText("abc: "+BlueFetch.ReceivedResponse);
+                                    //bIO.setEnabled(true);
+                                    bIO.setText("Fermee");
+                                }
+                            });
+                        }
+                    }).start();
                 }
 
                 }
@@ -71,9 +143,9 @@ public class Main extends Services{
         //Get Door Status
         //Toast.makeText(getApplicationContext(), "Before: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
         //Connection.sendMessage("1, 22");
-        Connection.sendMessage("$$$");
+        //Connection.sendMessage("$$$");
 
-        SystemClock.sleep(50);
+        //SystemClock.sleep(50);
         BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
 
         new Thread(new Runnable() {
@@ -112,12 +184,12 @@ public class Main extends Services{
         });
 
         //SystemClock.sleep(50);
-        Toast.makeText(getApplicationContext(), "CMD: " + BlueFetch.DoorStatus, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "CMD: " + BlueFetch.DoorStatus, Toast.LENGTH_SHORT).show();
 
-        SystemClock.sleep(50);
-        Connection.sendMessage("---\r\n");
+        //SystemClock.sleep(50);
+        //Connection.sendMessage("---\r\n");
 
-        Toast.makeText(getApplicationContext(), "End: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "End: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
 
 
         if(BlueFetch.DoorStatus=="true")
