@@ -18,14 +18,10 @@
     <string name="title_activity_blue_tests">Bluetooth CMD</string>
     <string name="title_activity_blue_discovery">Choose your Module</string>
     <string name="title_activity_blue_connection">Choose your Module</string>
-
-
     <string name="discoverable">Discoverable</string>
     <string name="insecure_connect">Insecure Connection</string>
     <string name="secure_connect">Secure Connection</string>
-
     <string name="send">Send</string>
-
 
     <!-- BlueTests -->
     <string name="alert_dialog_no_bt">Cannot use this application without bluetooth.</string>
@@ -109,5 +105,6 @@
     <string name="title_activity_chauffage">Chauffage</string>
     <string name="title_activity_lecture_post_it">Lecture</string>
     <string name="title_activity_ajouter_modifer">Ajout / Modif Utilisateur</string>
+    <string name="title_activity_io">IO</string>
 
 </resources>

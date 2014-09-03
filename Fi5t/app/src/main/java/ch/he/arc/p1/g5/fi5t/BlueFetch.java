@@ -40,20 +40,20 @@ public class BlueFetch extends Services {
 
     static int numberMorePostIts = 1;
 
-    static String postItMessage1 = "Je suis de sortie ce soir !";
-    static String postItDate1 = "12:32 / 25.08.2014";
+    static String postItMessage1 = "Je suis en retard";
+    static String postItDate1 = "12:13 / 21.08.2014";
 
-    static String postItFrom1 = "Franck";
+    static String postItFrom1 = "Schaffora";
 
-    static String postItMessage2 = "Je rentre à la maison à 18h00";
-    static String postItDate2 = "11:26 / 25.08.2014";
+    static String postItMessage2 = "Je suis en retard";
+    static String postItDate2 = "12:13 / 21.08.2014";
 
-    static String postItFrom2 = "Maman";
+    static String postItFrom2 = "Schaffora";
 
-    static String postItMessage3 = "Je fini un peu plus tôt l'école que prévu";
-    static String postItDate3 = "11:21 / 25.08.2014";
+    static String postItMessage3 = "Je suis en retard";
+    static String postItDate3 = "12:13 / 21.08.2014";
 
-    static String postItFrom3 = "Franck";
+    static String postItFrom3 = "Schaffora";
 
 
 
@@ -73,7 +73,7 @@ public class BlueFetch extends Services {
 
 
     //-----Nombre Utilisateur--------//
-    static Integer BlfNombreUtilisateur = 4;
+    static Integer BlfNombreUtilisateur = 3;
 
     //-----Nombre POSTIT--------//
 

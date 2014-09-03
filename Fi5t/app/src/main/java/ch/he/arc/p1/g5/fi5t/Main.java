@@ -1,22 +1,14 @@
 package ch.he.arc.p1.g5.fi5t;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Timer;
 
 
 public class Main extends Services{
@@ -45,8 +37,12 @@ public class Main extends Services{
         setContentView(R.layout.activity_main);
 
 
+<<<<<<< HEAD
         bIO=(Button)findViewById(R.id.bIO);
         tStringMorePostIts = (TextView) findViewById(R.id.lgtMoreMessage);
+=======
+        bIO=(Button)findViewById(R.id.bValiderIO);
+>>>>>>> 3ae51939fac526ce48f77215915ebf3587954aab
 
         bIO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,6 +221,15 @@ public class Main extends Services{
                     Connection.sendMessage("1, 20");
 
                 }
+            }
+        });
+        bIO=(Button)findViewById(R.id.bValiderIO);
+        bIO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent IO=new Intent(Main.this,IO.class);
+                startActivity(IO);
+                finish();
             }
         });
 
