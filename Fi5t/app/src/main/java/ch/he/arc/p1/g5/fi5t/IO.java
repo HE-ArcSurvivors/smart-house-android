@@ -2,19 +2,98 @@ package ch.he.arc.p1.g5.fi5t;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.ToggleButton;
 
 
 public class IO extends Activity {
+
+    Switch switchPorte;
     Button ValiderIO;
+
+    String data,send;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_io);
+        switchPorte = (Switch)findViewById(R.id.switchPorte);
+
+        new Thread(new Runnable() {
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        data = "22";
+                        for (int i = 0; i < data.length(); i++) {
+                            send = "" + data.charAt(i);
+                            Connection.sendMessage(send);
+                        }
+                    }
+                });
+
+                SystemClock.sleep(500);
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+                        if(BlueFetch.DoorStatus.matches("1"))
+                        {
+                            switchPorte.setChecked(true);
+                        }else{
+                            switchPorte.setChecked(false);
+                        }
+                    }
+                });
+            }
+        }).start();
+
+        switchPorte.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    BlueFetch.DoorStatus="1";
+                    //open door
+                    new Thread(new Runnable() {
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    data = "20";
+                                    for (int i = 0; i < data.length(); i++) {
+                                        send = "" + data.charAt(i);
+                                        Connection.sendMessage(send);
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
+                } else {
+                    BlueFetch.DoorStatus="0";
+                    //Close door
+                    new Thread(new Runnable() {
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    data = "21";
+                                    for (int i = 0; i < data.length(); i++) {
+                                        send = "" + data.charAt(i);
+                                        Connection.sendMessage(send);
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
+
+                }
+            }
+        });
+
+
         ValiderIO=(Button)findViewById(R.id.bValiderIO);
         ValiderIO.setOnClickListener(new View.OnClickListener() {
             @Override

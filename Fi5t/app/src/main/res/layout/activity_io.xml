@@ -22,12 +22,13 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/switch1"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/switchPorte"
         android:background="#ffffffff"
         android:textColor="#ffffffff"
-        android:checked="false" />
+        android:checked="false"
+        android:layout_marginLeft="160dp"
+        android:layout_alignBottom="@+id/textView"
+         />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,20 +37,19 @@
         android:text="Lumière:"
         android:id="@+id/textView2"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/switch1"
+        android:layout_below="@+id/switchPorte"
         android:layout_alignParentStart="true"
         android:textColor="#ffffffff" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/switch2"
+        android:id="@+id/switchLumiere"
         android:background="#ffffffff"
-        android:layout_marginTop="10dp"
         android:textColor="#ffffffff"
         android:layout_toEndOf="@+id/textView2"
         android:layout_alignTop="@+id/textView2"
-        android:layout_alignStart="@+id/switch1" />
+        android:layout_alignStart="@+id/switchPorte" />
 
     <Button
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:text="Valider"
         android:layout_marginTop="20dp"
         android:id="@+id/bValiderIO"
-        android:layout_below="@+id/switch2"
+        android:layout_below="@+id/switchLumiere"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/button"

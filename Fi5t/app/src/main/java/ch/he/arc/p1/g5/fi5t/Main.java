@@ -40,116 +40,116 @@ public class Main extends Services{
 
 
 
-      bIO=(Button)findViewById(R.id.bValiderIO);
-        tStringMorePostIts = (TextView) findViewById(R.id.lgtMoreMessage);
-
-        bIO=(Button)findViewById(R.id.bValiderIO);
-
-
-        bIO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //bIO.setEnabled(false);
-
-                if (test){
-
-                    new Thread(new Runnable() {
-                        public void run() {
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                  data = "P1";
-//                                  for (int i = 0; i < data.length(); i++) {
-//                                  send = "" + data.charAt(i);
-//                                  Connection.sendMessage(send);
-//                                  //SystemClock.sleep(100);
+//      bIO=(Button)findViewById(R.id.bValiderIO);
+//        tStringMorePostIts = (TextView) findViewById(R.id.lgtMoreMessage);
 //
-//                                  }
-                                  Connection.sendMessage(data);
-                                }
-                            });
-
-                            test = false;
-
-                            SystemClock.sleep(500);
-
-
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    //Connection.sendMessage("a");
-//                                    send = "";
-
-//                                    for (int i=0;i<20;i++){
+//        bIO=(Button)findViewById(R.id.bValiderIO);
 //
-//                                        if (BlueFetch.ReceivedResponse == "~"){
-//                                            Toast.makeText(getApplicationContext(), "BREAK: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
-//                                            break;
-//                                        }
-//                                        send = send + BlueFetch.ReceivedResponse;
-//                                        SystemClock.sleep(50);
 //
-//                                    }
-                                    tStringMorePostIts.setText("ouverte: "+BlueFetch.ReceivedResponse);
-
-                                    //SystemClock.sleep(500);
-//                                    tStringMorePostIts.setText("abc: "+send);
-                                    //bIO.setEnabled(true);
-                                    bIO.setText("Ouverte");
-                                }
-                            });
-                        }
-                    }).start();
-
-                //bIO.setText("Sent: abc");
-                //test = false;
-                //SystemClock.sleep(200);
-                //Toast.makeText(getApplicationContext(), "Recieved: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
-
-
-
-                }
-                else{
-                    new Thread(new Runnable() {
-                        public void run() {
-
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    String data = "P0";
-                                    String send;
-
-//                                    for (int i = 0; i < data.length(); i++) {
-//                                        send = "" + data.charAt(i);
-//                                        Connection.sendMessage(send);
+//        bIO.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //bIO.setEnabled(false);
 //
-//                                        //SystemClock.sleep(100);
-//                                    }
-                                    Connection.sendMessage(data);
-                                }
-                            });
-
-
-                            test = true;
-
-                            SystemClock.sleep(500);
-                            //bIO.setEnabled(true);
-                            //test2 = BlueFetch.ReceivedResponse;
-
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    //Connection.sendMessage("a");
-
-                                    //SystemClock.sleep(500);
-                                    tStringMorePostIts.setText("fermee: "+BlueFetch.ReceivedResponse);
-                                    //bIO.setEnabled(true);
-                                    bIO.setText("Fermee");
-                                }
-                            });
-                        }
-                    }).start();
-                }
-
-                }
-
-        });
+//                if (test){
+//
+//                    new Thread(new Runnable() {
+//                        public void run() {
+//                            runOnUiThread(new Runnable() {
+//                                public void run() {
+//                                  data = "P1";
+////                                  for (int i = 0; i < data.length(); i++) {
+////                                  send = "" + data.charAt(i);
+////                                  Connection.sendMessage(send);
+////                                  //SystemClock.sleep(100);
+////
+////                                  }
+//                                  Connection.sendMessage(data);
+//                                }
+//                            });
+//
+//                            test = false;
+//
+//                            SystemClock.sleep(500);
+//
+//
+//                            runOnUiThread(new Runnable() {
+//                                public void run() {
+//                                    //Connection.sendMessage("a");
+////                                    send = "";
+//
+////                                    for (int i=0;i<20;i++){
+////
+////                                        if (BlueFetch.ReceivedResponse == "~"){
+////                                            Toast.makeText(getApplicationContext(), "BREAK: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+////                                            break;
+////                                        }
+////                                        send = send + BlueFetch.ReceivedResponse;
+////                                        SystemClock.sleep(50);
+////
+////                                    }
+//                                    tStringMorePostIts.setText("ouverte: "+BlueFetch.ReceivedResponse);
+//
+//                                    //SystemClock.sleep(500);
+////                                    tStringMorePostIts.setText("abc: "+send);
+//                                    //bIO.setEnabled(true);
+//                                    bIO.setText("Ouverte");
+//                                }
+//                            });
+//                        }
+//                    }).start();
+//
+//                //bIO.setText("Sent: abc");
+//                //test = false;
+//                //SystemClock.sleep(200);
+//                //Toast.makeText(getApplicationContext(), "Recieved: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+//
+//
+//
+//                }
+//                else{
+//                    new Thread(new Runnable() {
+//                        public void run() {
+//
+//                            runOnUiThread(new Runnable() {
+//                                public void run() {
+//                                    String data = "P0";
+//                                    String send;
+//
+////                                    for (int i = 0; i < data.length(); i++) {
+////                                        send = "" + data.charAt(i);
+////                                        Connection.sendMessage(send);
+////
+////                                        //SystemClock.sleep(100);
+////                                    }
+//                                    Connection.sendMessage(data);
+//                                }
+//                            });
+//
+//
+//                            test = true;
+//
+//                            SystemClock.sleep(500);
+//                            //bIO.setEnabled(true);
+//                            //test2 = BlueFetch.ReceivedResponse;
+//
+//                            runOnUiThread(new Runnable() {
+//                                public void run() {
+//                                    //Connection.sendMessage("a");
+//
+//                                    //SystemClock.sleep(500);
+//                                    tStringMorePostIts.setText("fermee: "+BlueFetch.ReceivedResponse);
+//                                    //bIO.setEnabled(true);
+//                                    bIO.setText("Fermee");
+//                                }
+//                            });
+//                        }
+//                    }).start();
+//                }
+//
+//                }
+//
+//        });
 
         //////// Initializing Blue Values //////
 
@@ -168,7 +168,7 @@ public class Main extends Services{
                         data = "22";
                         for (int i = 0; i < data.length(); i++) {
                             send = "" + data.charAt(i);
-                            Connection.sendMessage(send);
+//                            Connection.sendMessage(send);
                         }
                     }
                 });
@@ -178,12 +178,13 @@ public class Main extends Services{
                 runOnUiThread(new Runnable() {
                     public void run() {
                         BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
-                        if(BlueFetch.DoorStatus=="1")
+                        if(BlueFetch.DoorStatus.matches("1"))
                         {
                             Im1.setBackgroundResource(R.drawable.opendoor);
                         }else{
                             Im1.setBackgroundResource(R.drawable.closeddoor);
                         }
+                        //tStringMorePostIts.setText("etat: "+BlueFetch.ReceivedResponse);
                     }
                 });
             }
@@ -202,21 +203,10 @@ public class Main extends Services{
             }
         });
 
-        //SystemClock.sleep(50);
         //Toast.makeText(getApplicationContext(), "CMD: " + BlueFetch.DoorStatus, Toast.LENGTH_SHORT).show();
-
-        //SystemClock.sleep(50);
-        //Connection.sendMessage("---\r\n");
 
         //Toast.makeText(getApplicationContext(), "End: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
 
-
-//        if(BlueFetch.DoorStatus=="true")
-//        {
-//            Im1.setBackgroundResource(R.drawable.opendoor);
-//        }else{
-//            Im1.setBackgroundResource(R.drawable.closeddoor);
-//        }
 
         bEtatPorte=(Button)findViewById(R.id.bEtatPortePrinc);
 
@@ -224,37 +214,44 @@ public class Main extends Services{
             @Override
             public void onClick(View v) {
                 //Door Status
-                new Thread(new Runnable() {
-                    public void run() {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                data = "22";
-                                for (int i = 0; i < data.length(); i++) {
-                                    send = "" + data.charAt(i);
-                                    Connection.sendMessage(send);
-                                }
-                            }
-                        });
+//                new Thread(new Runnable() {
+//                    public void run() {
+//                        runOnUiThread(new Runnable() {
+//                            public void run() {
+//                                data = "22";
+//                                for (int i = 0; i < data.length(); i++) {
+//                                    send = "" + data.charAt(i);
+//                                    Connection.sendMessage(send);
+//                                }
+//                            }
+//                        });
+//
+//                        SystemClock.sleep(500);
+//
+//                        runOnUiThread(new Runnable() {
+//                            public void run() {
+//
+//                                BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+//                                //BlueFetch.DoorStatus = "" + BlueFetch.DoorStatus.charAt(0);
+//                                if(BlueFetch.DoorStatus.matches("1"))
+//                                {
+//                                    tStringMorePostIts.setText("etat: "+BlueFetch.DoorStatus);
+////                                    Im1.setBackgroundResource(R.drawable.opendoor);
+//                                }else{
+//                                    tStringMorePostIts.setText("etat: "+BlueFetch.DoorStatus);
+////                                    Im1.setBackgroundResource(R.drawable.closeddoor);
+//                                }
+//
+//                            }
+//                        });
+//                    }
+//                }).start();
 
-                        SystemClock.sleep(500);
+                //SystemClock.sleep(1000);
 
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
-                                if(BlueFetch.DoorStatus=="1")
-                                {
-                                    Im1.setBackgroundResource(R.drawable.opendoor);
-                                }else{
-                                    Im1.setBackgroundResource(R.drawable.closeddoor);
-                                }
-                            }
-                        });
-                    }
-                }).start();
-
-                if(BlueFetch.DoorStatus=="1")
+                if(BlueFetch.DoorStatus.matches("1"))
                 {
-                    //BlueFetch.DoorStatus="false";
+                    BlueFetch.DoorStatus="0";
                     Im1.setBackgroundResource(R.drawable.closeddoor);
                     bEtatPorte.setTextColor(Color.parseColor("#FFFF0000"));
                     //Close door
@@ -274,7 +271,7 @@ public class Main extends Services{
 
                 }else {
                     Im1.setBackgroundResource(R.drawable.opendoor);
-                    //BlueFetch.DoorStatus="true";
+                    BlueFetch.DoorStatus="1";
                     bEtatPorte.setTextColor(Color.parseColor("#ff7a7a7a"));
                     //open door
                     new Thread(new Runnable() {
@@ -293,16 +290,19 @@ public class Main extends Services{
 
                 }
             }
+            //}
         });
-//        bIO=(Button)findViewById(R.id.bValiderIO);
-//        bIO.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent IO=new Intent(Main.this,IO.class);
-//                startActivity(IO);
-//                //finish();
-//            }
-//        });
+
+
+        bIO=(Button)findViewById(R.id.bValiderIO);
+        bIO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent IO=new Intent(Main.this,IO.class);
+                startActivity(IO);
+                //finish();
+            }
+        });
 
         setPostIts();
     }

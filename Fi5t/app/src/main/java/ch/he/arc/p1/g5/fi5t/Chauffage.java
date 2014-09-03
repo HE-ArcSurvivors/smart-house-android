@@ -22,11 +22,12 @@ import android.widget.Toast;
 public class Chauffage extends Services{
     Button bValiderTemp;
     Button bValiderTextChange;
-    TextView txvTemp;
+    TextView txvTemp, tvTempExterne, tvTempInterne;
     EditText edtTempMin;
     EditText edtTempMax;
     SeekBar  skTemp;
     Integer Secure=0;
+    String data,send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,59 @@ public class Chauffage extends Services{
         edtTempMax=(EditText)findViewById(R.id.edtTempMax);
         edtTempMin=(EditText)findViewById(R.id.edtTempMin);
 
+        tvTempExterne=(TextView)findViewById(R.id.tvTempExterne);
+        tvTempInterne=(TextView)findViewById(R.id.tvTempInterne);
+
         //------------------------Déclaration de variable------------------------------//
 
 
+
+        new Thread(new Runnable() {
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        data = "31";
+                        for (int i = 0; i < data.length(); i++) {
+                            send = "" + data.charAt(i);
+                            Connection.sendMessage(send);
+                        }
+                    }
+                });
+
+                SystemClock.sleep(500);
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+
+                        tvTempInterne.setText(BlueFetch.ReceivedResponse);
+
+                    }
+                });
+
+                SystemClock.sleep(1000);
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        data = "32";
+                        for (int i = 0; i < data.length(); i++) {
+                            send = "" + data.charAt(i);
+                            Connection.sendMessage(send);
+                        }
+                    }
+                });
+
+                SystemClock.sleep(500);
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+
+                        tvTempExterne.setText(BlueFetch.ReceivedResponse);
+                    }
+                });
+
+
+            }
+        }).start();
 
        SharedPreferences UserChauffage = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
        SharedPreferences.Editor editorChauffage = UserChauffage.edit();
@@ -82,11 +133,41 @@ public class Chauffage extends Services{
                 SharedPreferences.Editor editor = UserProfile.edit();
                 editor.putInt(Services.TemperatureChauffage, iTempMin);
                 editor.apply();
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                ////////////////////////////////Mettre valeur de services dans bluefetch/////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                BlueFetch.TemperatureActuelle = iTempMin;
+
+                new Thread(new Runnable() {
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                data = "30";
+                                for (int i = 0; i < data.length(); i++) {
+                                    send = "" + data.charAt(i);
+                                    Connection.sendMessage(send);
+                                }
+                            }
+                        });
+
+                        SystemClock.sleep(500);
+
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                data = iTempMin.toString();
+                                for (int i = 0; i < data.length(); i++) {
+                                    send = "" + data.charAt(i);
+                                    Connection.sendMessage(send);
+                                }
+
+
+                            }
+                        });
+
+                    }
+                }).start();
+
+
+
             }
         });
         //-------------------------------Validation---------------------------------//

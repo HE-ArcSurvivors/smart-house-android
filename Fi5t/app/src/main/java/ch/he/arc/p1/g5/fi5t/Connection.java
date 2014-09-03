@@ -177,11 +177,29 @@ public class Connection extends Activity {
                 sUsername = dUsername.getText().toString();
                 blnChecked = cbRemember.isChecked();
 
-                //String message = "1"+" ,"+00"+" ,"+sUsername+" ,"+sPassword;
+                String message = "00" + " ," + sUsername + " ," + sPassword + "\0";
+                int lengthOfMessage = message.length();
+                //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                for (int i=lengthOfMessage;i<140;i++) {
+                    message = message + " ";
+                }
+                Connection.sendMessage(message);
+
+
+
+                //Toast.makeText(getApplicationContext(), "characters: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+
+                //SystemClock.sleep(500);
+
+                //Toast.makeText(getApplicationContext(), "recieved: " + BlueFetch.ReceivedResponse, Toast.LENGTH_SHORT).show();
+
+
                 //sendMessage(message);
 
                 //String message2 = "$$$";
-                sendMessage(sPassword);
+
+
+
 
                 new Thread(new Runnable() {
                     public void run() {
@@ -227,7 +245,7 @@ public class Connection extends Activity {
                                                     // some code that needs to be ran in UI thread
                                                     Intent myIntent = new Intent(Connection.this, Main.class);
 
-                                                    sendMessage("---\r\n");
+                                                    //sendMessage("---\r\n");
 
                                                     startActivity(myIntent);
                                                     //startActivityForResult(myIntent);

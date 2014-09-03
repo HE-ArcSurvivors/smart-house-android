@@ -16,6 +16,8 @@ public class Parametre extends Services {
 
     Button bBluetoothCMD;
     Button bReglageChauffage;
+    Button bAccesMaison;
+    Button bAutresFonctions;
 
 
     @Override
@@ -48,6 +50,22 @@ public class Parametre extends Services {
             }
 
         });
+
+        bAccesMaison = (Button) findViewById(R.id.bAccesMaison);
+
+        bAccesMaison.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+                bAccesMaison.setTextColor(Color.parseColor("#FFFFFFFF"));
+                startActivity(new Intent (Parametre.this, IO.class));
+                finish();
+
+            }
+
+        });
+
+        bAutresFonctions = (Button) findViewById(R.id.bAutresFonctions);
+        bAutresFonctions.setVisibility(View.GONE);
 
     }
 
