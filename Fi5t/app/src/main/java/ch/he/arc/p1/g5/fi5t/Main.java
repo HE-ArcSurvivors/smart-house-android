@@ -37,12 +37,12 @@ public class Main extends Services{
         setContentView(R.layout.activity_main);
 
 
-<<<<<<< HEAD
-        bIO=(Button)findViewById(R.id.bIO);
-        tStringMorePostIts = (TextView) findViewById(R.id.lgtMoreMessage);
-=======
+
         bIO=(Button)findViewById(R.id.bValiderIO);
->>>>>>> 3ae51939fac526ce48f77215915ebf3587954aab
+        tStringMorePostIts = (TextView) findViewById(R.id.lgtMoreMessage);
+
+        bIO=(Button)findViewById(R.id.bValiderIO);
+
 
         bIO.setOnClickListener(new View.OnClickListener() {
             @Override
