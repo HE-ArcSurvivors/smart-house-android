@@ -48,6 +48,8 @@ public class Connection extends Activity {
     String sPassword;
     Boolean blnChecked, blnBT = false;
 
+    String message;
+
     // Debugging
     private static final String TAG = "Connection";
     private static final boolean D = false;
@@ -177,13 +179,24 @@ public class Connection extends Activity {
                 sUsername = dUsername.getText().toString();
                 blnChecked = cbRemember.isChecked();
 
-                String message = "00" + " ," + sUsername + " ," + sPassword + "\0";
+                message = "00" + " ," + sUsername + " ," + sPassword + "\0";
                 int lengthOfMessage = message.length();
                 //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
                 for (int i=lengthOfMessage;i<140;i++) {
                     message = message + " ";
                 }
                 Connection.sendMessage(message);
+
+                String send = "";
+
+//                for (int i = 0; i < message.length(); i++) {
+//                    send = "" + message.charAt(i);
+//                    Connection.sendMessage(send);
+//                    SystemClock.sleep(100);
+//                    //bLogin.setText(i);
+//                }
+
+
 
 
 
@@ -251,10 +264,6 @@ public class Connection extends Activity {
                                                     //startActivityForResult(myIntent);
 
                                                     //finish();
-
-
-
-
                                                 }
                                             });
 
@@ -266,14 +275,8 @@ public class Connection extends Activity {
                                                     //bLogin.setText("Previous Session");
                                                     bLogin.setEnabled(true);
 
-
-
-
                                                 }
                                             });
-
-
-
 
 
                                         }
@@ -298,20 +301,14 @@ public class Connection extends Activity {
                                             }
                                         });
 
-
-
                                     }
                                 }).start();
                                 bLogin.setEnabled(true);
 
                             }
 
-
                         }
                         });
-
-
-
 
                     }
                 }).start();
@@ -319,7 +316,6 @@ public class Connection extends Activity {
             }
 
         });
-
 
     }
 
@@ -445,7 +441,7 @@ public class Connection extends Activity {
                     // If the action is a key-up event on the return key, send the message
                     if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_UP) {
                         String message = view.getText().toString();
-                        sendMessage(message);
+                        //sendMessage(message);
                     }
                     if(D) Log.i(TAG, "END onEditorAction");
                     return true;

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,9 +22,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.PatternSyntaxException;
 
 
 public class Users extends Services {
+
+    String message;
+
+    String[] splitMessage;
+
+    int i;
 
 
     //----------------------Button--------------------//////
@@ -206,46 +214,108 @@ public class Users extends Services {
 
     private void PopulateUserList() {
 
-
-
-        //Initialisation de l'utilisation de la memoire interne
-        SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
-        Editor editor = UserProfile.edit();
-
-       //------------------------------ On va recevoir le nombre d'utilisateur de la base de données-------------------///
-        editor.putInt(Services.NombreUtilisateurs, BlueFetch.BlfNombreUtilisateur);
-
-
-        editor.putInt(ExterneUserID,BlueFetch.IDExternUser);
-        editor.putString(ExterneUserName,BlueFetch.ExternPseudoName.toString());
-        editor.putString(ExterneFirstName,BlueFetch.ExternUserFirstName);
-        editor.putString(ExterneLastName,BlueFetch.ExternUserName);
-        editor.putString(ExternePassword,BlueFetch.ExterneMotDePasse);
-        editor.putString(ExterneUserRole,BlueFetch.ExternUserRoles);
-
-
-       //Pour sauver les informations
-        editor.apply();
-
         //Pour recuperer les informations depuis le service
-        Integer fois = UserProfile.getInt(Services.NombreUtilisateurs,0);
-        int i;
+        Integer fois = BlueFetch.BlfNombreUtilisateur;
 
-        for (i=0; i<fois; i++) {
+
+        for (i=1; i<=fois; i++) {
             ////////////////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////////////////////
             ///////////Fonction qui retourne le nom et le reste de l'utilisateur num 1,2,3,4////////////
             ////////////////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////////////////////
 
+
+            new Thread(new Runnable() {
+                public void run() {
+
+                    //SystemClock.sleep(500);
+
+                    runOnUiThread(new Runnable() {
+                                      public void run() {
+
+                                          if (BlueFetch.ReceivedResponse.matches(BlueFetch.AuthorizedLogin)) {
+                                            // Create Inner Thread Class
+                                              new Thread(new Runnable() {
+                                                  public void run() {
+
+                                                      runOnUiThread(new Runnable() {
+                                                          public void run() {
+                                                              message = "04" + " ," + i + "\0";
+                                                              int lengthOfMessage = message.length();
+                                                              //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                                                              for (int j=lengthOfMessage;j<140;j++) {
+                                                                  message = message + " ";
+                                                              }
+                                                              Connection.sendMessage(message);
+
+                                                          }
+                                                      });
+
+                                                      SystemClock.sleep(200);
+
+
+                                                      runOnUiThread(new Runnable() {
+                                                          public void run() {
+
+                                                              try {
+                                                                  splitMessage = message.split(" ,");
+                                                              } catch (PatternSyntaxException ex) {
+                                                                  //
+                                                              }
+
+                                                              //Initialisation de l'utilisation de la memoire interne
+                                                              SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+                                                              Editor editor = UserProfile.edit();
+
+                                                              splitMessage[1]="test1";
+                                                              splitMessage[2]="test2";
+                                                              splitMessage[3]="test3";
+                                                              splitMessage[4]="test4";
+                                                              splitMessage[5]="test5";
+                                                              splitMessage[6]="test6";
+
+
+
+                                                              editor.putString(ExterneUserID,splitMessage[1]);
+                                                              editor.putString(ExterneLastName,splitMessage[2]);
+                                                              editor.putString(ExterneFirstName,splitMessage[3]);
+                                                              editor.putString(ExterneUserName,splitMessage[4]);
+                                                              editor.putString(ExternePassword,splitMessage[5]);
+                                                              editor.putString(ExterneUserRole,splitMessage[6]);
+
+
+                                                              //Pour sauver les informations
+                                                              editor.apply();
+
+
+
+                                                          }
+                                                      });
+
+
+                                                  }
+                                              }).start();
+
+                                          }
+                                      }
+                    });
+                }
+            });
+
+            SystemClock.sleep(2000);
+
+            SharedPreferences UserProfile = getSharedPreferences(Services.MyProfile,MODE_PRIVATE);
+
+
             String Recuperation=UserProfile.getString(Services.ExterneUserName,"");
-            Integer Recuperation2=UserProfile.getInt(Services.ExterneUserID, 0);
+            String Recuperation2=UserProfile.getString(Services.ExterneUserID, "");
             String Recuperation3=UserProfile.getString(Services.ExterneFirstName,"");
             String Recuperation4=UserProfile.getString(Services.ExterneLastName,"");
             String Recuperation5=UserProfile.getString(Services.ExternePassword,"");
             String Recuperation6=UserProfile.getString(Services.ExterneUserRole,"");
 
-            UserClass User=new UserClass(Recuperation4, Recuperation3, Recuperation6, Recuperation5,Recuperation,  Recuperation2);
+            UserClass User=new UserClass(Recuperation4, Recuperation3, Recuperation6, Recuperation5,Recuperation, Recuperation2);
             MyUsers.add(User);
         }
 
@@ -282,12 +352,12 @@ class UserClass {
     String Role;
     String MDP;
     String Pseudo;
-    int IDUser;
+    String IDUser;
 
 
 
 
-    public UserClass(String sNom,String sPrenom,String sRole,String sMDP,String sPseudo,Integer iMessageEnvoyer) {
+    public UserClass(String sNom,String sPrenom,String sRole,String sMDP,String sPseudo,String iMessageEnvoyer) {
         super();
         Nom=sNom;
         Prenom=sPrenom;
@@ -318,7 +388,7 @@ class UserClass {
     {
         return Pseudo;
     }
-    public Integer getID()
+    public String getID()
     {
         return IDUser;
     }

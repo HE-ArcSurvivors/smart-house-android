@@ -73,7 +73,7 @@ public class BlueFetch extends Services {
 
 
     //-----Nombre Utilisateur--------//
-    static Integer BlfNombreUtilisateur = 3;
+    static Integer BlfNombreUtilisateur = 5;
 
     //-----Nombre POSTIT--------//
 

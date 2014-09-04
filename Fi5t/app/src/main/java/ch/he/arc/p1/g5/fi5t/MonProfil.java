@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
@@ -28,6 +29,7 @@ public class MonProfil extends Services {
     Button bConfirm;
     String whatAmI="nothing";
     boolean loop = true;
+    String data="",send="";
 
     SharedPreferences sharedProfile;
 
@@ -59,6 +61,29 @@ public class MonProfil extends Services {
         if (sharedProfile.contains(UserRole)){
             tvRole.setText(sharedProfile.getString(UserRole, ""));
         }
+
+//        new Thread(new Runnable() {
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//                    public void run() {
+//                        data = "04 ,"+"1";
+//                        for (int i = 0; i < data.length(); i++) {
+//                            send = "" + data.charAt(i);
+////                            Connection.sendMessage(send);
+//                        }
+//                    }
+//                });
+//
+//                SystemClock.sleep(500);
+//
+//                runOnUiThread(new Runnable() {
+//                    public void run() {
+//                        BlueFetch.DoorStatus = BlueFetch.ReceivedResponse;
+//
+//                    }
+//                });
+//            }
+//        }).start();
 
 
         tvNom.addTextChangedListener(new TextWatcher(){

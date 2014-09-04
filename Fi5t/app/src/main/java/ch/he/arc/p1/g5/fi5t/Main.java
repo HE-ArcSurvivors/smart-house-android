@@ -24,7 +24,7 @@ public class Main extends Services{
     TextView tPostItMessage1, tPostItMessage2, tPostItMessage3;
     TextView tNumberMorePostIts, tStringMorePostIts;
 
-    String message;
+    String message = "";
 
     boolean test = true;
 
@@ -37,7 +37,6 @@ public class Main extends Services{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
 //      bIO=(Button)findViewById(R.id.bValiderIO);
