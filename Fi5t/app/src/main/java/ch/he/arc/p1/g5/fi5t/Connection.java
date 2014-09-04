@@ -49,6 +49,7 @@ public class Connection extends Activity {
     Boolean blnChecked, blnBT = false;
 
     String message;
+    String[] messageParts = new String[14];
 
     // Debugging
     private static final String TAG = "Connection";
@@ -221,6 +222,20 @@ public class Connection extends Activity {
 
                         runOnUiThread(new Runnable() {
                             public void run() {
+
+                                //messageParts[0] = BlueFetch.ReceivedResponse;
+                                //Toast.makeText(getApplicationContext(), "Part 0: " + messageParts[0], Toast.LENGTH_SHORT).show();
+
+                                //SystemClock.sleep(100);
+
+                                //messageParts[1] = BlueFetch.ReceivedResponse;
+                                //Toast.makeText(getApplicationContext(), "Part 1: " + messageParts[1], Toast.LENGTH_SHORT).show();
+
+//                                SystemClock.sleep(100);
+
+//                                messageParts[2] = BlueFetch.ReceivedResponse;
+//                                Toast.makeText(getApplicationContext(), "Part 2: " + messageParts[2], Toast.LENGTH_SHORT).show();
+
 
                                 if (BlueFetch.ReceivedResponse.matches(BlueFetch.AuthorizedLogin)){
 

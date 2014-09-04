@@ -27,7 +27,16 @@ public class Chauffage extends Services{
     EditText edtTempMax;
     SeekBar  skTemp;
     Integer Secure=0;
-    String data,send;
+    String data,send,message;
+
+    int i;
+    char tempChar;
+
+    private static String removeCharAt(String s, int i) {
+        StringBuffer buf = new StringBuffer(s.length() -1);
+        buf.append(s.substring(0, i)).append(s.substring(i+1));
+        return buf.toString();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +61,13 @@ public class Chauffage extends Services{
             public void run() {
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        data = "31";
-                        for (int i = 0; i < data.length(); i++) {
-                            send = "" + data.charAt(i);
-                            Connection.sendMessage(send);
+                        message = "31"+"\0";
+                        int lengthOfMessage = message.length();
+                        //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                        for (int i=lengthOfMessage;i<140;i++) {
+                            message = message + " ";
                         }
+                        Connection.sendMessage(message);
                     }
                 });
 
@@ -64,8 +75,27 @@ public class Chauffage extends Services{
 
                 runOnUiThread(new Runnable() {
                     public void run() {
+//                            message = "";
+//
+//                          for(i=0; i<BlueFetch.ReceivedResponse.length(); i++){
+//
+//                              tempChar = BlueFetch.ReceivedResponse.charAt(i);
+//                              message = message + tempChar;
+//                          }
+                        //BlueFetch.ReceivedResponse = message;
+//                        BlueFetch.ReceivedResponse = removeCharAt(BlueFetch.ReceivedResponse, 9);
+//                        BlueFetch.ReceivedResponse = removeCharAt(BlueFetch.ReceivedResponse, 10);
+//                        BlueFetch.ReceivedResponse = removeCharAt(BlueFetch.ReceivedResponse, 11);
+                        //BlueFetch.ReceivedResponse = removeCharAt(BlueFetch.ReceivedResponse, 12);
+//                        BlueFetch.ReceivedResponse = removeCharAt(BlueFetch.ReceivedResponse, 20);
+//                        BlueFetch.ReceivedResponse = removeCharAt(BlueFetch.ReceivedResponse, 21);
 
                         tvTempInterne.setText(BlueFetch.ReceivedResponse);
+                        //tvTempInterne.setText(message);
+//                        Toast.makeText(getApplicationContext(), "before: " + BlueFetch.ReceivedResponse.charAt(0), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "before: " + BlueFetch.ReceivedResponse.charAt(1), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "before: " + BlueFetch.ReceivedResponse.charAt(2), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "before: " + BlueFetch.ReceivedResponse.charAt(3), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -74,11 +104,13 @@ public class Chauffage extends Services{
 
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        data = "32";
-                        for (int i = 0; i < data.length(); i++) {
-                            send = "" + data.charAt(i);
-                            Connection.sendMessage(send);
+                        message = "32"+"\0";
+                        int lengthOfMessage = message.length();
+                        //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                        for (int i=lengthOfMessage;i<140;i++) {
+                            message = message + " ";
                         }
+                        Connection.sendMessage(message);
                     }
                 });
 
@@ -140,26 +172,13 @@ public class Chauffage extends Services{
                     public void run() {
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                data = "30";
-                                for (int i = 0; i < data.length(); i++) {
-                                    send = "" + data.charAt(i);
-                                    Connection.sendMessage(send);
+                                message = "30, " + iTempMin.toString() + "\0";
+                                int lengthOfMessage = message.length();
+                                //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                                for (int i=lengthOfMessage;i<140;i++) {
+                                    message = message + " ";
                                 }
-                            }
-                        });
-
-                        SystemClock.sleep(500);
-
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-
-                                data = iTempMin.toString();
-                                for (int i = 0; i < data.length(); i++) {
-                                    send = "" + data.charAt(i);
-                                    Connection.sendMessage(send);
-                                }
-
-
+                                Connection.sendMessage(message);
                             }
                         });
 

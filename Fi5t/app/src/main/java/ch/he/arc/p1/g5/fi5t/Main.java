@@ -164,11 +164,14 @@ public class Main extends Services{
             public void run() {
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        data = "22";
-                        for (int i = 0; i < data.length(); i++) {
-                            send = "" + data.charAt(i);
-//                            Connection.sendMessage(send);
+
+                        message = "22" + "\0";
+                        int lengthOfMessage = message.length();
+                        //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                        for (int i=lengthOfMessage;i<140;i++) {
+                            message = message + " ";
                         }
+                        Connection.sendMessage(message);
                     }
                 });
 
@@ -258,11 +261,13 @@ public class Main extends Services{
                         public void run() {
                             runOnUiThread(new Runnable() {
                                 public void run() {
-                                    data = "21";
-                                    for (int i = 0; i < data.length(); i++) {
-                                        send = "" + data.charAt(i);
-                                        Connection.sendMessage(send);
+                                    message = "21" + "\0";
+                                    int lengthOfMessage = message.length();
+                                    //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                                    for (int i=lengthOfMessage;i<140;i++) {
+                                        message = message + " ";
                                     }
+                                    Connection.sendMessage(message);
                                 }
                             });
                         }
@@ -277,11 +282,13 @@ public class Main extends Services{
                         public void run() {
                             runOnUiThread(new Runnable() {
                                 public void run() {
-                                    data = "20";
-                                    for (int i = 0; i < data.length(); i++) {
-                                        send = "" + data.charAt(i);
-                                        Connection.sendMessage(send);
+                                    message = "20" + "\0";
+                                    int lengthOfMessage = message.length();
+                                    //Toast.makeText(getApplicationContext(), "before: " + lengthOfMessage, Toast.LENGTH_SHORT).show();
+                                    for (int i=lengthOfMessage;i<140;i++) {
+                                        message = message + " ";
                                     }
+                                    Connection.sendMessage(message);
                                 }
                             });
                         }
